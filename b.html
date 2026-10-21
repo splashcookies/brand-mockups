@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Splash mockup 2 of 3: Bakery counter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..800&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Option B: Bakery counter. Levain's shoppable pastel panels and icon strip, Deux's cutout headline and comparison table. */
+    :root {
+      --ink: var(--baking-sheet);
+      --paper: #fffdf5;
+      --hand: 'Patrick Hand SC', 'Figtree', sans-serif;
+      --w: 1240px;
+    }
+    body { background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.55; }
+    .wrap { width: min(var(--w), 100% - 40px); margin-inline: auto; }
+    h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--ink); color: var(--butter); font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid var(--ink); }
+    .btn:hover { background: var(--butter); color: var(--ink); }
+    .btn-peach { background: var(--wonder-woman); color: var(--ink); border-color: var(--wonder-woman); }
+    .btn-peach:hover { background: var(--ink); color: var(--butter); border-color: var(--ink); }
+    .link { font-weight: 700; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
+    .link:hover { text-decoration: underline; }
+    .sticker { font-family: var(--hand); font-size: 20px; line-height: 1; padding: 10px 14px; background: var(--wonder-woman); border-radius: 999px; display: inline-block; transform: rotate(-6deg); }
+
+    .announce { background: var(--splash-blue); text-align: center; padding: 9px 16px; font-size: 14px; font-weight: 600; }
+    .nav { background: var(--paper); border-bottom: 1px solid #e9e4d2; }
+    .nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding: 16px 0; }
+    .nav-links { display: flex; gap: 26px; font-weight: 600; font-size: 15px; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .nav .logo { height: 54px; color: var(--ink); justify-self: center; }
+    .nav-right { display: flex; gap: 8px; justify-self: end; }
+    .icon-btn { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-grid; place-items: center; }
+    .icon-btn svg { width: 18px; height: 18px; }
+    @media (max-width: 760px) { .nav .wrap { grid-template-columns: auto 1fr; } .nav-links { display: none; } .nav .logo { justify-self: start; } }
+
+    /* hero: two panels */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: min(80vh, 720px); }
+    .hero-photo { position: relative; background: var(--party-pink); overflow: hidden; display: grid; place-items: center; padding: 40px; }
+    .hero-photo img { width: min(560px, 100%); aspect-ratio: 1; object-fit: cover; border-radius: 24px; transform: rotate(-3deg); box-shadow: 0 30px 60px rgba(72,67,65,.18); }
+    .hero-photo .sticker { position: absolute; top: 28px; left: 28px; font-size: 24px; }
+    .hero-copy { background: var(--splash-blue); display: grid; align-content: center; gap: 22px; padding: clamp(32px, 6vw, 80px); justify-items: start; }
+    .hero-copy h1 { font-size: clamp(40px, 5.4vw, 76px); max-width: 11ch; text-wrap: balance; }
+    .hero-copy p { margin: 0; max-width: 40ch; font-size: clamp(16px, 1.3vw, 19px); }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .hero-photo { padding: 32px 24px; } }
+
+    /* icon strip */
+    .strip { background: var(--paper); border-bottom: 1px solid #e9e4d2; overflow: hidden; }
+    .strip ul { list-style: none; margin: 0; padding: 12px 0; display: flex; gap: 56px; width: max-content; animation: slide 40s linear infinite; font-family: var(--hand); font-size: 22px; }
+    .strip li { display: flex; align-items: center; gap: 12px; }
+    .strip .ill { height: 34px; color: var(--ink); }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    /* favorites */
+    .favs { padding: clamp(40px, 6vw, 72px) 0; }
+    .favs-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 22px; }
+    .favs h2 { font-size: 28px; }
+    .fav-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .fav { text-decoration: none; color: inherit; background: var(--butter); border-radius: 20px; padding: 14px 14px 18px; display: grid; gap: 10px; position: relative; }
+    .fav img { aspect-ratio: 1; object-fit: cover; border-radius: 12px; }
+    .fav h3 { font-size: 19px; }
+    .fav p { margin: 0; font-size: 14px; color: #6b625c; }
+    .fav .sticker { position: absolute; top: 4px; left: 4px; font-size: 16px; padding: 7px 10px; }
+    .fav.soon img { filter: grayscale(.4); opacity: .85; }
+    .fav.blue { background: var(--splash-blue); }
+    .fav.blue .link { margin-top: 4px; }
+    @media (max-width: 860px) { .fav-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* cutout headline */
+    .cut { padding: clamp(40px, 6vw, 90px) 0; text-align: center; background: var(--paper); }
+    .cut h2 { font-size: clamp(34px, 5.6vw, 76px); max-width: 16ch; margin-inline: auto; line-height: 1.12; text-wrap: balance; }
+    .cut h2 img, .cut h2 .ill { display: inline-block; vertical-align: middle; height: 1.05em; width: auto; margin: 0 .12em; }
+    .cut h2 img { aspect-ratio: 1; border-radius: 50%; object-fit: cover; transform: rotate(-8deg); }
+    .cut h2 .ill { aspect-ratio: 556 / 863; color: var(--ink); }
+    .cut p { max-width: 50ch; margin: 18px auto 0; }
+
+    /* story panels */
+    .panels { display: grid; gap: 18px; padding: 0 0 clamp(40px, 6vw, 80px); }
+    .panel { border-radius: 28px; padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+    .panel.blue { background: var(--splash-blue); }
+    .panel.pink { background: var(--party-pink); }
+    .panel.pink .panel-img { order: 2; }
+    .panel-img img { border-radius: 16px; aspect-ratio: 4 / 3; object-fit: cover; transform: rotate(2deg); box-shadow: 0 22px 50px rgba(72,67,65,.16); }
+    .panel.pink .panel-img img { transform: rotate(-2.5deg); }
+    .panel-copy { display: grid; gap: 14px; justify-items: start; }
+    .panel h2 { font-size: clamp(30px, 4vw, 52px); max-width: 14ch; }
+    .panel p { margin: 0; max-width: 44ch; }
+    @media (max-width: 860px) { .panel { grid-template-columns: 1fr; } .panel.pink .panel-img { order: 0; } }
+
+    /* compare */
+    .compare { background: var(--mint); padding: clamp(48px, 7vw, 100px) 0; }
+    .compare h2 { text-align: center; font-size: clamp(30px, 4.5vw, 56px); margin-bottom: 30px; }
+    .table-wrap { overflow-x: auto; background: var(--paper); border-radius: 20px; padding: 8px; }
+    table { width: 100%; border-collapse: collapse; min-width: 620px; font-size: 15px; }
+    th, td { padding: 14px 16px; text-align: center; border-top: 1px solid #e9e4d2; }
+    th { border-top: 0; font-weight: 700; }
+    td:first-child, th:first-child { text-align: left; font-weight: 600; }
+    th.us { font-family: var(--hand); font-size: 24px; font-weight: 400; }
+    .us { background: var(--party-pink); }
+    tr:first-child .us { border-radius: 14px 14px 0 0; }
+    .yes, .no { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font-weight: 700; }
+    .yes { background: var(--ink); color: var(--butter); }
+    .no { border: 1.5px solid var(--ink); }
+
+    /* big quote */
+    .bigquote { position: relative; padding: clamp(64px, 9vw, 130px) 0; text-align: center; overflow: hidden; background: var(--butter); }
+    .bigquote blockquote { margin: 0 auto; max-width: 22ch; font-size: clamp(30px, 4.6vw, 60px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; text-wrap: balance; }
+    .bigquote cite { display: block; margin-top: 22px; font-style: normal; font-weight: 600; font-size: 15px; }
+    .bigquote .peek { position: absolute; width: clamp(140px, 18vw, 260px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; }
+    .bigquote .peek.l { left: -5%; top: 10%; transform: rotate(-12deg); }
+    .bigquote .peek.r { right: -6%; bottom: 6%; transform: rotate(14deg); }
+    @media (max-width: 760px) { .bigquote .peek { display: none; } }
+
+    /* reviews */
+    .reviews { padding: clamp(40px, 6vw, 80px) 0; }
+    .reviews .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .review { border: 1.5px solid var(--ink); border-radius: 20px; padding: 24px; display: grid; gap: 10px; }
+    .review .stars { font-family: var(--hand); font-size: 22px; letter-spacing: 2px; }
+    .review p { margin: 0; font-weight: 500; }
+    .review span { font-size: 14px; color: #6b625c; }
+    @media (max-width: 760px) { .reviews .wrap { grid-template-columns: 1fr; } }
+
+    /* newsletter */
+    .news { background: var(--splash-blue); padding: clamp(48px, 7vw, 90px) 0; }
+    .news .wrap { display: grid; gap: 18px; justify-items: center; text-align: center; }
+    .news h2 { font-size: clamp(30px, 4.5vw, 56px); max-width: 18ch; }
+    .news form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 560px; }
+    .news input { flex: 1 1 240px; min-height: 48px; padding: 0 18px; border: 2px solid var(--ink); background: var(--paper); font: inherit; border-radius: 999px; }
+    .news [data-status] { font-weight: 600; min-height: 1.4em; margin: 0; }
+
+    .foot { background: var(--ink); color: var(--butter); padding: 56px 0 24px; }
+    .foot .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; }
+    .foot .logo { height: 44px; color: var(--butter); margin-bottom: 14px; }
+    .foot p { margin: 0; max-width: 32ch; }
+    .foot nav { display: grid; gap: 8px; text-align: right; }
+    .foot nav a { text-decoration: none; }
+    .foot small { display: block; margin-top: 36px; padding-top: 16px; border-top: 1px solid rgba(253,251,224,.25); font-size: 13px; }
+    @media (max-width: 600px) { .foot .wrap { grid-template-columns: 1fr; } .foot nav { text-align: left; } }
+  </style>
+</head>
+<body data-option="b">
+  <div class="announce">Drop 03 is coming · Free shipping on your first kit · Chicago made</div>
+  <header class="nav">
+    <div class="wrap">
+      <nav class="nav-links"><a href="#favs">Kits</a><a href="#how">How it works</a><a href="#story">Our story</a><a href="#">Gifting</a></nav>
+      <a href="#" aria-label="Splash"><span class="logo logo-flat-banner"></span></a>
+      <div class="nav-right">
+        <a class="icon-btn" href="#" aria-label="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></a>
+        <a class="icon-btn" href="#" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-photo">
+      <span class="sticker">Drop 03 · opens soon</span>
+      <img src="assets/everything-3-1600.jpg" alt="A stack of Everything cookies" width="1600" height="1600">
+    </div>
+    <div class="hero-copy">
+      <h1>Show up with warm cookies.</h1>
+      <p>Gourmet cookies anyone can bake. Pre-measured in Chicago, mixed, scooped and baked by you in 25 minutes. The only thing from your kitchen is water.</p>
+      <div class="hero-ctas"><a class="btn" href="#news">Get on the list</a><a class="btn btn-peach" href="#how">See how it works</a></div>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true">
+    <ul>
+      <li><span class="ill ill-dry"></span>Pre-measured in Chicago</li><li><span class="ill ill-parchment"></span>Bakes six</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-wet"></span>25 minutes</li>
+      <li><span class="ill ill-dry"></span>Pre-measured in Chicago</li><li><span class="ill ill-parchment"></span>Bakes six</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-wet"></span>25 minutes</li>
+    </ul>
+  </div>
+
+  <section class="favs" id="favs">
+    <div class="wrap">
+      <div class="favs-head"><h2>Shop the kits</h2><a class="link" href="#">See all <span aria-hidden="true">→</span></a></div>
+      <div class="fav-grid">
+        <a class="fav" href="#news"><span class="sticker">Drop 03</span><img src="assets/everything-plate-1200.jpg" alt="" width="600" height="600"><h3>The Everything</h3><p>Two chocolates, toffee, caramel, pretzels, oats, dried cherries · bakes 6</p></a>
+        <a class="fav soon" href="#news"><img src="assets/everything-1-800.jpg" alt="" width="600" height="600"><h3>The Double</h3><p>Two kits, one box · coming next drop</p></a>
+        <a class="fav soon" href="#news"><img src="assets/hero-1200.jpg" alt="" width="600" height="600"><h3>The Gift Box</h3><p>A kit, a card, and a note from us · coming soon</p></a>
+        <div class="fav blue"><img src="assets/step-2-scoop-poster.jpg" alt="" width="600" height="600"><h3>Bake Club</h3><p>Every drop, before everyone else.</p><a class="link" href="#news">Join the list <span aria-hidden="true">→</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cut">
+    <div class="wrap">
+      <h2>The cookies <img src="assets/everything-1-800.jpg" alt=""> you love, with the <span class="ill ill-dry"></span> work already done.</h2>
+      <p>You want to show up with something delicious, but you don't have the afternoon it takes. We weigh out every ingredient. You mix, scoop and bake.</p>
+    </div>
+  </section>
+
+  <div class="wrap panels" id="how">
+    <section class="panel blue">
+      <div class="panel-img"><img src="assets/step-1-mix-poster.jpg" alt="Pouring the pouch into a bowl" width="900" height="900"></div>
+      <div class="panel-copy"><h2>Pre-measured in Chicago, baked at yours.</h2><p>One dry pouch with the add-ins built in. One wet pouch. Add water, mix, scoop six, bake at 350°F for 12 to 15 minutes. Cool for ten and take the credit.</p><a class="link" href="#">Watch the 25 minutes <span aria-hidden="true">→</span></a></div>
+    </section>
+    <section class="panel pink">
+      <div class="panel-img"><img src="assets/everything-plate-1200.jpg" alt="The Everything cookies on a plate" width="1200" height="1200"></div>
+      <div class="panel-copy"><h2>Deliciously thoughtful gifts.</h2><p>Send a kit instead of a tin. They get the smell of cookies in the oven and the warm ones after. You get the thank-you text.</p><a class="link" href="#">Gift a kit <span aria-hidden="true">→</span></a></div>
+    </section>
+  </div>
+
+  <section class="compare">
+    <div class="wrap">
+      <h2>Us vs. them</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>&nbsp;</th><th class="us">Splash</th><th>Box mix</th><th>Bakery</th><th>From scratch</th></tr></thead>
+          <tbody>
+            <tr><td>Gourmet add-ins</td><td class="us"><span class="yes">✓</span></td><td><span class="no">✗</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td>Warm from your oven</td><td class="us"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="no">✗</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td>Nothing to measure</td><td class="us"><span class="yes">✓</span></td><td><span class="no">✗</span></td><td><span class="yes">✓</span></td><td><span class="no">✗</span></td></tr>
+            <tr><td>Time</td><td class="us">25 min</td><td>45 min</td><td>A trip</td><td>2 hours</td></tr>
+            <tr><td>Cleanup</td><td class="us">One bowl</td><td>Cups, spoons, bowl</td><td>None</td><td>The kitchen</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="bigquote">
+    <img class="peek l" src="assets/everything-1-800.jpg" alt="" width="400" height="400">
+    <img class="peek r" src="assets/everything-2-1600.jpg" alt="" width="400" height="400">
+    <div class="wrap">
+      <blockquote>"Best cookie I've ever had, let alone made. I felt very accomplished."<cite>Tasting feedback, Chicago, 2026</cite></blockquote>
+    </div>
+  </section>
+
+  <section class="panel pink wrap" id="story" style="margin-bottom: 18px;">
+    <div class="panel-img"><img src="assets/inside-1200.jpg" alt="Scooped dough balls on a baking sheet" width="1200" height="800"></div>
+    <div class="panel-copy"><h2>Started in our mom's kitchen.</h2><p>Our mom, Michele, is a chemical engineer by trade and a baker by heart. She spent years perfecting this recipe so it comes out right every time. No expertise required, just your oven.</p><p><strong>Erica, Natalie &amp; Marc</strong></p><a class="btn" href="#">Read the whole story</a></div>
+  </section>
+
+  <section class="reviews">
+    <div class="wrap">
+      <div class="review"><span class="stars">★★★★★</span><p>"Our kids had a blast making these. And no mess for us. Win, win!"</p><span>Tasting feedback, Chicago</span></div>
+      <div class="review"><span class="stars">★★★★★</span><p>"Incredible flavor. I'd love to give these as gifts."</p><span>Tasting feedback, Chicago</span></div>
+      <div class="review"><span class="stars">★★★★★</span><p>"I don't bake. I baked. They were gone in ten minutes."</p><span>Tasting feedback, Chicago</span></div>
+    </div>
+  </section>
+
+  <section class="news" id="news">
+    <div class="wrap">
+      <span class="sticker">Drop 03</span>
+      <h2>First in line for the next batch.</h2>
+      <form><label class="visually-hidden" for="email">Email</label><input id="email" type="email" placeholder="you@example.com" required><button class="btn" type="submit">Get on the list</button></form>
+      <p data-status></p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div><span class="logo logo-flat" role="img" aria-label="Splash"></span><p>Gourmet cookies anyone can bake. Family-founded in Chicago, IL.</p></div>
+      <nav><a href="#">FAQ</a><a href="#">Journal</a><a href="#">Gifting</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">hello@splashbaking.com</a></nav>
+    </div>
+    <div class="wrap"><small>© 2026 Splash · Patent pending · Privacy · Terms · Accessibility</small></div>
+  </footer>
+
+  <script src="switch.js" defer></script>
+</body>
+</html>

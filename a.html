@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Splash mockup 1 of 3: Cream & line</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Option A: Cream & line. Graza's cream-and-illustration rhythm with Fishwife's illustrated four-up and comparison table. */
+    :root {
+      --cream: #f7f1dc;
+      --cream-deep: #efe6c8;
+      --ink: var(--baking-sheet);
+      --mono: 'Courier Prime', 'Courier New', monospace;
+      --w: 1240px;
+    }
+    body { background: var(--cream); color: var(--ink); font-size: 17px; line-height: 1.55; }
+    .wrap { width: min(var(--w), 100% - 48px); margin-inline: auto; }
+    .mono { font-family: var(--mono); font-size: 13px; letter-spacing: .02em; text-transform: uppercase; }
+    h1, h2, h3 { margin: 0; font-weight: 300; letter-spacing: -0.03em; line-height: 1; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 22px; border-radius: 999px; background: var(--wonder-woman); color: var(--ink); font-family: var(--mono); font-size: 14px; text-transform: uppercase; letter-spacing: .04em; text-decoration: none; border: 1.5px solid var(--ink); font-weight: 700; }
+    .btn:hover { background: var(--ink); color: var(--cream); }
+    .btn-ink { background: var(--ink); color: var(--cream); }
+    .btn-ink:hover { background: var(--wonder-woman); color: var(--ink); }
+
+    /* announce + nav */
+    .announce { background: var(--ink); color: var(--cream); text-align: center; padding: 7px 16px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .nav { position: absolute; top: 34px; left: 0; right: 0; z-index: 5; color: var(--cream); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 22px; }
+    .nav .logo { height: 34px; }
+    .nav-links { display: flex; gap: 28px; font-family: var(--mono); font-size: 14px; text-transform: uppercase; letter-spacing: .04em; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .nav-right { display: flex; gap: 10px; align-items: center; }
+    .pill { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; border: 1.5px solid currentColor; border-radius: 999px; padding: 8px 14px; text-decoration: none; }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+
+    /* hero */
+    .hero { position: relative; min-height: min(92vh, 860px); display: flex; align-items: flex-end; overflow: hidden; background: #3a2a1c; }
+    .hero video, .hero .hero-still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(40,28,16,.35) 0%, rgba(40,28,16,0) 35%, rgba(40,28,16,.55) 100%); }
+    .hero .wrap { position: relative; z-index: 2; color: var(--cream); padding: 120px 0 56px; display: grid; gap: 22px; justify-items: start; }
+    .hero h1 { font-size: clamp(40px, 6.4vw, 92px); max-width: 13ch; text-wrap: balance; }
+    .hero h1 em { font-style: italic; font-weight: 300; }
+    .hero p { margin: 0; max-width: 40ch; font-weight: 300; font-size: clamp(16px, 1.4vw, 19px); }
+
+    /* ticker */
+    .ticker { border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); background: var(--cream); overflow: hidden; }
+    .ticker ul { list-style: none; margin: 0; padding: 10px 0; display: flex; gap: 48px; width: max-content; animation: slide 38s linear infinite; font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+    .ticker li::before { content: "✻"; margin-right: 48px; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    /* product panel */
+    .product { background: var(--wonder-woman); padding: clamp(40px, 6vw, 80px) 0; }
+    .product .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(28px, 5vw, 80px); align-items: center; }
+    .product-copy { display: grid; gap: 22px; justify-items: start; }
+    .product h2 { font-size: clamp(44px, 6vw, 88px); }
+    .product p { margin: 0; max-width: 42ch; }
+    .product .mono-list { list-style: none; padding: 0; margin: 0; font-family: var(--mono); font-size: 14px; display: grid; gap: 6px; }
+    .product .mono-list li::before { content: "— "; }
+    .product-img { background: var(--cream); padding: 18px; }
+    .product-img img { aspect-ratio: 1; object-fit: cover; }
+    .product-img figcaption { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; padding-top: 12px; display: flex; justify-content: space-between; }
+    @media (max-width: 860px) { .product .wrap { grid-template-columns: 1fr; } }
+
+    /* in the box */
+    .box { padding: clamp(56px, 8vw, 120px) 0 clamp(40px, 6vw, 80px); text-align: center; }
+    .box h2 { font-size: clamp(36px, 5vw, 64px); margin-bottom: 14px; }
+    .box > .wrap > p { margin: 0 auto 48px; max-width: 48ch; font-weight: 300; }
+    .box-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; align-items: end; }
+    .box-item { display: grid; justify-items: center; gap: 14px; }
+    .box-item .ill { height: clamp(90px, 12vw, 160px); color: var(--ink); }
+    .box-item span { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; max-width: 18ch; }
+    @media (max-width: 860px) { .box-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 520px) { .box-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* statement */
+    .statement { padding: clamp(40px, 7vw, 110px) 0; }
+    .statement .wrap { display: grid; gap: 28px; }
+    .statement .ill { height: 120px; color: var(--ink); justify-self: center; }
+    .statement h2 { font-size: clamp(38px, 6vw, 84px); text-align: center; text-wrap: balance; max-width: 16ch; margin-inline: auto; }
+    .statement h2 span { display: block; }
+    .statement h2 span:nth-child(2) { padding-left: 2.2em; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
+    .fact { display: grid; gap: 10px; }
+    .fact .mono { font-weight: 700; }
+    .fact p { margin: 0; font-size: 15px; max-width: 32ch; }
+    @media (max-width: 760px) { .facts { grid-template-columns: 1fr; } }
+
+    /* four-up */
+    .four { background: var(--cream-deep); padding: clamp(48px, 7vw, 100px) 0; text-align: center; }
+    .four h2 { font-size: clamp(32px, 4.5vw, 56px); margin-bottom: 44px; }
+    .four-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .four-item { display: grid; justify-items: center; gap: 12px; }
+    .four-item .ill { height: 110px; color: var(--ink); }
+    .four-item h3 { font-weight: 600; font-size: 18px; letter-spacing: 0; }
+    .four-item p { margin: 0; font-size: 15px; max-width: 26ch; }
+    @media (max-width: 860px) { .four-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* comparison */
+    .compare { padding: clamp(48px, 7vw, 100px) 0; }
+    .compare h2 { font-size: clamp(32px, 4.5vw, 56px); text-align: center; margin-bottom: 36px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 15px; }
+    th, td { padding: 14px 16px; border-top: 1px solid rgba(72,67,65,.3); text-align: center; }
+    th { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; font-weight: 400; border-top: 0; }
+    td:first-child, th:first-child { text-align: left; font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+    .us { background: var(--mint); }
+    th.us { font-weight: 700; }
+    .yes, .no { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--ink); font-size: 14px; }
+    .yes { background: var(--wonder-woman); }
+
+    /* story */
+    .story { padding: clamp(48px, 7vw, 100px) 0; }
+    .story .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 80px); align-items: center; }
+    .story-copy { display: grid; gap: 18px; justify-items: start; }
+    .story h2 { font-size: clamp(36px, 5vw, 64px); }
+    .story p { margin: 0; max-width: 44ch; }
+    .story .ill { height: 90px; color: var(--ink); }
+    .story figure { margin: 0; }
+    .story figcaption { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; padding-top: 10px; }
+    .story img { aspect-ratio: 4 / 3; object-fit: cover; }
+    @media (max-width: 860px) { .story .wrap { grid-template-columns: 1fr; } }
+
+    /* quotes */
+    .quotes { border-top: 1.5px solid var(--ink); padding: clamp(40px, 6vw, 80px) 0; }
+    .quotes .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .quote { display: grid; gap: 12px; }
+    .quote p { margin: 0; font-size: 22px; font-weight: 300; line-height: 1.3; }
+    .quote .mono { color: #6b625c; }
+    @media (max-width: 760px) { .quotes .wrap { grid-template-columns: 1fr; } }
+
+    /* newsletter */
+    .news { background: var(--wonder-woman); padding: clamp(48px, 7vw, 90px) 0; }
+    .news .wrap { display: grid; gap: 20px; justify-items: center; text-align: center; }
+    .news h2 { font-size: clamp(32px, 4.5vw, 56px); }
+    .news form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 560px; }
+    .news input { flex: 1 1 240px; min-height: 46px; padding: 0 18px; border: 1.5px solid var(--ink); background: var(--cream); font: inherit; font-family: var(--mono); font-size: 14px; border-radius: 999px; }
+    .news [data-status] { font-family: var(--mono); font-size: 13px; min-height: 1.4em; margin: 0; }
+
+    /* footer with giant mark */
+    .foot { background: var(--cream); padding: clamp(40px, 6vw, 80px) 0 24px; overflow: hidden; }
+    .foot-mark { width: 100%; color: var(--ink); }
+    .foot-mark .logo { width: 100%; }
+    .foot-row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; padding-top: 28px; }
+    .foot-row nav { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-row a { text-decoration: none; }
+    .foot-row a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body data-option="a">
+  <div class="announce">Drop 03 · The Everything · opens soon · Pre-measured in Chicago, baked at yours</div>
+  <header class="nav">
+    <div class="wrap">
+      <a href="#" aria-label="Splash"><span class="logo logo-flat"></span></a>
+      <nav class="nav-links"><a href="#kit">The kit</a><a href="#box">In the box</a><a href="#story">Our story</a><a href="#">Journal</a></nav>
+      <div class="nav-right"><a class="pill" href="#news">Waitlist</a><a class="pill" href="#">Cart (0)</a></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <video autoplay muted loop playsinline poster="assets/step-3-bake-poster.jpg"><source src="assets/step-3-bake.mp4" type="video/mp4"></video>
+    <div class="wrap">
+      <h1>Gourmet cookies <em>anyone</em> can bake.</h1>
+      <p>Pre-measured by us in Chicago. Mixed, scooped and baked by you in 25 minutes.</p>
+      <a class="btn" href="#news">Get on the list</a>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <ul>
+      <li>Now baking: The Everything</li><li>Bakes six</li><li>25 minutes start to finish</li><li>Only thing from your kitchen: water</li><li>Family founded, Chicago</li>
+      <li>Now baking: The Everything</li><li>Bakes six</li><li>25 minutes start to finish</li><li>Only thing from your kitchen: water</li><li>Family founded, Chicago</li>
+    </ul>
+  </div>
+
+  <section class="product" id="kit">
+    <div class="wrap">
+      <div class="product-copy">
+        <span class="mono">✻ The debut kit ✻</span>
+        <h2>The Everything</h2>
+        <p>Two kinds of chocolate, toffee, caramel, pretzels, oats and dried cherries. Every ingredient weighed out and ready when you are. Sweet, salty, chewy, crunchy.</p>
+        <ul class="mono-list"><li>Bakes 6 gourmet cookies</li><li>One dry pouch, one wet pouch</li><li>Parchment and gloves included</li></ul>
+        <a class="btn btn-ink" href="#news">Get on the list</a>
+      </div>
+      <figure class="product-img">
+        <img src="assets/everything-plate-1200.jpg" alt="Six Everything cookies on a plate" width="1200" height="1200">
+        <figcaption><span>Drop 03</span><span>Bakes 6</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="box" id="box">
+    <div class="wrap">
+      <h2>Everything in the box.</h2>
+      <p>Open it, and the only thing left to measure is water.</p>
+      <div class="box-grid">
+        <div class="box-item"><span class="ill ill-dry"></span><span>Dry pouch, add-ins built in</span></div>
+        <div class="box-item"><span class="ill ill-wet"></span><span>Wet pouch, the good stuff</span></div>
+        <div class="box-item"><span class="ill ill-water"></span><span>Just water, from your tap</span></div>
+        <div class="box-item"><span class="ill ill-parchment"></span><span>Parchment, already cut</span></div>
+        <div class="box-item"><span class="ill ill-gloves"></span><span>Mixing gloves, no mess</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <div class="wrap">
+      <span class="ill ill-water"></span>
+      <h2><span>Cookies so fresh,</span><span>you baked them.</span></h2>
+      <div class="facts">
+        <div class="fact"><span class="mono">Mix · 3 min</span><p>Dry pouch into a bowl. Pour in the wet pouch and water. Stir until it looks like dough, because it is.</p></div>
+        <div class="fact"><span class="mono">Scoop · 7 min</span><p>Six scoops, a little bigger than a golf ball, on the parchment we included.</p></div>
+        <div class="fact"><span class="mono">Bake · 15 min</span><p>350°F, 12 to 15 minutes. Edges golden, centers soft. Cool for ten if you can stand it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="four">
+    <div class="wrap">
+      <h2>Be the one who brought the cookies.</h2>
+      <div class="four-grid">
+        <div class="four-item"><span class="ill ill-parchment"></span><h3>Host approved</h3><p>Warm from the oven beats anything from a box.</p></div>
+        <div class="four-item"><span class="ill ill-gloves"></span><h3>Kids can do it</h3><p>Gloves on, pouches in, no measuring, no mess.</p></div>
+        <div class="four-item"><span class="ill ill-dry"></span><h3>Gift it</h3><p>Send a kit. They bake, you get the credit.</p></div>
+        <div class="four-item"><span class="ill ill-wet"></span><h3>Keep one back</h3><p>Shelf-stable pouches for the night you need cookies.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="compare">
+    <div class="wrap">
+      <h2>Pick your cookie.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>&nbsp;</th><th class="us">Splash kit</th><th>Box mix</th><th>Bakery</th><th>From scratch</th></tr></thead>
+          <tbody>
+            <tr><td>Gourmet add-ins</td><td class="us"><span class="yes">✓</span></td><td><span class="no">✗</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td>Warm from your oven</td><td class="us"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="no">✗</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td>Nothing to measure</td><td class="us"><span class="yes">✓</span></td><td><span class="no">✗</span></td><td><span class="yes">✓</span></td><td><span class="no">✗</span></td></tr>
+            <tr><td>Time</td><td class="us">25 min</td><td>45 min</td><td>A trip</td><td>2 hours</td></tr>
+            <tr><td>Skill needed</td><td class="us">None</td><td>Some</td><td>None</td><td>Plenty</td></tr>
+            <tr><td>Cleanup</td><td class="us">A bowl</td><td>Cups, spoons, bowl</td><td>None</td><td>The kitchen</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="wrap">
+      <figure>
+        <img src="assets/inside-1200.jpg" alt="Scooped dough balls on a baking sheet" width="1200" height="800">
+        <figcaption>Scooped, parchment included · Chicago, IL</figcaption>
+      </figure>
+      <div class="story-copy">
+        <span class="ill ill-gloves"></span>
+        <span class="mono">Fresh is best</span>
+        <h2>Started in our mom's kitchen.</h2>
+        <p>Our mom, Michele, is a chemical engineer by trade and a baker by heart. She spent years getting this recipe to come out right every single time. We just put it in a box.</p>
+        <p class="mono">Erica, Natalie &amp; Marc</p>
+        <a class="btn btn-ink" href="#">Read the whole story</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="quotes">
+    <div class="wrap">
+      <div class="quote"><p>"Best cookie I've ever had, let alone made. I felt very accomplished."</p><span class="mono">Tasting feedback, Chicago</span></div>
+      <div class="quote"><p>"Our kids had a blast making these. And no mess for us."</p><span class="mono">Tasting feedback, Chicago</span></div>
+      <div class="quote"><p>"Incredible flavor. I'd love to give these as gifts."</p><span class="mono">Tasting feedback, Chicago</span></div>
+    </div>
+  </section>
+
+  <section class="news" id="news">
+    <div class="wrap">
+      <span class="mono">✻ Drop 03 ✻</span>
+      <h2>First in line for the next batch.</h2>
+      <form><label class="visually-hidden" for="email">Email</label><input id="email" type="email" placeholder="you@example.com" required><button class="btn btn-ink" type="submit">Get on the list</button></form>
+      <p data-status></p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-mark"><span class="logo logo-textured" role="img" aria-label="Splash"></span></div>
+      <div class="foot-row">
+        <span>© 2026 Splash · Chicago, IL · Patent pending</span>
+        <nav><a href="#">FAQ</a><a href="#">Journal</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">hello@splashbaking.com</a></nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="switch.js" defer></script>
+</body>
+</html>

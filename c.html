@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Splash mockup 3 of 3: The drop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..800&family=Instrument+Serif:ital@0;1&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Option C: The drop. Last Crumb's dark drop-commerce and poster manifesto; Fly By Jing's one loud founder band and sticker badges. */
+    :root {
+      --choc: var(--chocolate);
+      --choc-deep: #3b2412;
+      --choc-card: #4b3019;
+      --cream: var(--butter);
+      --peach: var(--wonder-woman);
+      --serif: 'Instrument Serif', Georgia, serif;
+      --mono: 'Courier Prime', 'Courier New', monospace;
+      --w: 1240px;
+    }
+    body { background: var(--choc); color: var(--cream); font-size: 17px; line-height: 1.55; }
+    .wrap { width: min(var(--w), 100% - 40px); margin-inline: auto; }
+    h1, h2, h3 { margin: 0; font-weight: 300; letter-spacing: -0.02em; line-height: 1.02; }
+    .serif { font-family: var(--serif); font-weight: 400; letter-spacing: 0; }
+    .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 26px; border-radius: 999px; background: var(--cream); color: var(--choc-deep); font-weight: 700; text-decoration: none; font-size: 15px; border: 1.5px solid var(--cream); letter-spacing: .02em; }
+    .btn:hover { background: var(--peach); border-color: var(--peach); }
+    .btn-ghost { background: transparent; color: var(--cream); }
+    .btn-ghost:hover { background: var(--cream); color: var(--choc-deep); }
+    .btn-dark { background: var(--choc-deep); color: var(--cream); border-color: var(--choc-deep); }
+    .btn-dark:hover { background: var(--cream); color: var(--choc-deep); }
+
+    .announce { background: var(--peach); color: var(--choc-deep); text-align: center; padding: 8px 16px; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; }
+    .nav { background: var(--choc-deep); }
+    .nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding: 14px 0; }
+    .nav-links { display: flex; gap: 24px; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .nav .logo { height: 46px; color: var(--cream); }
+    .nav-right { display: flex; gap: 22px; justify-self: end; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .nav-right a { text-decoration: none; }
+    @media (max-width: 760px) { .nav .wrap { grid-template-columns: auto 1fr; } .nav-links { display: none; } }
+
+    /* hero */
+    .hero { position: relative; min-height: min(90vh, 820px); display: grid; place-items: center; text-align: center; overflow: hidden; background: #2a1a0c; }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; filter: saturate(.85); }
+    .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(42,26,12,0) 0%, rgba(42,26,12,.55) 70%, rgba(42,26,12,.9) 100%); }
+    .hero .wrap { position: relative; z-index: 2; display: grid; gap: 22px; justify-items: center; padding: 80px 0; }
+    .hero h1 { font-size: clamp(44px, 7.4vw, 108px); max-width: 12ch; text-wrap: balance; }
+    .hero h1 .serif { font-style: italic; }
+    .hero p { margin: 0; max-width: 42ch; font-weight: 300; font-size: clamp(16px, 1.3vw, 19px); }
+    .count { display: flex; gap: clamp(14px, 3vw, 36px); font-family: var(--mono); }
+    .count div { display: grid; gap: 4px; justify-items: center; }
+    .count b { font-family: var(--sans); font-weight: 300; font-size: clamp(36px, 5vw, 64px); line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    .count span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .hero .arrow { position: absolute; top: 50%; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(253,251,224,.5); display: grid; place-items: center; z-index: 3; font-size: 18px; }
+    .hero .arrow.l { left: 20px; } .hero .arrow.r { right: 20px; }
+    @media (max-width: 760px) { .hero .arrow { display: none; } }
+
+    /* collection */
+    .collection { padding: clamp(48px, 7vw, 96px) 0; }
+    .collection h2 { text-align: center; font-size: clamp(30px, 4.4vw, 54px); margin-bottom: 36px; }
+    .collection h2 .serif { font-style: italic; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: var(--choc-card); border-radius: 12px; padding: 12px 12px 18px; display: grid; gap: 12px; position: relative; }
+    .card img { aspect-ratio: 1; object-fit: cover; border-radius: 8px; }
+    .card .tag { position: absolute; top: 20px; left: 20px; background: var(--peach); color: var(--choc-deep); font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 5px 9px; border-radius: 4px; font-weight: 700; }
+    .card .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .card .mono { color: var(--peach); }
+    .card h3 { font-weight: 600; font-size: 20px; letter-spacing: 0; }
+    .card p { margin: 0; font-size: 14px; color: #d8c9b4; }
+    .card .btn { width: 100%; }
+    @media (max-width: 860px) { .cards { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } }
+
+    /* manifesto */
+    .manifesto { background: var(--choc-deep); padding: clamp(64px, 9vw, 140px) 0; text-align: center; }
+    .manifesto .mono { color: var(--peach); display: block; margin-bottom: 28px; }
+    .manifesto p { margin: 0 auto; max-width: 20ch; font-size: clamp(30px, 5.6vw, 82px); line-height: 1.05; font-weight: 600; letter-spacing: -0.02em; text-transform: uppercase; text-wrap: balance; }
+    .manifesto p .serif { text-transform: none; font-size: 1.08em; font-style: italic; }
+    .manifesto p .peach { color: var(--peach); }
+    .manifesto p u { text-decoration-color: var(--peach); text-decoration-thickness: .06em; text-underline-offset: .12em; }
+
+    /* ritual three-up */
+    .ritual { padding: clamp(48px, 7vw, 96px) 0; }
+    .ritual .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .rite { display: grid; gap: 14px; text-align: center; }
+    .rite img { aspect-ratio: 1; object-fit: cover; border-radius: 8px; }
+    .rite h3 { font-size: 24px; font-weight: 300; }
+    .rite h3 .serif { font-style: italic; }
+    .rite p { margin: 0; font-size: 15px; color: #d8c9b4; max-width: 34ch; margin-inline: auto; }
+    @media (max-width: 760px) { .ritual .wrap { grid-template-columns: 1fr; } }
+
+    /* loud family band */
+    .family { background: var(--peach); color: var(--choc-deep); padding: clamp(48px, 7vw, 96px) 0; position: relative; overflow: hidden; }
+    .family .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+    .family h2 { font-size: clamp(40px, 6vw, 84px); font-weight: 700; letter-spacing: -0.03em; }
+    .family h2 .serif { font-weight: 400; font-style: italic; }
+    .family-copy { display: grid; gap: 18px; justify-items: start; }
+    .family p { margin: 0; max-width: 46ch; font-size: 18px; }
+    .family img { border-radius: 14px; aspect-ratio: 4 / 3; object-fit: cover; }
+    .badges { display: flex; gap: 14px; flex-wrap: wrap; }
+    .badge { width: 104px; height: 104px; display: grid; place-items: center; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; background: var(--cream); color: var(--choc-deep); clip-path: polygon(50% 0%, 61% 10%, 75% 5%, 80% 19%, 95% 22%, 92% 36%, 100% 50%, 92% 64%, 95% 78%, 80% 81%, 75% 95%, 61% 90%, 50% 100%, 39% 90%, 25% 95%, 20% 81%, 5% 78%, 8% 64%, 0% 50%, 8% 36%, 5% 22%, 20% 19%, 25% 5%, 39% 10%); padding: 18px; line-height: 1.3; }
+    .badge:nth-child(2) { transform: rotate(8deg); } .badge:nth-child(3) { transform: rotate(-6deg); }
+    @media (max-width: 860px) { .family .wrap { grid-template-columns: 1fr; } }
+
+    /* reviews */
+    .reviews { padding: clamp(56px, 8vw, 110px) 0; text-align: center; }
+    .reviews blockquote { margin: 0 auto; max-width: 24ch; font-family: var(--serif); font-size: clamp(30px, 4.8vw, 64px); line-height: 1.1; font-style: italic; text-wrap: balance; }
+    .reviews cite { display: block; margin-top: 20px; font-style: normal; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--peach); }
+    .reviews .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 56px; text-align: left; }
+    .reviews .row div { border: 1px solid rgba(253,251,224,.25); border-radius: 10px; padding: 22px; font-size: 15px; display: grid; gap: 8px; }
+    .reviews .row .stars { color: var(--peach); letter-spacing: 2px; }
+    .reviews .row p { margin: 0; }
+    .reviews .row span { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #d8c9b4; }
+    @media (max-width: 760px) { .reviews .row { grid-template-columns: 1fr; } }
+
+    /* newsletter */
+    .news { background: var(--cream); color: var(--choc-deep); padding: clamp(48px, 7vw, 90px) 0; }
+    .news .wrap { display: grid; gap: 18px; justify-items: center; text-align: center; }
+    .news .mono { color: var(--choc); }
+    .news h2 { font-size: clamp(32px, 4.6vw, 60px); max-width: 18ch; }
+    .news h2 .serif { font-style: italic; }
+    .news p { margin: 0; max-width: 44ch; }
+    .news form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 560px; }
+    .news input { flex: 1 1 240px; min-height: 48px; padding: 0 18px; border: 1.5px solid var(--choc-deep); background: #fff; font: inherit; border-radius: 999px; }
+    .news [data-status] { font-weight: 600; min-height: 1.4em; }
+
+    .foot { background: var(--choc-deep); padding: 56px 0 24px; }
+    .foot .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; }
+    .foot .logo { height: 44px; color: var(--cream); margin-bottom: 14px; }
+    .foot p { margin: 0; max-width: 32ch; color: #d8c9b4; }
+    .foot nav { display: grid; gap: 8px; text-align: right; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .foot nav a { text-decoration: none; }
+    .foot small { display: block; margin-top: 36px; padding-top: 16px; border-top: 1px solid rgba(253,251,224,.2); font-size: 13px; color: #d8c9b4; }
+    @media (max-width: 600px) { .foot .wrap { grid-template-columns: 1fr; } .foot nav { text-align: left; } }
+  </style>
+</head>
+<body data-option="c">
+  <div class="announce">Drop 03 · The Everything · Opens Friday, Oct 24 · 200 kits</div>
+  <header class="nav">
+    <div class="wrap">
+      <nav class="nav-links"><a href="#collection">Shop</a><a href="#ritual">The ritual</a><a href="#family">Family</a><a href="#">Gifting</a></nav>
+      <a href="#" aria-label="Splash"><span class="logo logo-textured"></span></a>
+      <div class="nav-right"><a href="#">Account</a><a href="#">Cart (0)</a></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img src="assets/everything-2-1600.jpg" alt="" width="1600" height="1600">
+    <a class="arrow l" href="#" aria-label="Previous">‹</a><a class="arrow r" href="#" aria-label="Next">›</a>
+    <div class="wrap">
+      <span class="mono">Drop 03 · 200 kits</span>
+      <h1>The Everything <span class="serif">is back.</span></h1>
+      <div class="count" data-countdown="2026-10-24T17:00:00-05:00" aria-label="Time until the drop opens">
+        <div><b data-d>00</b><span>days</span></div><div><b data-h>00</b><span>hours</span></div><div><b data-m>00</b><span>min</span></div><div><b data-s>00</b><span>sec</span></div>
+      </div>
+      <p>Two chocolates, toffee, caramel, pretzels, oats and dried cherries. Pre-measured in Chicago, baked in your oven in 25 minutes. When it's gone, it's gone until the next drop.</p>
+      <div class="hero-ctas"><a class="btn" href="#news">Get on the list</a><a class="btn btn-ghost" href="#collection">See the drop</a></div>
+    </div>
+  </section>
+
+  <section class="collection" id="collection">
+    <div class="wrap">
+      <h2>Featured <span class="serif">collection</span></h2>
+      <div class="cards">
+        <div class="card"><span class="tag">Drop 03</span><img src="assets/everything-plate-1200.jpg" alt="" width="800" height="800"><div class="row"><span class="mono">Our signature</span><span class="mono">Bakes 6</span></div><h3>The Everything</h3><p>Sweet, salty, chewy, crunchy. One dry pouch, one wet pouch, parchment and gloves.</p><a class="btn" href="#news">Notify me</a></div>
+        <div class="card"><span class="tag">Limited</span><img src="assets/everything-3-1600.jpg" alt="" width="800" height="800"><div class="row"><span class="mono">For the table</span><span class="mono">Bakes 12</span></div><h3>The Double</h3><p>Two Everything kits in one box. For the party, or for the week.</p><a class="btn btn-ghost" href="#news">Notify me</a></div>
+        <div class="card"><span class="tag">Coming</span><img src="assets/hero-1200.jpg" alt="" width="800" height="800"><div class="row"><span class="mono">Gift</span><span class="mono">Bakes 6</span></div><h3>The Gift Box</h3><p>A kit, a handwritten card, and the credit for the best cookies at the party.</p><a class="btn btn-ghost" href="#news">Notify me</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <div class="wrap">
+      <span class="mono">What is Splash?</span>
+      <p>Our mom's <span class="serif">relentless</span> mission to make a <u>gourmet</u> cookie <span class="serif">anyone</span> can bake. Pre-measured in Chicago. <span class="peach">Baked at yours.</span> This is what <span class="serif">25 minutes</span> tastes like.</p>
+    </div>
+  </section>
+
+  <section class="ritual" id="ritual">
+    <div class="wrap">
+      <div class="rite"><img src="assets/step-1-mix-poster.jpg" alt="Pouring the pouch into a bowl" width="900" height="900"><h3>The <span class="serif">mixing</span></h3><p>Dry pouch, wet pouch, water. Three minutes and it looks like dough, because it is.</p></div>
+      <div class="rite"><img src="assets/step-2-scoop-poster.jpg" alt="Scooping dough onto parchment" width="900" height="900"><h3>The <span class="serif">scooping</span></h3><p>Six scoops on the parchment we cut for you. Gloves on, no mess.</p></div>
+      <div class="rite"><img src="assets/step-3-bake-poster.jpg" alt="Cookies fresh from the oven" width="900" height="900"><h3>The <span class="serif">enlightenment</span></h3><p>350°F for 12 to 15 minutes. Edges golden, centers soft. Now you know.</p></div>
+    </div>
+  </section>
+
+  <section class="family" id="family">
+    <div class="wrap">
+      <div class="family-copy">
+        <h2>Hey, it's <span class="serif">Michele.</span></h2>
+        <p>I'm a chemical engineer by trade and a baker by heart. I spent years getting this recipe to come out right every time, in every oven, for every one of my kids. Now it comes out right in yours.</p>
+        <div class="badges"><span class="badge">Family founded</span><span class="badge">Chicago made</span><span class="badge">Engineer tested</span></div>
+        <a class="btn btn-dark" href="#">Our story</a>
+      </div>
+      <img src="assets/inside-1200.jpg" alt="Scooped dough balls on a baking sheet" width="1200" height="800">
+    </div>
+  </section>
+
+  <section class="reviews">
+    <div class="wrap">
+      <blockquote>"Best cookie I've ever had, let alone made."<cite>Tasting feedback, Chicago, 2026</cite></blockquote>
+      <div class="row">
+        <div><span class="stars">★★★★★</span><p>"Our kids had a blast making these. And no mess for us. Win, win!"</p><span>Chicago, 2026</span></div>
+        <div><span class="stars">★★★★★</span><p>"Incredible flavor. I'd love to give these as gifts."</p><span>Chicago, 2026</span></div>
+        <div><span class="stars">★★★★★</span><p>"I don't bake. I baked. They were gone in ten minutes."</p><span>Chicago, 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="news" id="news">
+    <div class="wrap">
+      <span class="mono">Sign up</span>
+      <h2>Get first access to <span class="serif">every drop.</span></h2>
+      <p>Kits are limited. The list hears first, orders first, and never pays shipping on the first one.</p>
+      <form><label class="visually-hidden" for="email">Email</label><input id="email" type="email" placeholder="you@example.com" required><button class="btn btn-dark" type="submit">Join the list</button></form>
+      <p data-status></p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div><span class="logo logo-primary" role="img" aria-label="Splash, gourmet baking kits" style="height: 70px;"></span><p>Gourmet cookies anyone can bake. Family-founded in Chicago, IL.</p></div>
+      <nav><a href="#">Shop</a><a href="#">Gifting</a><a href="#">FAQ</a><a href="#">Journal</a><a href="#">Instagram</a><a href="#">hello@splashbaking.com</a></nav>
+    </div>
+    <div class="wrap"><small>© 2026 Splash · Patent pending · Privacy · Terms · Accessibility</small></div>
+  </footer>
+
+  <script>
+    (function () {
+      const el = document.querySelector('[data-countdown]'); if (!el) return;
+      const target = new Date(el.dataset.countdown).getTime();
+      const f = { d: el.querySelector('[data-d]'), h: el.querySelector('[data-h]'), m: el.querySelector('[data-m]'), s: el.querySelector('[data-s]') };
+      function tick() {
+        let t = Math.max(0, target - Date.now()) / 1000;
+        const d = Math.floor(t / 86400); t -= d * 86400; const h = Math.floor(t / 3600); t -= h * 3600; const m = Math.floor(t / 60); const s = Math.floor(t - m * 60);
+        f.d.textContent = String(d).padStart(2, '0'); f.h.textContent = String(h).padStart(2, '0'); f.m.textContent = String(m).padStart(2, '0'); f.s.textContent = String(s).padStart(2, '0');
+      }
+      tick(); setInterval(tick, 1000);
+    })();
+  </script>
+  <script src="switch.js" defer></script>
+</body>
+</html>

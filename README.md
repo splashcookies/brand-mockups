@@ -1,23 +1,37 @@
 # Splash landing page mockups
 
-Three directions for the splashbaking.com landing page after the October 2026 rebrand
-(see `Splash_BrandGuide.pdf`: Figtree, Baking Sheet / Wonder Woman / Party Pink / mint /
-Chocolate Chip / Butter / Splash Blue, hand-drawn logo marks and illustrations).
+Mockups for the splashbaking.com landing page after the October 2026 rebrand
+(Figtree; Baking Sheet / Wonder Woman / Party Pink / mint / Chocolate Chip / Butter / Splash Blue;
+hand-drawn logo marks and illustrations from `Splash_BrandGuide.pdf`).
 
 **Live:** https://splashcookies.github.io/brand-mockups/
 
-Use the switcher at the bottom of the page (or press 1, 2, 3) to flip between:
+## Round 2 (current)
 
-1. **Butter** – `#butter` – warm, simple, friendly. Butter and ink, peach accents, flat logo.
-2. **Party** – `#party` – playful, hand-drawn. Party pink, splash blue, mint, textured logo, illustration stickers.
-3. **Chocolate Chip** – `#chocolate` – rich, gourmet. Chocolate chip with butter type, peach call-to-action, photography-led.
+Three directions built from the inspiration board (Graza, Fishwife, Levain, Deux, Last Crumb, Fly By Jing).
+Each is its own page; the bar at the bottom (or keys 1, 2, 3) switches between them.
 
-Each option is a direct link you can share (e.g. `…/brand-mockups/#party`).
+1. **Cream & line** – `a.html` – Graza + Fishwife. Bake video hero, cream pages carried by the kit
+   illustrations with typewriter captions, one peach product panel, kit-vs-box-mix table, giant textured
+   mark at the foot. Adds Courier Prime for captions.
+2. **Bakery counter** – `b.html` – Levain + Deux. Shoppable and photo-led: two-panel pink/blue hero,
+   illustrated icon ticker, kit cards, cutout headline, tilted photos on pastel panels, "us vs them" table,
+   big quote with cookies peeking in.
+3. **The drop** – `c.html` – Last Crumb + Fly By Jing. Chocolate ground, live countdown to the drop,
+   featured-collection cards, poster-size manifesto, "the mixing / the scooping / the enlightenment",
+   one loud peach "Hey, it's Michele" band with sticker badges. Adds Instrument Serif for the italics.
+
+Font additions (Courier Prime, Instrument Serif, Patrick Hand SC) are departures from the guide's
+Figtree-only rule, flagged for discussion.
+
+## Round 1
+
+Kept at `v1/` for reference: three recolours of the current page (Butter / Party / Chocolate Chip).
 
 Notes
-- Same copy and photos as the live site; only the design changes. Nothing on the page is wired up (the waitlist form just confirms).
-- Logo marks and illustrations are pulled from the brand guide PDF and recoloured per theme with CSS masks.
-- The hand-lettered labels use Patrick Hand SC as a stand-in for the guide's hand lettering.
-- Checked against WCAG 2.2 AA with axe (0 failures) and a keyboard pass; works down to 320px wide.
+- Same copy and photos as the live site. Nothing is wired up (forms just confirm). Product names other
+  than The Everything, drop numbers, dates and kit counts are placeholders.
+- Logo marks and illustrations are black alpha-mask PNGs in `assets/`, recoloured per page with CSS masks.
+- Round 2 was not run through the accessibility gate by request; round 1 was.
 
-Files: `index.html`, `mockup.css` (theme tokens at the top), `mockup.js` (switcher), `assets/`.
+Files: `a.html`, `b.html`, `c.html`, `shared.css` (brand tokens, masks, switcher), `switch.js`, `assets/`, `v1/`.

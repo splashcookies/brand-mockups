@@ -54,11 +54,11 @@
   --radius: 28px;
   --h-weight: 300;
   --h-spacing: -0.025em;
-  --logo-nav: url(assets/logo-flat.png);
+  --logo-nav: url(../assets/logo-flat.png);
   --logo-nav-ratio: 1070 / 392;
-  --logo-hero: url(assets/logo-flat-banner.png);
+  --logo-hero: url(../assets/logo-flat-banner.png);
   --logo-hero-ratio: 1168 / 506;
-  --logo-foot: url(assets/logo-flat.png);
+  --logo-foot: url(../assets/logo-flat.png);
   --logo-foot-ratio: 1070 / 392;
 }
 :root[data-theme="party"] {
@@ -94,11 +94,11 @@
   --radius: 22px;
   --h-weight: 700;
   --h-spacing: -0.02em;
-  --logo-nav: url(assets/logo-textured.png);
+  --logo-nav: url(../assets/logo-textured.png);
   --logo-nav-ratio: 1036 / 386;
-  --logo-hero: url(assets/logo-primary.png);
+  --logo-hero: url(../assets/logo-primary.png);
   --logo-hero-ratio: 1872 / 903;
-  --logo-foot: url(assets/logo-textured.png);
+  --logo-foot: url(../assets/logo-textured.png);
   --logo-foot-ratio: 1036 / 386;
 }
 :root[data-theme="chocolate"] {
@@ -135,11 +135,11 @@
   --radius: 10px;
   --h-weight: 300;
   --h-spacing: -0.03em;
-  --logo-nav: url(assets/logo-textured.png);
+  --logo-nav: url(../assets/logo-textured.png);
   --logo-nav-ratio: 1036 / 386;
-  --logo-hero: url(assets/logo-primary.png);
+  --logo-hero: url(../assets/logo-primary.png);
   --logo-hero-ratio: 1872 / 903;
-  --logo-foot: url(assets/logo-textured.png);
+  --logo-foot: url(../assets/logo-textured.png);
   --logo-foot-ratio: 1036 / 386;
 }
 
@@ -181,11 +181,11 @@ p { margin: 0 0 1em; }
 
 /* ---------- illustrations & stickers ---------- */
 .ill { display: none; background-color: currentColor; mask: var(--m) center / contain no-repeat; -webkit-mask: var(--m) center / contain no-repeat; }
-.ill-dry { --m: url(assets/ill-dry.png); aspect-ratio: 556 / 863; }
-.ill-water { --m: url(assets/ill-water.png); aspect-ratio: 511 / 714; }
-.ill-gloves { --m: url(assets/ill-gloves.png); aspect-ratio: 568 / 690; }
-.ill-parchment { --m: url(assets/ill-parchment.png); aspect-ratio: 580 / 579; }
-.ill-wet { --m: url(assets/ill-wet.png); aspect-ratio: 483 / 698; }
+.ill-dry { --m: url(../assets/ill-dry.png); aspect-ratio: 556 / 863; }
+.ill-water { --m: url(../assets/ill-water.png); aspect-ratio: 511 / 714; }
+.ill-gloves { --m: url(../assets/ill-gloves.png); aspect-ratio: 568 / 690; }
+.ill-parchment { --m: url(../assets/ill-parchment.png); aspect-ratio: 580 / 579; }
+.ill-wet { --m: url(../assets/ill-wet.png); aspect-ratio: 483 / 698; }
 .sticker { display: none; }
 
 /* ---------- announcement + nav ---------- */
