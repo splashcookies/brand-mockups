@@ -2,12 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=a.html">
-  <title>Splash landing page mockups</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex">
-  <link rel="canonical" href="a.html">
+  <title>Splash landing page mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    :root { --ink: #43403d; --soft: #7d756e; --rule: #ddd3b4; }
+    body { background: var(--butter); color: var(--ink); font-size: 17px; line-height: 1.6; padding-bottom: 60px; }
+    .wrap { width: min(1080px, 100% - 44px); margin-inline: auto; }
+    h1, h2 { margin: 0; letter-spacing: -.03em; line-height: 1.02; }
+    p { margin: 0; }
+    a { color: inherit; }
+    :focus-visible { outline: 2.5px solid var(--chocolate); outline-offset: 3px; }
+    header { padding: clamp(44px, 7vw, 86px) 0 clamp(28px, 4vw, 44px); }
+    header .logo { height: 46px; color: var(--ink); }
+    h1 { font-size: clamp(34px, 5vw, 58px); font-weight: 300; margin: 26px 0 0; max-width: 18ch; }
+    header p { margin-top: 18px; max-width: 58ch; font-weight: 300; color: var(--soft); }
+    h2 { font-size: 13px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--soft); padding: 34px 0 14px; border-bottom: 1.5px solid var(--ink); }
+    ol { list-style: none; margin: 0; padding: 0; }
+    li a {
+      display: grid; grid-template-columns: 3rem 1fr auto; gap: clamp(12px, 2.5vw, 26px); align-items: baseline;
+      padding: 22px 8px 22px 0; border-bottom: 1px solid var(--rule); text-decoration: none;
+    }
+    li a:hover { background: var(--wonder-woman); }
+    li .n { font-size: 15px; font-weight: 700; color: var(--soft); }
+    li .nm { font-size: clamp(21px, 2.6vw, 29px); font-weight: 500; letter-spacing: -.02em; display: block; }
+    li .ds { display: block; margin-top: 6px; font-size: 15.5px; font-weight: 300; color: var(--soft); max-width: 62ch; }
+    li .go { font-size: 20px; color: var(--soft); }
+    li a:hover .go { color: var(--ink); }
+    .note { margin-top: 36px; font-size: 14.5px; color: var(--soft); max-width: 60ch; }
+    .note a { text-decoration: underline; text-underline-offset: 3px; }
+  </style>
 </head>
 <body>
-  <p>Opening <a href="a.html">option 1 of 3</a>. Also: <a href="b.html">option 2</a>, <a href="c.html">option 3</a>, <a href="v1/">first round</a>.</p>
+  <header class="wrap">
+    <span class="logo logo-flat" role="img" aria-label="Splash"></span>
+    <h1>Landing page mockups</h1>
+    <p>Directions for the splashbaking.com landing page after the October 2026 rebrand. Same copy and photos throughout; nothing is wired up. Open any one and use the bar at the bottom, or the number keys, to move between them.</p>
+  </header>
+
+  <main class="wrap">
+    <h2>Round 4 &mdash; current</h2>
+    <ol>
+      <li><a href="h.html"><span class="n">1</span><span><span class="nm">The bake</span><span class="ds">Scroll position is oven time. A pinned stage takes the cookie from raw dough through the oven to done as you move down, the cavity glowing up around it, clock and temperature counting alongside.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="i.html"><span class="n">2</span><span><span class="nm">Michele&rsquo;s notebook</span><span class="ds">The whole site as her test-kitchen book &mdash; ruled paper, taped photos, marker arrows, sticky notes. The signature is the batch log: forty-seven attempts, forty-six crossed out.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="j.html"><span class="n">3</span><span><span class="nm">Tear it open</span><span class="ds">The hero is a sealed pouch you pull apart; the contents spill out and name themselves. Drags, takes arrow keys, and opens on its own if you&rsquo;d rather not.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+    </ol>
+
+    <h2>Round 3</h2>
+    <ol>
+      <li><a href="d.html"><span class="n">4</span><span><span class="nm">Lab notebook</span><span class="ds">The kit documented like a part: typed-report monospace, an exploded parts diagram, and one deadpan chart about how much a cup of flour actually weighs.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="e.html"><span class="n">5</span><span><span class="nm">Recipe card</span><span class="ds">The page is the recipe &mdash; and the from-scratch ingredient list is struck through line by line until only &ldquo;1 Splash kit&rdquo; is left.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="f.html"><span class="n">6</span><span><span class="nm">Kitchen party</span><span class="ds">Baking as the activity, loud. The guide draws its colours as irregular blobs, so blobs become the shape language: blob photos, blob cards, sticker badges, a mess-o-meter.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="g.html"><span class="n">7</span><span><span class="nm">Shelf ready</span><span class="ds">As if it were already on the shelf at Target. Hard colour blocks, one claim at a time, shelf-talker tags, and a Cookie Facts panel.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+    </ol>
+
+    <h2>Round 2</h2>
+    <ol>
+      <li><a href="a.html"><span class="n">8</span><span><span class="nm">Cream &amp; line</span><span class="ds">Graza + Fishwife. Bake video hero, line illustrations with typewriter captions, giant mark at the foot.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="b.html"><span class="n">9</span><span><span class="nm">Bakery counter</span><span class="ds">Levain + Deux. Shoppable and photo-led: icon ticker, tilted photos on pink and blue panels, big quote.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="c.html"><span class="n">0</span><span><span class="nm">The drop</span><span class="ds">Last Crumb + Fly By Jing. Chocolate ground, countdown to the drop, poster-size manifesto, loud peach family section.</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>
+    </ol>
+
+    <p class="note">Round 1 &mdash; three recolours of the current live page &mdash; is kept at <a href="v1/">v1/</a>. Source: <a href="https://github.com/splashcookies/brand-mockups">github.com/splashcookies/brand-mockups</a>.</p>
+  </main>
 </body>
 </html>

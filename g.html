@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Splash mockup: Shelf ready</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..800&family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Option G: Shelf ready. Packaging vernacular — hard colour fields, one claim at a time,
+       shelf-talker tags, and a Cookie Facts panel built like the one on the back of a box. */
+    :root {
+      --ink: #3a3533;
+      --soft: #6f6762;
+      --peach: var(--wonder-woman);
+      --choc: var(--chocolate);
+      --paper: var(--butter);
+      --disp: 'Archivo', 'Figtree', sans-serif;
+      --w: 1240px;
+      --bd: 3px;
+    }
+    body { background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.55; }
+    .wrap { width: min(var(--w), 100% - 40px); margin-inline: auto; }
+    h1, h2, h3 { margin: 0; font-family: var(--disp); font-weight: 900; line-height: .88; letter-spacing: -.035em; text-transform: uppercase; font-variation-settings: 'wdth' 112; }
+    p { margin: 0; }
+    .eyebrow { font-family: var(--disp); font-weight: 800; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-variation-settings: 'wdth' 100; }
+    :focus-visible { outline: 3px solid var(--choc); outline-offset: 3px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 32px;
+      background: var(--ink); color: var(--paper); text-decoration: none; border: var(--bd) solid var(--ink); cursor: pointer;
+      font-family: var(--disp); font-weight: 900; font-size: 17px; letter-spacing: .04em; text-transform: uppercase;
+      box-shadow: 6px 6px 0 rgba(58,53,51,.22);
+    }
+    .btn:hover { background: var(--paper); color: var(--ink); box-shadow: 2px 2px 0 rgba(58,53,51,.3); }
+
+    /* shelf talker */
+    .talker {
+      position: absolute; z-index: 3; background: var(--mint); border: var(--bd) solid var(--ink);
+      padding: 9px 16px; font-family: var(--disp); font-weight: 900; font-size: clamp(14px, 1.5vw, 19px);
+      text-transform: uppercase; letter-spacing: .02em; line-height: 1.05; text-align: center;
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    /* top strip */
+    .strip { background: var(--ink); color: var(--paper); overflow: hidden; }
+    .strip ul { list-style: none; margin: 0; padding: 9px 0; display: flex; gap: 40px; width: max-content; animation: roll 30s linear infinite; font-family: var(--disp); font-weight: 800; font-size: 12.5px; letter-spacing: .18em; text-transform: uppercase; }
+    .strip li::after { content: "●"; margin-left: 40px; color: var(--peach); }
+    @keyframes roll { to { transform: translateX(-50%); } }
+
+    .nav { border-bottom: var(--bd) solid var(--ink); background: var(--paper); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 0; }
+    .nav .logo { height: 30px; color: var(--ink); }
+    .nav-links { display: flex; gap: 26px; font-family: var(--disp); font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { background: var(--peach); }
+    .nav .pill { font-family: var(--disp); font-weight: 900; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; border: 2.5px solid var(--ink); padding: 9px 16px; }
+    .nav .pill:hover { background: var(--ink); color: var(--paper); }
+    @media (max-width: 880px) { .nav-links { display: none; } }
+
+    /* hero: hard split, no gutter */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--bd) solid var(--ink); }
+    /* grid items default to min-width:auto and can push the track wider than the page */
+    .hero > * { min-width: 0; }
+    .hero-copy { background: var(--peach); padding: clamp(40px, 5.5vw, 86px) clamp(20px, 4vw, 64px); display: grid; align-content: center; gap: 22px; }
+    .hero-copy h1 { font-size: clamp(40px, 7.8vw, 118px); font-variation-settings: 'wdth' 118; }
+    .hero-copy h1 span { display: block; }
+    .hero-copy .rule { height: var(--bd); background: var(--ink); }
+    .hero-copy p { font-size: clamp(17px, 1.6vw, 21px); font-weight: 500; max-width: 32ch; }
+    .hero-shot { position: relative; background: var(--choc); border-left: var(--bd) solid var(--ink); display: grid; place-items: center; padding: clamp(26px, 4vw, 56px); }
+    .hero-shot img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-shot .t1 { top: 26px; right: 20px; transform: rotate(-7deg); }
+    .hero-shot .t2 { bottom: 30px; left: 18px; transform: rotate(5deg); background: var(--peach); }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .hero-shot { border-left: 0; border-top: var(--bd) solid var(--ink); min-height: 320px; } }
+
+    /* claim bar */
+    .claims { background: var(--ink); color: var(--paper); border-bottom: var(--bd) solid var(--ink); }
+    .claims .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .claims div { padding: clamp(26px, 3.4vw, 44px) 18px; text-align: center; display: grid; justify-items: center; gap: 12px; }
+    .claims div + div { border-left: 1.5px solid #5e5752; }
+    .claims .ill { height: 48px; color: var(--peach); }
+    .claims strong { font-family: var(--disp); font-weight: 900; font-size: clamp(15px, 1.6vw, 19px); text-transform: uppercase; letter-spacing: -.01em; }
+    .claims small { font-size: 13.5px; color: #c3bbb4; }
+    @media (max-width: 760px) { .claims .wrap { grid-template-columns: repeat(2, 1fr); } .claims div:nth-child(3) { border-left: 0; } .claims div:nth-child(n+3) { border-top: 1.5px solid #5e5752; } }
+
+    /* the pack */
+    .pack { background: var(--mint); border-bottom: var(--bd) solid var(--ink); padding: clamp(48px, 7vw, 96px) 0; }
+    .pack h2 { font-size: clamp(34px, 5vw, 70px); text-align: center; max-width: 18ch; margin: 0 auto clamp(32px, 4vw, 50px); }
+    .pack-grid { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: clamp(18px, 3vw, 40px); align-items: center; }
+    .labels { display: grid; gap: 14px; }
+    .labels div { background: var(--paper); border: var(--bd) solid var(--ink); padding: 16px 18px; }
+    .labels strong { display: block; font-family: var(--disp); font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: -.01em; margin-bottom: 4px; }
+    .labels span { font-size: 14.5px; color: var(--soft); }
+    .labels.r { text-align: right; }
+    .pack-shot { position: relative; border: var(--bd) solid var(--ink); background: var(--paper); }
+    .pack-shot img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+    .pack-shot .t3 { top: -18px; left: 50%; transform: translateX(-50%) rotate(-3deg); background: var(--party-pink); }
+    @media (max-width: 900px) {
+      .pack-grid { grid-template-columns: 1fr; }
+      .labels.r { text-align: left; }
+      .pack-shot { order: -1; }
+    }
+
+    /* cookie facts — signature */
+    .facts { padding: clamp(48px, 7vw, 96px) 0; border-bottom: var(--bd) solid var(--ink); }
+    .facts .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 72px); align-items: center; }
+    .facts h2 { font-size: clamp(34px, 4.8vw, 64px); max-width: 14ch; }
+    .facts .lede { margin-top: 20px; max-width: 42ch; font-size: 18px; }
+    .panel { border: 4px solid var(--ink); background: #fff; padding: 18px 20px 22px; font-family: var(--disp); font-variation-settings: 'wdth' 100; }
+    .panel .ttl { font-weight: 900; font-size: clamp(27px, 3.4vw, 40px); text-transform: uppercase; letter-spacing: -.045em; line-height: .9; }
+    .panel .srv { font-size: 14px; font-weight: 600; padding: 6px 0 4px; }
+    .hr-thick { height: 11px; background: var(--ink); margin: 5px 0; }
+    .hr-mid { height: 4px; background: var(--ink); margin: 5px 0; }
+    .hr-thin { height: 1.5px; background: var(--ink); margin: 0; }
+    .panel dl { margin: 0; }
+    .panel .row { display: grid; grid-template-columns: auto 1fr auto; gap: 7px; align-items: baseline; padding: 8px 0; font-size: 15px; }
+    .panel .row + .row { border-top: 1.5px solid var(--ink); }
+    .panel .row dt { font-weight: 600; }
+    .panel .row .dots { border-bottom: 2px dotted var(--ink); transform: translateY(-4px); }
+    .panel .row dd { margin: 0; font-weight: 900; }
+    .panel .row.big dt, .panel .row.big dd { font-size: 19px; }
+    .panel .fine { font-family: var(--sans); font-size: 12px; line-height: 1.5; color: var(--soft); padding-top: 12px; }
+    @media (max-width: 880px) { .facts .wrap { grid-template-columns: 1fr; } }
+
+    /* the lineup */
+    .line { padding: clamp(48px, 7vw, 96px) 0; border-bottom: var(--bd) solid var(--ink); }
+    .line h2 { font-size: clamp(34px, 5vw, 68px); max-width: 16ch; }
+    .line > .wrap > p { margin-top: 16px; max-width: 46ch; color: var(--soft); }
+    .shelf { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2.4vw, 26px); margin-top: clamp(32px, 4vw, 50px); }
+    .sku { border: var(--bd) solid var(--ink); display: grid; }
+    .sku .top { padding: clamp(18px, 2.4vw, 28px); display: grid; place-items: center; min-height: 170px; }
+    .sku:nth-child(1) .top { background: var(--peach); }
+    .sku:nth-child(2) .top { background: var(--party-pink); }
+    .sku:nth-child(3) .top { background: var(--splash-blue); }
+    .sku:nth-child(4) .top { background: var(--mint); }
+    .sku .top img { width: 100%; aspect-ratio: 1; object-fit: cover; border: 2.5px solid var(--ink); }
+    .sku .top .ill { height: 86px; color: var(--ink); opacity: .45; }
+    .sku .btm { border-top: var(--bd) solid var(--ink); padding: 16px 18px; background: var(--paper); }
+    .sku h3 { font-size: 20px; margin-bottom: 6px; }
+    .sku .st { font-family: var(--disp); font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+    .sku.live .st { color: var(--choc); }
+    @media (max-width: 900px) { .shelf { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .shelf { grid-template-columns: 1fr; } }
+
+    /* versus */
+    .vs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--bd) solid var(--ink); }
+    .vs > div { padding: clamp(40px, 5.5vw, 80px) clamp(26px, 4vw, 60px); }
+    .vs .them { background: var(--paper); border-right: var(--bd) solid var(--ink); }
+    .vs .us { background: var(--peach); }
+    .vs h3 { font-size: clamp(26px, 3.4vw, 42px); margin-bottom: 22px; }
+    .vs ul { list-style: none; margin: 0; padding: 0; }
+    .vs li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 11px 0; border-top: 1.5px solid rgba(58,53,51,.3); font-size: 16.5px; }
+    .vs li span { font-family: var(--disp); font-weight: 900; }
+    @media (max-width: 760px) { .vs { grid-template-columns: 1fr; } .vs .them { border-right: 0; border-bottom: var(--bd) solid var(--ink); } }
+
+    /* reviews */
+    .revs { background: var(--splash-blue); border-bottom: var(--bd) solid var(--ink); padding: clamp(44px, 6vw, 84px) 0; }
+    .revs .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 3vw, 34px); }
+    .rev { border: var(--bd) solid var(--ink); background: var(--paper); padding: 24px; }
+    .rev .stars { font-family: var(--disp); font-weight: 900; font-size: 18px; letter-spacing: .1em; }
+    .rev p { font-family: var(--disp); font-weight: 800; font-size: clamp(18px, 1.9vw, 22px); line-height: 1.18; letter-spacing: -.02em; margin: 12px 0 14px; }
+    .rev cite { font-style: normal; font-size: 13px; color: var(--soft); }
+    @media (max-width: 860px) { .revs .wrap { grid-template-columns: 1fr; } }
+
+    /* signup */
+    .join { background: var(--choc); color: var(--paper); padding: clamp(48px, 7vw, 96px) 0; }
+    .join .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+    .join h2 { font-size: clamp(34px, 4.8vw, 66px); max-width: 14ch; }
+    .join form { display: flex; gap: 12px; flex-wrap: wrap; }
+    .join input { flex: 1 1 230px; min-height: 58px; padding: 0 18px; border: var(--bd) solid var(--paper); background: transparent; color: var(--paper); font: inherit; font-size: 16px; }
+    .join input::placeholder { color: #c0ae9c; }
+    .join .btn { background: var(--peach); color: var(--ink); border-color: var(--peach); box-shadow: 6px 6px 0 rgba(0,0,0,.25); }
+    .join .btn:hover { background: var(--paper); border-color: var(--paper); }
+    .join [data-status] { font-family: var(--disp); font-weight: 800; font-size: 15px; min-height: 1.6em; margin-top: 14px; color: var(--peach); }
+    .join .fine { font-size: 13.5px; color: #c6b5a4; margin-top: 10px; }
+    @media (max-width: 880px) { .join .wrap { grid-template-columns: 1fr; } }
+
+    .foot { background: var(--ink); color: var(--paper); padding: 30px 0; }
+    .foot .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; font-family: var(--disp); font-weight: 700; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: #bdb5ae; }
+    .foot nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    .foot a { text-decoration: none; }
+    .foot a:hover { color: var(--peach); }
+  </style>
+</head>
+<body data-option="g">
+
+  <div class="strip" aria-hidden="true">
+    <ul>
+      <li>New</li><li>Drop 03</li><li>Bakes 6</li><li>25 minutes</li><li>Nothing to measure</li><li>Ships from Chicago</li>
+      <li>New</li><li>Drop 03</li><li>Bakes 6</li><li>25 minutes</li><li>Nothing to measure</li><li>Ships from Chicago</li>
+    </ul>
+  </div>
+
+  <header class="nav">
+    <div class="wrap">
+      <a href="#" aria-label="Splash"><span class="logo logo-flat"></span></a>
+      <nav class="nav-links"><a href="#pack">The box</a><a href="#facts">Cookie facts</a><a href="#lineup">Lineup</a><a href="#">Journal</a></nav>
+      <a class="pill" href="#join">Get on the list</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Gourmet baking kits &middot; No. 03</p>
+      <h1><span>Six</span><span>gourmet</span><span>cookies.</span></h1>
+      <div class="rule"></div>
+      <p>Twenty-five minutes. One bowl. Nothing on the counter to measure.</p>
+      <div><a class="btn" href="#join">Get on the list</a></div>
+    </div>
+    <div class="hero-shot">
+      <img src="assets/everything-plate-1200.jpg" alt="Six Everything cookies on a plate" width="1200" height="1599">
+      <span class="talker t1">Bakes<br>6</span>
+      <span class="talker t2">You measure<br>nothing</span>
+    </div>
+  </section>
+
+  <section class="claims">
+    <div class="wrap">
+      <div><span class="ill ill-dry" aria-hidden="true"></span><strong>Pre-measured</strong><small>Every gram, weighed in Chicago</small></div>
+      <div><span class="ill ill-water" aria-hidden="true"></span><strong>Add water</strong><small>The only thing from your kitchen</small></div>
+      <div><span class="ill ill-parchment" aria-hidden="true"></span><strong>Parchment in</strong><small>Already cut to your tray</small></div>
+      <div><span class="ill ill-gloves" aria-hidden="true"></span><strong>Mix by hand</strong><small>No mixer, no mess, gloves included</small></div>
+    </div>
+  </section>
+
+  <section class="pack" id="pack">
+    <div class="wrap">
+      <h2>What&rsquo;s actually in the box</h2>
+      <div class="pack-grid">
+        <div class="labels r">
+          <div><strong>Dry pouch</strong><span>Flour, oats, two chocolates, toffee, pretzels, dried cherries &mdash; already in there</span></div>
+          <div><strong>Wet pouch</strong><span>Butter, both sugars, egg, vanilla, caramel</span></div>
+        </div>
+        <div class="pack-shot">
+          <img src="assets/inside-1200.jpg" alt="The open kit with dough scooped onto a tray" width="1200" height="800">
+          <span class="talker t3">The Everything</span>
+        </div>
+        <div class="labels">
+          <div><strong>Parchment</strong><span>One sheet, cut to a half tray, no trimming</span></div>
+          <div><strong>Mixing gloves</strong><span>Two. Hands are the mixer, and they stay clean</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="facts" id="facts">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Read the back of the box</p>
+        <h2 style="margin-top:14px">The only numbers that matter</h2>
+        <p class="lede">Grams of sugar are on the real panel. These are the figures that decide whether cookies actually happen on a weeknight.</p>
+      </div>
+      <div class="panel">
+        <p class="ttl">Cookie Facts</p>
+        <div class="hr-thin"></div>
+        <p class="srv">1 box = 6 cookies<br>Serving size 1 cookie (realistically 2)</p>
+        <div class="hr-thick"></div>
+        <dl>
+          <div class="row big"><dt>Ingredients you measure</dt><span class="dots"></span><dd>0</dd></div>
+          <div class="row big"><dt>Bowls to wash</dt><span class="dots"></span><dd>1</dd></div>
+          <div class="row"><dt>Appliances</dt><span class="dots"></span><dd>1 oven</dd></div>
+          <div class="row"><dt>Active time</dt><span class="dots"></span><dd>10 min</dd></div>
+          <div class="row"><dt>Total time</dt><span class="dots"></span><dd>25 min</dd></div>
+          <div class="row"><dt>Baking skill required</dt><span class="dots"></span><dd>0%</dd></div>
+          <div class="row"><dt>Shelf life, sealed</dt><span class="dots"></span><dd>6 months</dd></div>
+        </dl>
+        <div class="hr-mid"></div>
+        <p class="fine">Percent skill values are based on a kitchen that owns one bowl and a baking sheet. Your results will not vary, which is the entire point.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="line" id="lineup">
+    <div class="wrap">
+      <h2>One flavour now. More behind it.</h2>
+      <p>The Everything is the debut. The rest of the shelf fills up a drop at a time.</p>
+      <div class="shelf">
+        <div class="sku live">
+          <div class="top"><img src="assets/everything-1-800.jpg" alt="The Everything kit" width="800" height="1200"></div>
+          <div class="btm"><h3>The Everything</h3><p class="st">Drop 03 &middot; opens soon</p></div>
+        </div>
+        <div class="sku">
+          <div class="top"><span class="ill ill-dry" aria-hidden="true"></span></div>
+          <div class="btm"><h3>Flavour two</h3><p class="st">In the kitchen</p></div>
+        </div>
+        <div class="sku">
+          <div class="top"><span class="ill ill-wet" aria-hidden="true"></span></div>
+          <div class="btm"><h3>Flavour three</h3><p class="st">In the kitchen</p></div>
+        </div>
+        <div class="sku">
+          <div class="top"><span class="ill ill-parchment" aria-hidden="true"></span></div>
+          <div class="btm"><h3>Cookie of the month</h3><p class="st">Coming later</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vs">
+    <div class="them">
+      <h3>A box mix</h3>
+      <ul>
+        <li><span>&times;</span>You still buy butter, eggs and oil</li>
+        <li><span>&times;</span>You still measure three things</li>
+        <li><span>&times;</span>Add-ins are whatever the cupboard has</li>
+        <li><span>&times;</span>Cup, spoon, spatula, bowl</li>
+        <li><span>&times;</span>Tastes like a box mix</li>
+      </ul>
+    </div>
+    <div class="us">
+      <h3>This box</h3>
+      <ul>
+        <li><span>&check;</span>You buy nothing else</li>
+        <li><span>&check;</span>You measure nothing</li>
+        <li><span>&check;</span>Two chocolates, toffee, caramel, pretzels, oats, cherries</li>
+        <li><span>&check;</span>One bowl</li>
+        <li><span>&check;</span>Tastes like the bakery, out of your oven</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="revs">
+    <div class="wrap">
+      <div class="rev"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>Best cookie I&rsquo;ve ever had, let alone made.</p><cite>Tasting feedback &middot; Chicago</cite></div>
+      <div class="rev"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>Our kids had a blast. And no mess for us.</p><cite>Tasting feedback &middot; Chicago</cite></div>
+      <div class="rev"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>Incredible flavour. I&rsquo;d give these as gifts.</p><cite>Tasting feedback &middot; Chicago</cite></div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" style="color:var(--peach)">Drop 03</p>
+        <h2 style="margin-top:14px">On the list before it&rsquo;s on the shelf.</h2>
+      </div>
+      <div>
+        <form>
+          <label class="visually-hidden" for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <button class="btn" type="submit">Notify me</button>
+        </form>
+        <p data-status role="status"></p>
+        <p class="fine">One email when the kits go up. Nothing is for sale yet &mdash; this page is a mockup.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <span>&copy; 2026 Splash &middot; Chicago, IL &middot; Patent pending</span>
+      <nav><a href="#">FAQ</a><a href="#">Journal</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">hello@splashbaking.com</a></nav>
+    </div>
+  </footer>
+
+  <script src="switch.js" defer></script>
+</body>
+</html>

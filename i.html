@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Splash mockup: Michele's notebook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..800&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Option I: Michele's notebook. The brand guide is itself a hand-drawn page, so this is the
+       whole site as her test-kitchen book. Boldness is spent on one thing — the batch log. */
+    :root {
+      --ink: #3b3733;
+      --pen: #2f4a6b;          /* ballpoint */
+      --marker: #5a3b20;       /* the brown marker she annotates with */
+      --soft: #857c73;
+      --paper: #fbf7ea;
+      --rule: #d3e0ea;
+      --margin-line: #e6b3ab;
+      --hand: 'Caveat', cursive;
+      --w: 1080px;
+    }
+    body {
+      background-color: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.6;
+      background-image: repeating-linear-gradient(180deg, transparent 0 33px, var(--rule) 33px 34px);
+      background-position: 0 6px;
+    }
+    .wrap { width: min(var(--w), 100% - 40px); margin-inline: auto; }
+    h1, h2, h3 { margin: 0; font-family: var(--hand); font-weight: 700; line-height: .98; color: var(--marker); letter-spacing: .005em; }
+    p { margin: 0; }
+    .hand { font-family: var(--hand); font-size: 23px; line-height: 1.25; color: var(--pen); }
+    .prose { max-width: 56ch; }
+    :focus-visible { outline: 3px solid var(--marker); outline-offset: 3px; }
+    .btn {
+      display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; cursor: pointer;
+      background: var(--marker); color: var(--paper); text-decoration: none; border: 0;
+      font-family: var(--hand); font-weight: 700; font-size: 23px;
+      border-radius: 46% 54% 50% 50% / 56% 46% 54% 44%;
+    }
+    .btn:hover { background: var(--ink); }
+
+    /* paper furniture */
+    .tape {
+      position: absolute; width: 104px; height: 27px; background: rgba(246,199,135,.56);
+      box-shadow: 0 1px 2px rgba(0,0,0,.07); z-index: 3;
+      clip-path: polygon(3% 0, 97% 4%, 100% 96%, 2% 100%);
+    }
+    .photo { position: relative; background: #fff; padding: 11px 11px 14px; box-shadow: 0 8px 20px rgba(60,50,40,.14); }
+    .photo img { width: 100%; display: block; }
+    .photo figcaption { font-family: var(--hand); font-size: 21px; color: var(--pen); padding-top: 7px; text-align: center; }
+    .postit {
+      position: relative; padding: 22px 20px; font-family: var(--hand); font-size: 23px; line-height: 1.22; color: var(--ink);
+      box-shadow: 2px 5px 14px rgba(60,50,40,.16); background: var(--wonder-woman);
+    }
+    .postit b { display: block; font-size: 27px; color: var(--marker); margin-bottom: 6px; }
+    .arrow { color: var(--marker); display: block; }
+    .ring { /* coffee */
+      position: absolute; width: 132px; height: 132px; border-radius: 50%; pointer-events: none;
+      border: 9px solid rgba(146,101,54,.17); mix-blend-mode: multiply; z-index: 1;
+    }
+
+    /* header — the index label taped to the cover */
+    .book { padding: clamp(30px, 5vw, 56px) 0 clamp(16px, 3vw, 28px); }
+    .book .wrap { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .label { position: relative; background: #fff; padding: 18px 26px 20px; box-shadow: 0 6px 16px rgba(60,50,40,.13); transform: rotate(-1.1deg); }
+    .label .logo { height: 32px; color: var(--ink); }
+    .label p { font-family: var(--hand); font-size: 21px; color: var(--pen); margin-top: 7px; }
+    .label .tape { top: -12px; left: 50%; margin-left: -52px; transform: rotate(-2deg); }
+    .book nav { display: flex; gap: 22px; font-family: var(--hand); font-size: 22px; color: var(--pen); padding-top: 12px; }
+    .book nav a { text-decoration: none; }
+    .book nav a:hover { color: var(--marker); text-decoration: underline wavy; text-underline-offset: 4px; }
+    @media (max-width: 700px) { .book nav { display: none; } }
+
+    /* opening */
+    .open { padding: clamp(24px, 4vw, 44px) 0 clamp(40px, 6vw, 76px); position: relative; }
+    .open .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+    .open h1 { font-size: clamp(52px, 9vw, 120px); max-width: 11ch; }
+    .open h1 u { text-decoration: none; position: relative; }
+    .open .sub { margin-top: 20px; }
+    .open .cta { margin-top: 30px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+    .open .cta small { font-family: var(--hand); font-size: 21px; color: var(--soft); }
+    .open .shot { position: relative; transform: rotate(2deg); }
+    .open .shot .tape { top: -13px; left: 16px; transform: rotate(-7deg); }
+    .open .shot .tape.t2 { top: auto; bottom: -13px; left: auto; right: 20px; transform: rotate(5deg); }
+    .open .note-right { position: absolute; right: -4px; bottom: -34px; width: 190px; transform: rotate(-4deg); }
+    .open .note-right .arrow { width: 62px; margin: 2px auto 0; }
+    @media (max-width: 880px) { .open .wrap { grid-template-columns: 1fr; } .open .note-right { position: static; width: auto; transform: none; margin-top: 18px; } }
+
+    /* ===== THE BATCH LOG — signature ===== */
+    .log { padding: clamp(44px, 7vw, 92px) 0; position: relative; }
+    .log-head { display: grid; gap: 14px; margin-bottom: clamp(26px, 4vw, 42px); }
+    .log h2 { font-size: clamp(46px, 8vw, 104px); }
+    .log-head p { max-width: 50ch; }
+    .sheet {
+      position: relative; background: rgba(255,255,255,.72); border: 1px solid #e3dcc6;
+      box-shadow: 0 10px 28px rgba(60,50,40,.1); padding: clamp(22px, 3.4vw, 42px) clamp(18px, 3vw, 40px);
+    }
+    .sheet::before { /* the red margin rule down the left */
+      content: ""; position: absolute; top: 0; bottom: 0; left: clamp(44px, 7%, 86px); width: 2px; background: var(--margin-line); opacity: .8;
+    }
+    .log-list { list-style: none; margin: 0; padding: 0; position: relative; z-index: 2; }
+    .log-list li {
+      display: grid; grid-template-columns: clamp(38px, 6.4%, 74px) 1fr auto; gap: clamp(10px, 2vw, 22px); align-items: baseline;
+      padding: 9px 0; font-family: var(--hand); font-size: clamp(21px, 2.2vw, 26px); color: var(--pen);
+      border-bottom: 1px solid rgba(190,205,218,.55);
+    }
+    .log-list .no { color: var(--soft); }
+    .log-list .verdict { color: var(--soft); font-size: .86em; text-align: right; }
+    /* a grid item fills its track, which would run the strike far past the words */
+    .log-list li.out .what { position: relative; display: inline-block; justify-self: start; }
+    .log-list li.out .what::after {
+      content: ""; position: absolute; left: -4px; right: -4px; top: 52%; height: 2px; background: var(--marker); opacity: .75; border-radius: 2px;
+    }
+    .log-list li.out:nth-child(odd) .what::after { transform: rotate(-.7deg); }
+    .log-list li.out:nth-child(even) .what::after { transform: rotate(.5deg); }
+    .log-list li.gap { border-bottom: 0; color: var(--soft); justify-items: start; }
+    .log-list li.win { border-bottom: 0; padding-top: 18px; }
+    .log-list li.win .what { position: relative; font-size: 1.32em; font-weight: 700; color: var(--marker); padding: 2px 10px; }
+    .log-list li.win .what svg { position: absolute; inset: -16px -14px; width: calc(100% + 28px); height: calc(100% + 32px); overflow: visible; }
+    .log-note { margin-top: 26px; display: flex; gap: 16px; align-items: flex-start; }
+    .log-note .arrow { width: 54px; flex: none; transform: rotate(-16deg) translateY(4px); }
+    .log .ring { right: 6%; top: 2%; }
+    @media (max-width: 620px) { .log-list .verdict { display: none; } .log-list li { grid-template-columns: 34px 1fr; } }
+
+    /* findings */
+    .found { padding: clamp(40px, 6vw, 84px) 0; }
+    .found h2 { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: 10px; }
+    .found > .wrap > p { max-width: 52ch; margin-bottom: clamp(28px, 4vw, 44px); }
+    .notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 3vw, 34px); }
+    .notes .postit:nth-child(1) { background: var(--wonder-woman); transform: rotate(-1.6deg); }
+    .notes .postit:nth-child(2) { background: var(--mint); transform: rotate(1.2deg); }
+    .notes .postit:nth-child(3) { background: var(--party-pink); transform: rotate(-.7deg); }
+    @media (max-width: 820px) { .notes { grid-template-columns: 1fr; } }
+
+    /* in the box, annotated */
+    .kit { padding: clamp(40px, 6vw, 84px) 0; }
+    .kit h2 { font-size: clamp(34px, 5.4vw, 64px); }
+    .kit > .wrap > p { max-width: 52ch; margin-top: 12px; }
+    .kit-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(10px, 2.2vw, 26px); margin-top: clamp(28px, 4vw, 46px); align-items: end; }
+    .kit-item { text-align: center; }
+    .kit-item .ill { color: var(--ink); height: clamp(84px, 11vw, 142px); }
+    .kit-item em { display: block; font-family: var(--hand); font-style: normal; font-size: clamp(18px, 1.9vw, 22px); color: var(--marker); margin-top: 8px; }
+    .kit-item:nth-child(odd) { transform: rotate(-1.4deg); }
+    .kit-item:nth-child(even) { transform: rotate(1.1deg); }
+    @media (max-width: 760px) { .kit-grid { grid-template-columns: repeat(3, 1fr); row-gap: 28px; } }
+    @media (max-width: 440px) { .kit-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* the method, as a ticked list */
+    .method { padding: clamp(40px, 6vw, 84px) 0; }
+    .method .sheet { max-width: 760px; }
+    .method h2 { font-size: clamp(32px, 5vw, 58px); margin-bottom: 20px; }
+    .checks { list-style: none; margin: 0; padding: 0; }
+    .checks li { display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: start; padding: 13px 0; font-family: var(--hand); font-size: clamp(21px, 2.1vw, 25px); color: var(--pen); border-bottom: 1px solid rgba(190,205,218,.55); }
+    .checks li:last-child { border-bottom: 0; }
+    .checks .box { position: relative; width: 26px; height: 26px; border: 2px solid var(--pen); border-radius: 3px; margin-top: 2px; }
+    .checks .box svg { position: absolute; inset: -8px -6px; width: calc(100% + 12px); height: calc(100% + 16px); color: var(--marker); overflow: visible; }
+    .checks small { display: block; font-family: var(--sans); font-size: 14.5px; color: var(--soft); margin-top: 2px; }
+
+    /* what people said */
+    .said { padding: clamp(40px, 6vw, 84px) 0; }
+    .said h2 { font-size: clamp(32px, 5vw, 58px); margin-bottom: clamp(24px, 4vw, 40px); }
+    .said .notes .postit:nth-child(1) { background: var(--splash-blue); }
+    .said .notes .postit:nth-child(2) { background: var(--wonder-woman); }
+    .said .notes .postit:nth-child(3) { background: var(--mint); }
+    .said .postit span { display: block; font-size: 19px; color: var(--soft); margin-top: 12px; }
+
+    /* tear-off slip */
+    .slip { padding: clamp(36px, 5vw, 70px) 0 clamp(50px, 7vw, 92px); }
+    .tear {
+      position: relative; background: rgba(255,255,255,.8); border: 2px dashed var(--marker);
+      padding: clamp(26px, 4vw, 46px); text-align: center;
+    }
+    .tear .scissors { position: absolute; top: -15px; left: 26px; background: var(--paper); padding: 0 8px; font-size: 22px; color: var(--marker); }
+    .tear h2 { font-size: clamp(32px, 5vw, 58px); max-width: 16ch; margin: 0 auto; }
+    .tear p.sub { margin-top: 12px; }
+    .tear form { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 520px; margin: 26px auto 0; }
+    .tear input { flex: 1 1 230px; min-height: 52px; padding: 0 18px; border: 0; border-bottom: 2px solid var(--pen); background: transparent; font-family: var(--hand); font-size: 24px; color: var(--pen); text-align: center; }
+    .tear input::placeholder { color: #9fb0c0; }
+    .tear [data-status] { font-family: var(--hand); font-size: 23px; color: var(--marker); min-height: 1.5em; margin-top: 14px; }
+
+    .foot { padding: 28px 0 34px; }
+    .foot .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; font-family: var(--hand); font-size: 20px; color: var(--soft); }
+    .foot nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    .foot a { text-decoration: none; }
+    .foot a:hover { color: var(--marker); }
+
+    @media (prefers-reduced-motion: reduce) { .kit-item, .postit, .label, .open .shot { transform: none !important; } }
+  </style>
+</head>
+<body data-option="i">
+
+  <header class="book">
+    <div class="wrap">
+      <div class="label">
+        <span class="tape" aria-hidden="true"></span>
+        <span class="logo logo-flat" role="img" aria-label="Splash"></span>
+        <p>Test kitchen &mdash; book 3 &middot; Michele &middot; Chicago</p>
+      </div>
+      <nav><a href="#log">The 47</a><a href="#kit">The box</a><a href="#method">How</a><a href="#slip">The list</a></nav>
+    </div>
+  </header>
+
+  <section class="open">
+    <div class="wrap">
+      <div>
+        <h1>Forty-seven goes at one cookie.</h1>
+        <p class="hand sub">Our mom is a chemical engineer who bakes. That combination is why this recipe works in your kitchen and not just hers.</p>
+        <div class="cta">
+          <a class="btn" href="#slip">Get on the list</a>
+          <small>Drop 03 opens soon</small>
+        </div>
+      </div>
+      <div class="shot">
+        <span class="tape" aria-hidden="true"></span>
+        <span class="tape t2" aria-hidden="true"></span>
+        <figure class="photo">
+          <img src="assets/everything-plate-1200.jpg" alt="Six finished Everything cookies on a plate" width="1200" height="1599">
+          <figcaption>batch 47 &mdash; the one</figcaption>
+        </figure>
+        <div class="note-right">
+          <svg class="arrow" viewBox="0 0 70 54" fill="none" aria-hidden="true">
+            <path d="M66 6C50 2 22 6 10 24c-4 6-5 14-2 21" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <path d="M2 36l6 11 12-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="hand" style="text-align:center">this is the one<br>we put in a box</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="log" id="log">
+    <span class="ring" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="log-head">
+        <h2>The batch log.</h2>
+        <p class="prose">She kept every one. Most of them were wrong in a way she could name, which is the part that eventually made it right.</p>
+      </div>
+
+      <div class="sheet">
+        <ol class="log-list">
+          <li class="out"><span class="no">01</span><span class="what">butter straight from the fridge</span><span class="verdict">didn&rsquo;t spread</span></li>
+          <li class="out"><span class="no">02</span><span class="what">butter melted instead</span><span class="verdict">spread into one cookie</span></li>
+          <li class="out"><span class="no">06</span><span class="what">flour by the cup, scooped</span><span class="verdict">dry, like a scone</span></li>
+          <li class="out"><span class="no">09</span><span class="what">more brown sugar</span><span class="verdict">better. still cakey</span></li>
+          <li class="out"><span class="no">14</span><span class="what">mixed it properly smooth</span><span class="verdict">tough</span></li>
+          <li class="gap"><span class="no">&hellip;</span><span class="what">thirty-one more</span></li>
+          <li class="out"><span class="no">38</span><span class="what">chilled the dough overnight</span><span class="verdict">good. nobody will do this</span></li>
+          <li class="out"><span class="no">44</span><span class="what">chocolate chopped, not chips</span><span class="verdict">yes &mdash; keep</span></li>
+          <li class="out"><span class="no">46</span><span class="what">pretzels in at the end</span><span class="verdict">yes &mdash; keep</span></li>
+          <li class="win">
+            <span class="no">47</span>
+            <span class="what">everything weighed first, mixed by hand
+              <svg viewBox="0 0 320 70" fill="none" aria-hidden="true" preserveAspectRatio="none">
+                <path d="M30 12c70-9 190-10 258-2 24 3 30 16 16 26-18 13-120 22-224 18C36 52 6 44 10 30c3-10 22-16 46-19" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="verdict">this one</span>
+          </li>
+        </ol>
+
+        <div class="log-note">
+          <svg class="arrow" viewBox="0 0 60 48" fill="none" aria-hidden="true">
+            <path d="M4 4c10 16 26 28 50 32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <path d="M38 42l16-6-5-13" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="hand">Batch 47 is the one in the box. The overnight chill from 38 happens before it&rsquo;s sealed, so you don&rsquo;t have to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="found">
+    <div class="wrap">
+      <h2>Three things broke it every time.</h2>
+      <p class="prose">So those three are the ones that got taken off your side of the counter.</p>
+      <div class="notes">
+        <div class="postit"><b>Flour</b>A scooped cup is 120&ndash;150 g depending on the hand. Now it&rsquo;s weighed.</div>
+        <div class="postit"><b>Butter</b>Too cold, no spread. Too warm, one giant cookie. Now it&rsquo;s already creamed.</div>
+        <div class="postit"><b>Mixing</b>Smooth dough means tough cookies. Now you mix by hand and stop early.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kit" id="kit">
+    <div class="wrap">
+      <h2>What ends up in the box.</h2>
+      <p class="prose">Her drawings, more or less unchanged.</p>
+      <div class="kit-grid">
+        <div class="kit-item"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span><em>weighed</em></div>
+        <div class="kit-item"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span><em>already creamed</em></div>
+        <div class="kit-item"><span class="ill ill-water" role="img" aria-label="Just water"></span><em>yours, 2 tbsp</em></div>
+        <div class="kit-item"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span><em>cut to your tray</em></div>
+        <div class="kit-item"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span><em>hands are the mixer</em></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="method" id="method">
+    <div class="wrap">
+      <div class="sheet">
+        <h2>What&rsquo;s left for you.</h2>
+        <ul class="checks">
+          <li>
+            <span class="box" aria-hidden="true"><svg viewBox="0 0 40 44" fill="none"><path d="M7 24l9 11L35 5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Both pouches in a bowl with 2 tbsp water. Gloves on, mix by hand.<small>Three minutes. Stop as soon as there&rsquo;s no dry flour &mdash; lumpy is correct.</small></span>
+          </li>
+          <li>
+            <span class="box" aria-hidden="true"><svg viewBox="0 0 40 44" fill="none"><path d="M7 24l9 11L35 5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Six scoops on the parchment, well apart.<small>Seven minutes, and the job to hand to a five-year-old.</small></span>
+          </li>
+          <li>
+            <span class="box" aria-hidden="true"><svg viewBox="0 0 40 44" fill="none"><path d="M7 24l9 11L35 5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>350&deg;F, 12&ndash;15 minutes. Out while the middles still look soft.<small>They keep cooking on the tray. Trust it.</small></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="said">
+    <div class="wrap">
+      <h2>What the testers wrote back.</h2>
+      <div class="notes">
+        <div class="postit">&ldquo;Best cookie I&rsquo;ve ever had, let alone made.&rdquo;<span>&mdash; tasting, Chicago</span></div>
+        <div class="postit">&ldquo;The kids had a blast. No mess for us.&rdquo;<span>&mdash; tasting, Chicago</span></div>
+        <div class="postit">&ldquo;Incredible flavour. I&rsquo;d give these as gifts.&rdquo;<span>&mdash; tasting, Chicago</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slip" id="slip">
+    <div class="wrap">
+      <div class="tear">
+        <span class="scissors" aria-hidden="true">&#9986;</span>
+        <h2>Put your name down for drop 03.</h2>
+        <p class="hand sub">One note when the kits are ready. Nothing else, ever.</p>
+        <form>
+          <label class="visually-hidden" for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="your email here" required>
+          <button class="btn" type="submit">Add me</button>
+        </form>
+        <p data-status role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <span>&copy; 2026 Splash &middot; Chicago, IL &middot; Patent pending</span>
+      <nav><a href="#">FAQ</a><a href="#">Journal</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">hello@splashbaking.com</a></nav>
+    </div>
+  </footer>
+
+  <script src="switch.js" defer></script>
+</body>
+</html>

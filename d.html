@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Splash mockup: Lab notebook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Option D: Lab notebook. The kit documented like a part, because the thing that is actually
+       true about it is that someone with an engineering degree measured everything first. */
+    :root {
+      --paper: #fbf8e6;
+      --grid: rgba(72,67,65,.085);
+      --ink: #43403d;
+      --soft: #7d756e;
+      --rule: #cdc5ae;
+      --hi: var(--wonder-woman);
+      --spot: var(--chocolate);
+      --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+      --w: 1180px;
+    }
+    body {
+      background-color: var(--paper); color: var(--ink); font-size: 16.5px; line-height: 1.6;
+      background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 28px 28px; background-position: -1px -1px;
+    }
+    .wrap { width: min(var(--w), 100% - 44px); margin-inline: auto; }
+    h1, h2, h3 { margin: 0; font-family: var(--mono); font-weight: 600; letter-spacing: -.035em; line-height: .97; }
+    p { margin: 0; }
+    .m { font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
+    .soft { color: var(--soft); }
+    a.btn {
+      display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 20px;
+      background: var(--ink); color: var(--paper); text-decoration: none;
+      font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      border: 1.5px solid var(--ink);
+    }
+    a.btn:hover { background: var(--hi); color: var(--ink); }
+    a.btn::after { content: "→"; letter-spacing: 0; }
+    :focus-visible { outline: 2.5px solid var(--spot); outline-offset: 3px; }
+
+    /* highlighter swipe — the one warm gesture on an otherwise cold page */
+    .hi { background: linear-gradient(var(--hi), var(--hi)) no-repeat; background-size: 100% .52em; background-position: 0 .62em; padding-inline: .08em; }
+
+    /* running head */
+    .head { border-bottom: 1.5px solid var(--ink); background: var(--paper); }
+    .head .wrap { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 11px 0; }
+    .head .logo { height: 21px; color: var(--ink); }
+    .head nav { display: flex; gap: 22px; }
+    .head a { text-decoration: none; }
+    .head nav a:hover { background: var(--hi); }
+    @media (max-width: 720px) { .head .mid { display: none; } }
+
+    /* hero: title block + spec list, no photograph */
+    .hero { padding: clamp(44px, 7vw, 92px) 0 clamp(40px, 6vw, 76px); }
+    .hero .wrap { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 6vw, 84px); align-items: start; }
+    .hero h1 { font-size: clamp(46px, 8.2vw, 112px); margin: 16px 0 0; }
+    .hero h1 small { display: block; font-size: .34em; letter-spacing: -.01em; color: var(--soft); margin-bottom: .35em; font-weight: 500; }
+    .lede { font-size: clamp(17px, 1.6vw, 20px); font-weight: 300; max-width: 42ch; margin-top: 26px; }
+    .hero-cta { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 30px; }
+
+    .spec { border-top: 1.5px solid var(--ink); padding-top: 12px; margin-top: 54px; }
+    .spec ul { list-style: none; margin: 0; padding: 0; }
+    .spec li { display: grid; grid-template-columns: auto 1fr auto; gap: 7px; align-items: baseline; padding: 7px 0; font-family: var(--mono); font-size: 12.5px; }
+    .spec li + li { border-top: 1px solid var(--rule); }
+    .spec .k { text-transform: uppercase; letter-spacing: .08em; color: var(--soft); }
+    .spec .dots { border-bottom: 1.5px dotted var(--rule); transform: translateY(-4px); }
+    .spec .v { font-weight: 600; }
+    .spec li.key .v { background: var(--hi); padding: 1px 6px; }
+    @media (max-width: 880px) { .hero .wrap { grid-template-columns: 1fr; } .spec { margin-top: 8px; } }
+
+    /* figures, shared chrome */
+    .fig { padding: clamp(44px, 6.5vw, 86px) 0; border-top: 1.5px solid var(--ink); }
+    .fig-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-bottom: 10px; }
+    .fig h2 { font-size: clamp(27px, 3.4vw, 42px); max-width: 20ch; }
+    .fig .fig-intro { max-width: 54ch; margin-top: 14px; font-weight: 300; }
+    .cap { margin-top: 18px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .04em; color: var(--soft); max-width: 62ch; }
+
+    /* FIG 1 — exploded view (the signature) */
+    .plate { margin-top: 38px; border: 1.5px solid var(--ink); background: #fffdf2; padding: clamp(26px, 4vw, 48px) clamp(16px, 3vw, 36px) 32px; }
+    /* the drawings caption themselves, so the callout carries only the part number;
+       the parts list below is what decodes it. */
+    .exploded { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(8px, 2vw, 26px); align-items: end; border-bottom: 1.5px solid var(--ink); }
+    .part { display: grid; justify-items: center; gap: 0; text-align: center; }
+    .part .ill { color: var(--ink); }
+    .part .no { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .08em; border: 1.5px solid var(--ink); border-radius: 50%; width: 27px; height: 27px; display: grid; place-items: center; background: #fffdf2; transform: translateY(50%); }
+    .part:nth-child(1) .ill { height: clamp(74px, 10.5vw, 132px); }
+    .part:nth-child(2) .ill { height: clamp(86px, 12.5vw, 158px); }
+    .part:nth-child(3) .ill { height: clamp(68px, 9.5vw, 118px); }
+    .part:nth-child(4) .ill { height: clamp(58px, 8vw, 100px); }
+    .part:nth-child(5) .ill { height: clamp(78px, 11vw, 140px); }
+    .part .lead { width: 0; border-left: 1.5px dotted var(--ink); height: clamp(20px, 3vw, 40px); margin-top: 16px; }
+    @media (max-width: 720px) {
+      .exploded { grid-template-columns: repeat(3, 1fr); row-gap: 26px; border-bottom: 0; }
+      .part:nth-child(n) .ill { height: 92px; }
+      .part .no { transform: none; margin-top: 6px; }
+    }
+    @media (max-width: 440px) { .exploded { grid-template-columns: repeat(2, 1fr); } }
+
+    .parts-table { margin-top: 30px; }
+    table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12.5px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+    thead th { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); border-bottom: 1.5px solid var(--ink); font-weight: 500; }
+    td.n { width: 1%; white-space: nowrap; color: var(--soft); }
+    .scroll { overflow-x: auto; }
+    .scroll table { min-width: 600px; }
+
+    /* FIG 2 — procedure */
+    .steps-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 2vw, 22px); margin-top: 36px; }
+    .steps-strip figure { margin: 0; }
+    .steps-strip img { border: 1.5px solid var(--ink); aspect-ratio: 1; object-fit: cover; }
+    .steps-strip figcaption { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--soft); padding-top: 8px; }
+    .proc { margin-top: 42px; border-top: 1.5px solid var(--ink); }
+    .proc-row { display: grid; grid-template-columns: 5.5rem 1fr 7rem; gap: clamp(14px, 3vw, 38px); padding: 26px 0; border-bottom: 1px solid var(--rule); align-items: start; }
+    .proc-row .idx { font-family: var(--mono); font-size: clamp(26px, 3.4vw, 42px); font-weight: 600; letter-spacing: -.04em; line-height: 1; color: var(--ink); }
+    .proc-row h3 { font-size: 20px; letter-spacing: -.02em; margin-bottom: 8px; }
+    .proc-row p { font-weight: 300; max-width: 52ch; }
+    .proc-row .t { font-family: var(--mono); font-size: 12px; letter-spacing: .07em; text-transform: uppercase; text-align: right; color: var(--soft); padding-top: 6px; }
+    @media (max-width: 760px) {
+      .steps-strip { grid-template-columns: 1fr; }
+      .proc-row { grid-template-columns: 3.2rem 1fr; }
+      .proc-row .t { grid-column: 2; text-align: left; padding-top: 10px; }
+    }
+
+    /* FIG 3 — the flour chart */
+    .tol { background: var(--splash-blue); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); padding: clamp(44px, 6.5vw, 86px) 0; }
+    .tol h2 { font-size: clamp(28px, 4.3vw, 58px); max-width: 17ch; }
+    .chart { margin-top: 44px; display: grid; gap: 4px; }
+    .bar-row { display: grid; grid-template-columns: minmax(130px, 15rem) 1fr; gap: clamp(12px, 2.5vw, 28px); align-items: center; padding: 13px 0; border-top: 1px solid rgba(67,64,61,.22); }
+    .bar-row .lbl { font-family: var(--mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+    .track { position: relative; height: 30px; background: rgba(255,255,255,.65); border: 1px solid rgba(67,64,61,.3); }
+    .track .span {
+      position: absolute; top: -1px; bottom: -1px; left: var(--a); width: var(--w2);
+      background: var(--hi); border: 1.5px solid var(--ink);
+      transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.2,.7,.3,1);
+    }
+    .track .span.tick { background: var(--spot); border-color: var(--spot); }
+    .chart.on .track .span { transform: scaleX(1); }
+    .track .val { position: absolute; left: calc(var(--a) + var(--w2) + 10px); top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: 11.5px; font-weight: 600; white-space: nowrap; }
+    .axis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--soft); border-top: 1.5px solid var(--ink); padding-top: 7px; margin-top: 4px; }
+    .axis { margin-left: calc(15rem + 28px); }
+    .tol-note { margin-top: 34px; font-size: clamp(18px, 2vw, 23px); font-weight: 300; max-width: 46ch; }
+    @media (max-width: 760px) {
+      .bar-row { grid-template-columns: 1fr; gap: 8px; }
+      .axis { margin-left: 0; }
+      .track .val { position: static; display: block; transform: none; padding-top: 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .track .span { transform: scaleX(1) !important; } }
+
+    /* FIG 4 — specimen */
+    .spec4 .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(28px, 5vw, 70px); align-items: center; }
+    .crop { position: relative; padding: 14px; }
+    .crop::before, .crop::after { content: ""; position: absolute; width: 22px; height: 22px; border: 1.5px solid var(--ink); }
+    .crop::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+    .crop::after { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+    .crop img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    @media (max-width: 860px) { .spec4 .wrap { grid-template-columns: 1fr; } }
+
+    /* investigator */
+    .pi .wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(28px, 5vw, 70px); align-items: center; }
+    .pi img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border: 1.5px solid var(--ink); }
+    .pi h2 { font-size: clamp(26px, 3.4vw, 42px); margin: 14px 0 18px; }
+    .pi p + p { margin-top: 14px; }
+    .pi .sign { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; margin-top: 22px; color: var(--soft); }
+    @media (max-width: 860px) { .pi .wrap { grid-template-columns: 1fr; } }
+
+    /* request */
+    .req { background: var(--ink); color: var(--paper); padding: clamp(46px, 7vw, 92px) 0; }
+    .req h2 { font-size: clamp(28px, 4vw, 52px); max-width: 18ch; }
+    .req .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(26px, 5vw, 64px); align-items: center; }
+    .req form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .req input { flex: 1 1 230px; min-height: 48px; padding: 0 16px; background: transparent; border: 1.5px solid var(--rule); color: var(--paper); font-family: var(--mono); font-size: 13px; }
+    .req input::placeholder { color: #9b9289; }
+    .req button { min-height: 48px; padding: 0 22px; border: 1.5px solid var(--hi); background: var(--hi); color: var(--ink); font-family: var(--mono); font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+    .req button:hover { background: transparent; color: var(--hi); }
+    .req [data-status] { font-family: var(--mono); font-size: 12px; min-height: 1.5em; margin-top: 12px; color: var(--hi); }
+    .req .fine { font-family: var(--mono); font-size: 11.5px; color: #a79e94; line-height: 1.7; }
+    @media (max-width: 860px) { .req .wrap { grid-template-columns: 1fr; } }
+
+    /* colophon */
+    .foot { padding: 34px 0 30px; border-top: 1.5px solid var(--ink); }
+    .foot .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); }
+    .foot nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    .foot a { text-decoration: none; }
+    .foot a:hover { background: var(--hi); color: var(--ink); }
+  </style>
+</head>
+<body data-option="d">
+
+  <header class="head">
+    <div class="wrap">
+      <a href="#" aria-label="Splash"><span class="logo logo-flat"></span></a>
+      <nav class="m mid"><a href="#parts">Parts</a><a href="#procedure">Procedure</a><a href="#flour">Why</a><a href="#who">Who</a></nav>
+      <a class="m" href="#request">Drop 03 · notify me</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="m soft">Product 001 · Gourmet baking kit · Chicago, IL</p>
+        <h1><small>The</small>Everything</h1>
+        <p class="lede">A gourmet cookie taken apart into five components, weighed to the gram, and put in a box. You reassemble it in <span class="hi">twenty-five minutes</span> using one bowl and some water.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#request">Get on the list</a>
+          <span class="m soft">Drop 03 opens soon</span>
+        </div>
+      </div>
+      <div class="spec">
+        <p class="m soft" style="margin-bottom:6px">Specification</p>
+        <ul>
+          <li><span class="k">Yield</span><span class="dots"></span><span class="v">6 cookies</span></li>
+          <li><span class="k">Active time</span><span class="dots"></span><span class="v">10 min</span></li>
+          <li><span class="k">Total time</span><span class="dots"></span><span class="v">25 min</span></li>
+          <li class="key"><span class="k">You measure</span><span class="dots"></span><span class="v">nothing</span></li>
+          <li><span class="k">From your kitchen</span><span class="dots"></span><span class="v">water</span></li>
+          <li><span class="k">Equipment</span><span class="dots"></span><span class="v">1 bowl, 1 sheet</span></li>
+          <li><span class="k">Skill required</span><span class="dots"></span><span class="v">none</span></li>
+          <li><span class="k">Oven</span><span class="dots"></span><span class="v">350&deg;F / 175&deg;C</span></li>
+          <li><span class="k">Shelf life</span><span class="dots"></span><span class="v">6 months sealed</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="fig" id="parts">
+    <div class="wrap">
+      <div class="fig-head">
+        <h2>Five parts, one of which is water.</h2>
+        <p class="m soft">Fig. 1 — Exploded view</p>
+      </div>
+      <p class="fig-intro">Everything that needs weighing has already been weighed. What arrives is a kit of parts; what you add is a tap and an oven.</p>
+
+      <div class="plate">
+        <div class="exploded">
+          <div class="part"><span class="ill ill-dry"></span><span class="lead"></span><span class="no">01</span></div>
+          <div class="part"><span class="ill ill-wet"></span><span class="lead"></span><span class="no">02</span></div>
+          <div class="part"><span class="ill ill-water"></span><span class="lead"></span><span class="no">03</span></div>
+          <div class="part"><span class="ill ill-parchment"></span><span class="lead"></span><span class="no">04</span></div>
+          <div class="part"><span class="ill ill-gloves"></span><span class="lead"></span><span class="no">05</span></div>
+        </div>
+      </div>
+      <p class="cap">Fig. 1 — Components shown separated for clarity. Not to scale. Part 03 is not supplied.</p>
+
+      <div class="parts-table scroll">
+        <table>
+          <thead><tr><th>Part</th><th>Component</th><th>Contains</th><th>Supplied</th></tr></thead>
+          <tbody>
+            <tr><td class="n">01</td><td>Dry pouch</td><td>Flour, oats, two chocolates, toffee, pretzels, dried cherries, leavening, salt</td><td>Yes</td></tr>
+            <tr><td class="n">02</td><td>Wet pouch</td><td>Butter, both sugars, egg, vanilla, caramel</td><td>Yes</td></tr>
+            <tr><td class="n">03</td><td>Water</td><td>Water</td><td>No &mdash; yours</td></tr>
+            <tr><td class="n">04</td><td>Parchment</td><td>One sheet, cut to a half tray</td><td>Yes</td></tr>
+            <tr><td class="n">05</td><td>Gloves</td><td>Two, for mixing by hand</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="fig" id="procedure">
+    <div class="wrap">
+      <div class="fig-head">
+        <h2>The procedure, in full.</h2>
+        <p class="m soft">Fig. 2 — Assembly</p>
+      </div>
+      <p class="fig-intro">There are three steps. There is no step where you look up how much baking soda goes in.</p>
+
+      <div class="steps-strip">
+        <figure><img src="assets/step-1-mix-poster.jpg" alt="Dough being mixed in a bowl" width="800" height="1422"><figcaption>2.1 — Mix</figcaption></figure>
+        <figure><img src="assets/step-2-scoop-poster.jpg" alt="Dough being scooped onto a tray" width="800" height="800"><figcaption>2.2 — Scoop</figcaption></figure>
+        <figure><img src="assets/step-3-bake-poster.jpg" alt="Cookies baking in an oven" width="800" height="800"><figcaption>2.3 — Bake</figcaption></figure>
+      </div>
+
+      <div class="proc">
+        <div class="proc-row">
+          <span class="idx">1.0</span>
+          <div><h3>Mix</h3><p>Empty the dry pouch into a bowl. Add the wet pouch and 30 ml of water. Gloves on, combine by hand until no dry flour remains. It will look like dough, because it is dough.</p></div>
+          <span class="t">3 min</span>
+        </div>
+        <div class="proc-row">
+          <span class="idx">2.0</span>
+          <div><h3>Scoop</h3><p>Six portions, roughly golf-ball plus, onto the supplied parchment. Leave two inches between them. They spread.</p></div>
+          <span class="t">7 min</span>
+        </div>
+        <div class="proc-row">
+          <span class="idx">3.0</span>
+          <div><h3>Bake</h3><p>350&deg;F for 12 to 15 minutes. Remove when the edges are set and the centres still look slightly underdone. They finish on the tray. Resting ten minutes is recommended and almost never observed.</p></div>
+          <span class="t">15 min</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tol" id="flour">
+    <div class="wrap">
+      <div class="fig-head">
+        <h2>A cup of flour is not a unit of mass.</h2>
+        <p class="m soft">Fig. 3 — Why any of this</p>
+      </div>
+      <p class="fig-intro">Scoop it straight from the bag and you pack it. Spoon it in and level it off and you don't. Same cup, same flour, thirty grams apart &mdash; which across six cookies is the whole difference between chewy and dry.</p>
+
+      <div class="chart" id="chart">
+        <div class="bar-row">
+          <span class="lbl">Scooped from the bag</span>
+          <div class="track"><span class="span" style="--a:20%; --w2:60%"></span><span class="val">120&ndash;150 g</span></div>
+        </div>
+        <div class="bar-row">
+          <span class="lbl">Spooned and levelled</span>
+          <div class="track"><span class="span" style="--a:20%; --w2:30%"></span><span class="val">120&ndash;135 g</span></div>
+        </div>
+        <div class="bar-row">
+          <span class="lbl">Weighed by us</span>
+          <div class="track"><span class="span tick" style="--a:34%; --w2:5px"></span><span class="val">127 g, every time</span></div>
+        </div>
+        <div class="axis"><span>110 g</span><span>135 g</span><span>160 g</span></div>
+      </div>
+
+      <p class="tol-note">We took the three variables that break this recipe &mdash; flour mass, butter temperature, mixing time &mdash; and moved two of them to <span class="hi">our side of the box</span>.</p>
+      <p class="cap">Fig. 3 — Mass of one cup of all-purpose flour by method. Ranges are the ones every baking book quotes and nobody acts on.</p>
+    </div>
+  </section>
+
+  <section class="fig spec4">
+    <div class="wrap">
+      <div class="crop"><img src="assets/everything-plate-1200.jpg" alt="Six baked Everything cookies on a plate" width="1200" height="1599"></div>
+      <div>
+        <p class="m soft">Fig. 4 — Finished specimen</p>
+        <h2 style="margin:14px 0 18px">Two chocolates, toffee, caramel, pretzels, oats, cherries.</h2>
+        <p style="font-weight:300;max-width:44ch">Sweet, salty, chewy, crunchy, in one cookie. The add-ins are the part a box mix leaves to your cupboard and your judgement. We put them in the pouch.</p>
+        <p class="cap">Photographed on the first try, by one of us, in a Chicago kitchen, at 4pm.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fig" id="who">
+    <div class="wrap">
+      <div class="fig-head">
+        <h2>Known failure modes.</h2>
+        <p class="m soft">Table 1</p>
+      </div>
+      <div class="scroll" style="margin-top:28px">
+        <table>
+          <thead><tr><th>Failure mode</th><th>From scratch</th><th>Box mix</th><th>This kit</th></tr></thead>
+          <tbody>
+            <tr><td>Too much flour</td><td>Common</td><td>Possible</td><td>Not possible</td></tr>
+            <tr><td>Forgot the baking soda</td><td>Common</td><td>&mdash;</td><td>Not possible</td></tr>
+            <tr><td>Butter too warm, too cold</td><td>Common</td><td>&mdash;</td><td>Not possible</td></tr>
+            <tr><td>Add-ins are whatever was in the cupboard</td><td>Usual</td><td>Usual</td><td>Not possible</td></tr>
+            <tr><td>Overworked the dough</td><td>Possible</td><td>Possible</td><td>Possible. We can't help you there.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="fig pi">
+    <div class="wrap">
+      <img src="assets/inside-1200.jpg" alt="Scooped dough on a baking sheet" width="1200" height="800">
+      <div>
+        <p class="m soft">Principal investigator</p>
+        <h2>Our mom, Michele.</h2>
+        <p style="font-weight:300">Chemical engineer by trade, baker by heart. She spent years running the same recipe until it stopped depending on who was making it &mdash; which, if you have ever handed someone a recipe and received back a different cookie, is the actual problem with baking.</p>
+        <p style="font-weight:300">We weighed it, pouched it and put it in a box. Everything she took out, you no longer have to get right.</p>
+        <p class="sign">Erica, Natalie &amp; Marc &mdash; the rest of the kitchen</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="req" id="request">
+    <div class="wrap">
+      <div>
+        <p class="m" style="color:var(--hi)">Drop 03 · The Everything</p>
+        <h2 style="margin-top:14px">Tell me when the next batch is weighed.</h2>
+      </div>
+      <div>
+        <form>
+          <label class="visually-hidden" for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <button type="submit">Notify me</button>
+        </form>
+        <p data-status role="status"></p>
+        <p class="fine">One email when the drop opens. Kits ship from Chicago. Nothing is for sale yet &mdash; this page is a mockup.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <span>&copy; 2026 Splash &middot; Chicago, IL &middot; Patent pending</span>
+      <nav><a href="#">FAQ</a><a href="#">Journal</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">hello@splashbaking.com</a></nav>
+    </div>
+  </footer>
+
+  <script>
+    // One orchestrated moment: the flour ranges draw themselves when the chart arrives.
+    (function () {
+      const c = document.getElementById('chart');
+      if (!c) return;
+      if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { c.classList.add('on'); return; }
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { c.classList.add('on'); io.disconnect(); } }), { threshold: .35 });
+      io.observe(c);
+    })();
+  </script>
+  <script src="switch.js" defer></script>
+</body>
+</html>
