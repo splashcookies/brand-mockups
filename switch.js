@@ -1,6 +1,7 @@
 // Injects the option switcher and wires the number-key shortcuts. Each mockup is its own page.
 (function () {
   const OPTIONS = [
+    { key: 'k', file: 'k.html', round: 5, name: 'The counter', desc: 'The merge of your two favourites: Bakery counter\u2019s light, shoppable, photo-led world, with the tear-open pouch as the living half of its two-panel hero. Real Everything photography, packaging-accurate copy, and hand-lettering kept as a system.' },
     { key: 'h', file: 'h.html', round: 4, name: 'The bake', desc: 'Scroll position is oven time. A pinned stage takes the cookie from raw dough through the oven to done as you move down the page, the cavity glowing up around it, with the clock and the temperature counting alongside. Figtree only \u2014 the risk is all in the mechanic.' },
     { key: 'i', file: 'i.html', round: 4, name: "Michele's notebook", desc: 'The whole site as her test-kitchen book: ruled paper, taped photos, marker arrows, sticky notes. The signature is the batch log \u2014 forty-seven attempts, forty-six crossed out, the last one circled. Adds Caveat.' },
     { key: 'j', file: 'j.html', round: 4, name: 'Tear it open', desc: 'The hero is a sealed pouch you pull apart; the contents spill out and name themselves. Built on a range input, so it drags, takes arrow keys and announces itself rather than being a mouse-only stunt.' },
@@ -22,12 +23,13 @@
   OPTIONS.forEach((o, i) => {
     if (o.round !== lastRound) { segInner += '<span class="seg-label">Round ' + o.round + '</span>'; lastRound = o.round; }
     segInner += '<a href="' + o.file + '"' + (o === me ? ' aria-current="page"' : '') +
-      '><b>' + ((i + 1) % 10) + '</b><span class="nm">' + o.name + '</span></a>';
+      '><b>' + (i === 10 ? '-' : (i + 1) % 10) + '</b><span class="nm">' + o.name + '</span></a>';
   });
 
   const bar = document.createElement('div');
   bar.className = 'switcher';
-  bar.innerHTML = '<div class="switcher-inner">' +
+  bar.innerHTML = '<button class="switcher-toggle" id="sw-toggle" aria-expanded="true" aria-controls="sw-inner"></button>' +
+    '<div class="switcher-inner" id="sw-inner">' +
     '<p class="switcher-about" title="' + me.desc.replace(/"/g, '&quot;') + '"><strong>Round ' + me.round + ' \u00b7 ' + pos + '/' + group.length + ' \u00b7 ' + me.name + '</strong>' + me.desc + '</p>' +
     '<div class="switcher-bar">' +
       '<nav class="seg" aria-label="Design options">' + segInner + '</nav>' +
@@ -45,6 +47,22 @@
     lastH = h;
     document.documentElement.style.setProperty('--switcher-h', h + 'px');
   };
+  // fold the bar away so it stops covering the bottom of the page being reviewed
+  const toggle = bar.querySelector('#sw-toggle');
+  const read = () => { try { return localStorage.getItem('splash-switcher') === 'closed'; } catch (e) { return false; } };
+  function applyCollapsed(closed) {
+    bar.classList.toggle('is-collapsed', closed);
+    toggle.setAttribute('aria-expanded', String(!closed));
+    toggle.textContent = closed ? ('Round ' + me.round + ' \u00b7 ' + me.name + ' \u2014 show options') : 'Hide';
+    syncHeight();
+  }
+  toggle.addEventListener('click', () => {
+    const closed = !bar.classList.contains('is-collapsed');
+    try { localStorage.setItem('splash-switcher', closed ? 'closed' : 'open'); } catch (e) {}
+    applyCollapsed(closed);
+  });
+  applyCollapsed(read());
+
   syncHeight();
   addEventListener('resize', syncHeight);
   if (window.ResizeObserver) new ResizeObserver(syncHeight).observe(bar);
@@ -59,8 +77,8 @@
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const t = e.target; if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
-    if (!/^[0-9]$/.test(e.key)) return;
-    const n = e.key === '0' ? 10 : parseInt(e.key, 10);   // 0 reaches the tenth
+    if (!/^[0-9-]$/.test(e.key)) return;
+    const n = e.key === '0' ? 10 : e.key === '-' ? 11 : parseInt(e.key, 10);   // 0 and - reach the last two
     if (n >= 1 && n <= OPTIONS.length && OPTIONS[n - 1] !== me) location.href = OPTIONS[n - 1].file;
   });
 

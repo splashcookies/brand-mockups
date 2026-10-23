@@ -19,7 +19,11 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
 
 /* brand marks as recolourable masks */
-.logo, .ill { display: inline-block; background-color: currentColor; mask: var(--m) center / contain no-repeat; -webkit-mask: var(--m) center / contain no-repeat; }
+/* the size in the -webkit-mask shorthand is unreliable, so set it on its own too —
+   without this the artwork paints at intrinsic size and crops. */
+.logo, .ill { display: inline-block; background-color: currentColor;
+  mask: var(--m) center / contain no-repeat; -webkit-mask: var(--m) center / contain no-repeat;
+  mask-size: contain; -webkit-mask-size: contain; }
 .logo-primary { --m: url(assets/logo-primary.png); aspect-ratio: 1872 / 903; }
 .logo-flat-banner { --m: url(assets/logo-flat-banner.png); aspect-ratio: 1168 / 506; }
 .logo-flat { --m: url(assets/logo-flat.png); aspect-ratio: 1070 / 392; }
@@ -32,6 +36,16 @@ a { color: inherit; }
 
 /* option switcher (review chrome, not part of the design) */
 .switcher { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; background: #1f1c1a; color: #fdfbe0; font-family: var(--sans); border-top: 1px solid #4a4440; }
+/* the bar is review chrome and it was covering the bottom of every hero, so it folds away */
+.switcher-toggle {
+  position: absolute; top: 6px; right: 10px; z-index: 2;
+  background: #3a3533; color: #fdfbe0; border: 1px solid #55504c; border-radius: 999px;
+  font: inherit; font-size: 11.5px; font-weight: 600; padding: 4px 12px; min-height: 26px; cursor: pointer;
+}
+.switcher-toggle:hover { background: #4a4440; }
+.switcher-toggle:focus-visible { outline: 2px solid #f6c787; outline-offset: 2px; }
+.switcher.is-collapsed .switcher-inner { display: none; }
+.switcher.is-collapsed .switcher-toggle { position: static; display: block; margin: 5px auto; }
 /* must NOT depend on --switcher-h: the script writes this bar's measured height into that var,
    so reading it back here fed the measurement into itself and the bar grew without stopping. */
 .switcher-inner { width: min(1240px, 100% - 24px); margin-inline: auto; display: grid; gap: 9px; justify-items: center; align-content: center; padding: 11px 0; }
