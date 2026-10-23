@@ -38,11 +38,21 @@
 
   // the bar wraps differently at every width, so reserve exactly what it occupies
   // rather than trusting a fixed value to stay right.
-  const syncHeight = () => document.documentElement.style.setProperty(
-    '--switcher-h', Math.ceil(bar.getBoundingClientRect().height) + 'px');
+  let lastH = 0;
+  const syncHeight = () => {
+    const h = Math.ceil(bar.getBoundingClientRect().height);
+    if (Math.abs(h - lastH) < 2) return;   // belt and braces against a measure/layout loop
+    lastH = h;
+    document.documentElement.style.setProperty('--switcher-h', h + 'px');
+  };
   syncHeight();
   addEventListener('resize', syncHeight);
   if (window.ResizeObserver) new ResizeObserver(syncHeight).observe(bar);
+  // the webfont swapping in changes the bar's height after first paint, and a missed
+  // resize would otherwise leave the reservation stale, so re-check a couple of times.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncHeight);
+  setTimeout(syncHeight, 300);
+  setTimeout(syncHeight, 1200);
 
   document.title = 'Splash mockup · round ' + me.round + ', option ' + pos + ' of ' + group.length + ': ' + me.name;
 
