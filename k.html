@@ -165,63 +165,6 @@
     .kit-facts { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; flex-wrap: wrap; }
     .kit-facts li { font-family: var(--hand); font-size: 19px; background: var(--paper); border-radius: 999px; padding: 5px 15px; }
 
-    /* buy form */
-    .buy { display: grid; gap: 14px; width: 100%; max-width: 420px; margin-top: 4px; }
-    .packs { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
-    .packs legend { font-size: 13px; font-weight: 700; color: var(--muted); padding: 0 0 8px; }
-    .packs label { display: block; cursor: pointer; }
-    .packs input { position: absolute; opacity: 0; width: 0; height: 0; }
-    .packs span { display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
-                  border: 2px solid var(--rule); border-radius: 14px; padding: 11px 16px; background: var(--paper); }
-    .packs b { font-size: 16px; }
-    .packs i { font-style: normal; font-size: 14px; color: var(--muted); }
-    .packs input:checked + span { border-color: var(--cta); background: var(--surface); }
-    .packs input:focus-visible + span { outline: 3px solid var(--chocolate); outline-offset: 2px; }
-    .gift { display: flex; align-items: center; gap: 9px; font-size: 15px; cursor: pointer; }
-    .gift input { width: 18px; height: 18px; accent-color: var(--cta); }
-    .gift-note input { width: 100%; min-height: 44px; padding: 0 14px; border: 2px solid var(--rule);
-                       border-radius: 12px; background: var(--paper); font: inherit; font-size: 15px; }
-    .btn.add { width: 100%; }
-    .fineprint { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
-    .fineprint b { color: var(--ink); }
-
-    /* cart */
-    .cart-count { position: absolute; top: -5px; right: -5px; min-width: 19px; height: 19px; border-radius: 999px;
-                  background: var(--cta); color: var(--cta-ink); font-size: 11px; font-weight: 700;
-                  display: grid; place-items: center; padding: 0 5px; }
-    .icon-btn { position: relative; }
-    .cart-backdrop { position: fixed; inset: 0; background: rgba(40,36,34,.42); opacity: 0; pointer-events: none;
-                     transition: opacity .25s ease; z-index: 90; }
-    .cart-backdrop.open { opacity: 1; pointer-events: auto; }
-    .cart { position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100%); background: var(--paper);
-            z-index: 95; transform: translateX(100%); transition: transform .3s cubic-bezier(.2,.8,.2,1);
-            display: flex; flex-direction: column; box-shadow: -18px 0 40px rgba(40,36,34,.16); }
-    .cart.open { transform: none; }
-    .cart header { display: flex; justify-content: space-between; align-items: center; gap: 12px;
-                   padding: 18px 20px; border-bottom: 1px solid var(--rule); }
-    .cart h2 { font-size: 20px; }
-    .cart .close { background: none; border: 0; font: inherit; font-size: 22px; line-height: 1; cursor: pointer; color: var(--ink); padding: 4px 8px; }
-    .cart-items { list-style: none; margin: 0; padding: 12px 20px; overflow-y: auto; flex: 1; display: grid; gap: 12px; align-content: start; }
-    .cart-items li { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center;
-                     background: var(--surface); border-radius: 14px; padding: 10px; }
-    .cart-items img { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; }
-    .cart-items .nm { font-weight: 700; font-size: 15px; }
-    .cart-items .sub { font-size: 13px; color: var(--muted); }
-    .qty { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
-    .qty button { width: 26px; height: 26px; border-radius: 999px; border: 1.5px solid var(--rule);
-                  background: var(--paper); font: inherit; cursor: pointer; color: var(--ink); line-height: 1; }
-    .qty span { font-size: 14px; min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
-    .cart-items .price { font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; }
-    .cart-empty { padding: 30px 20px; color: var(--muted); font-size: 15px; }
-    .cart footer { border-top: 1px solid var(--rule); padding: 16px 20px 20px; display: grid; gap: 10px; }
-    .cart .row { display: flex; justify-content: space-between; font-size: 15px; }
-    .cart .row.total { font-weight: 700; font-size: 17px; }
-    .cart .ship { font-size: 13px; color: var(--muted); }
-    .cart .btn { width: 100%; }
-    .handoff { padding: 20px; display: grid; gap: 10px; }
-    .handoff h3 { font-size: 18px; }
-    .handoff p { font-size: 14.5px; color: var(--muted); }
-    @media (prefers-reduced-motion: reduce) { .cart, .cart-backdrop { transition: none; } }
     @media (max-width: 820px) { .kit { grid-template-columns: 1fr; } }
     .fav-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .fav { text-decoration: none; color: inherit; background: var(--surface); border-radius: 20px; padding: 14px 14px 18px; display: grid; gap: 10px; position: relative; }
@@ -334,7 +277,7 @@
       <a href="#" class="brand"><img src="assets/shoot/logo-full-textured.png" alt="Splash, gourmet baking kits" width="2905" height="1232"></a>
       <div class="nav-right">
         <a class="icon-btn" href="#" aria-label="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></a>
-        <button class="icon-btn" id="cart-open" aria-label="Cart, empty" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 7h12l-1.2 12H7.2L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" id="cart-count" hidden>0</span></button>
+        <a class="icon-btn" href="k-product.html" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 7h12l-1.2 12H7.2L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></a>
       </div>
     </div>
   </header>
@@ -388,35 +331,15 @@
       <div class="favs-head">
         <h2>The kit</h2>
       </div>
-      <div class="kit">
+      <a class="kit" href="k-product.html">
         <img src="assets/shoot/SPLASH8913.jpg" alt="A finished Everything cookie" width="2500" height="1667">
         <div class="kit-copy">
           <h3>The Everything</h3>
           <p>Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every ingredient sourced and pre-measured.</p>
-          <ul class="kit-facts"><li>Bakes 6</li><li>25 minutes</li><li>16.4 oz</li></ul>
-
-          <form class="buy" id="buy">
-            <fieldset class="packs">
-              <legend>How many kits?</legend>
-              <label><input type="radio" name="pack" value="1" checked><span><b>1 kit</b><i>$22</i></span></label>
-              <label><input type="radio" name="pack" value="2"><span><b>2 kits</b><i>$44</i></span></label>
-              <label><input type="radio" name="pack" value="3"><span><b>3 kits</b><i>$66 &middot; free shipping</i></span></label>
-            </fieldset>
-
-            <label class="gift">
-              <input type="checkbox" id="is-gift">
-              <span>Sending it as a gift</span>
-            </label>
-            <label class="gift-note" for="gift-note" hidden id="gift-note-wrap">
-              <span class="visually-hidden">Gift note</span>
-              <input id="gift-note" name="gift_note" type="text" maxlength="120" placeholder="Add a note &mdash; we&rsquo;ll write it on the card">
-            </label>
-
-            <button class="btn add" type="submit">Add to cart &middot; <span id="buy-price">$22</span></button>
-            <p class="fineprint">$22 a kit. Free shipping on three kits or more. Ships from Chicago. <b>Mockup &mdash; nothing can be charged here.</b></p>
-          </form>
+          <ul class="kit-facts"><li>Bakes 6</li><li>25 minutes</li><li>16.4 oz</li><li>$22</li></ul>
+          <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -556,29 +479,6 @@
   })();
   </script>
 
-  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
-  <aside class="cart" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-title" hidden>
-    <header>
-      <h2 id="cart-title">Your cart</h2>
-      <button class="close" id="cart-close" aria-label="Close cart">&times;</button>
-    </header>
-    <ul class="cart-items" id="cart-items"></ul>
-    <p class="cart-empty" id="cart-empty">Nothing in here yet.</p>
-    <footer id="cart-foot" hidden>
-      <div class="row"><span>Subtotal</span><span id="cart-subtotal">$0</span></div>
-      <div class="row"><span>Shipping</span><span id="cart-shipping">&mdash;</span></div>
-      <div class="row total"><span>Total</span><span id="cart-total">$0</span></div>
-      <p class="ship" id="cart-shipnote"></p>
-      <button class="btn" id="cart-checkout">Checkout</button>
-      <p class="ship">You&rsquo;d be handed to Stripe to pay. This page never sees a card.</p>
-    </footer>
-    <div class="handoff" id="cart-handoff" hidden>
-      <h3>This is where Stripe Checkout opens.</h3>
-      <p>On the real site the Buy button creates a Stripe Checkout Session and redirects, so card details are only ever entered on Stripe&rsquo;s own page &mdash; Splash never handles them.</p>
-      <p><b>Nothing was charged. This is a mockup.</b></p>
-      <button class="btn" id="handoff-back">Back to the cart</button>
-    </div>
-  </aside>
 
   <script>
   // ?theme=<name> repaints the whole page by swapping the role tokens.
@@ -881,129 +781,6 @@
       document.body.appendChild(box);
     });
   }
-  </script>
-  <script>
-  // Mock shop. Mirrors how the real storefront behaves: pack sizes and a cart on
-  // this page, then a hand-off to hosted Stripe Checkout, so no card details are
-  // ever collected here. Prices are placeholders.
-  (function () {
-    const PER_KIT = 22;
-    const FREE_SHIP_KITS = 3;          // free shipping at three kits or more
-    const SHIP = 6;
-    const PRICES = { 1: PER_KIT, 2: PER_KIT * 2, 3: PER_KIT * 3 };
-    const money = n => '$' + n.toFixed(n % 1 ? 2 : 0);
-
-    const form = document.getElementById('buy');
-    if (!form) return;
-    const giftBox = document.getElementById('is-gift');
-    const giftWrap = document.getElementById('gift-note-wrap');
-    const giftNote = document.getElementById('gift-note');
-    const buyPrice = document.getElementById('buy-price');
-
-    const cart = document.getElementById('cart');
-    const backdrop = document.getElementById('cart-backdrop');
-    const openBtn = document.getElementById('cart-open');
-    const closeBtn = document.getElementById('cart-close');
-    const itemsEl = document.getElementById('cart-items');
-    const emptyEl = document.getElementById('cart-empty');
-    const footEl = document.getElementById('cart-foot');
-    const handoff = document.getElementById('cart-handoff');
-    const countEl = document.getElementById('cart-count');
-
-    let lines = [];           // {pack, qty, gift, note}
-    let lastFocus = null;
-
-    const packOf = () => +form.querySelector('input[name=pack]:checked').value;
-    const lineTotal = l => PRICES[l.pack] * l.qty;
-    const subtotal = () => lines.reduce((n, l) => n + lineTotal(l), 0);
-    const kitCount = () => lines.reduce((n, l) => n + l.pack * l.qty, 0);
-
-    function syncPrice() { buyPrice.textContent = money(PRICES[packOf()]); }
-    form.addEventListener('change', syncPrice);
-    giftBox.addEventListener('change', () => {
-      giftWrap.hidden = !giftBox.checked;
-      if (giftBox.checked) giftNote.focus();
-    });
-
-    function render() {
-      const n = kitCount();
-      countEl.hidden = n === 0;
-      countEl.textContent = n;
-      openBtn.setAttribute('aria-label', n ? 'Cart, ' + n + (n === 1 ? ' kit' : ' kits') : 'Cart, empty');
-
-      itemsEl.innerHTML = lines.map((l, i) => `
-        <li>
-          <img src="assets/shoot/SPLASH8913.jpg" alt="">
-          <div>
-            <div class="nm">The Everything</div>
-            <div class="sub">${l.pack} ${l.pack === 1 ? 'kit' : 'kits'}${l.gift ? ' &middot; gift' : ''}</div>
-            ${l.note ? `<div class="sub">&ldquo;${l.note.replace(/[<>&]/g, '')}&rdquo;</div>` : ''}
-            <div class="qty">
-              <button type="button" data-dec="${i}" aria-label="One fewer">&minus;</button>
-              <span>${l.qty}</span>
-              <button type="button" data-inc="${i}" aria-label="One more">+</button>
-            </div>
-          </div>
-          <div class="price">${money(lineTotal(l))}</div>
-        </li>`).join('');
-
-      const sub = subtotal();
-      const ship = n === 0 ? 0 : (n >= FREE_SHIP_KITS ? 0 : SHIP);
-      emptyEl.hidden = lines.length > 0;
-      footEl.hidden = lines.length === 0;
-      document.getElementById('cart-subtotal').textContent = money(sub);
-      document.getElementById('cart-shipping').textContent = sub === 0 ? '\u2014' : (ship ? money(ship) : 'Free');
-      document.getElementById('cart-total').textContent = money(sub + ship);
-      const short = FREE_SHIP_KITS - n;
-      document.getElementById('cart-shipnote').textContent =
-        n && short > 0 ? short + (short === 1 ? ' more kit' : ' more kits') + ' for free shipping.' : '';
-    }
-
-    itemsEl.addEventListener('click', e => {
-      const inc = e.target.closest('[data-inc]'), dec = e.target.closest('[data-dec]');
-      if (inc) lines[+inc.dataset.inc].qty++;
-      if (dec) { const i = +dec.dataset.dec; if (--lines[i].qty < 1) lines.splice(i, 1); }
-      if (inc || dec) render();
-    });
-
-    function openCart() {
-      lastFocus = document.activeElement;
-      handoff.hidden = true;
-      cart.hidden = false; backdrop.hidden = false;
-      requestAnimationFrame(() => { cart.classList.add('open'); backdrop.classList.add('open'); });
-      closeBtn.focus();
-    }
-    function closeCart() {
-      cart.classList.remove('open'); backdrop.classList.remove('open');
-      setTimeout(() => { cart.hidden = true; backdrop.hidden = true; }, 260);
-      if (lastFocus) lastFocus.focus();
-    }
-    openBtn.addEventListener('click', openCart);
-    closeBtn.addEventListener('click', closeCart);
-    backdrop.addEventListener('click', closeCart);
-    addEventListener('keydown', e => { if (e.key === 'Escape' && !cart.hidden) closeCart(); });
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const pack = packOf(), gift = giftBox.checked, note = gift ? giftNote.value.trim() : '';
-      const same = lines.find(l => l.pack === pack && l.gift === gift && l.note === note);
-      if (same) same.qty++; else lines.push({ pack, qty: 1, gift, note });
-      render();
-      openCart();
-    });
-
-    document.getElementById('cart-checkout').addEventListener('click', () => {
-      footEl.hidden = true; itemsEl.hidden = true; emptyEl.hidden = true;
-      handoff.hidden = false;
-      document.getElementById('handoff-back').focus();
-    });
-    document.getElementById('handoff-back').addEventListener('click', () => {
-      handoff.hidden = true; itemsEl.hidden = false; render();
-      closeBtn.focus();
-    });
-
-    syncPrice(); render();
-  })();
   </script>
   <script src="switch.js" defer></script>
 </body>
