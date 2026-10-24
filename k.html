@@ -445,7 +445,7 @@
 
   <header class="nav">
     <div class="wrap">
-      <nav class="nav-links"><a href="#shelf">Kits</a><a href="#how">How it works</a><a href="#story">Our story</a><a href="#">Gifting</a></nav>
+      <nav class="nav-links" aria-label="Main"><a href="k-shop.html">Kits</a><a href="#how">How it works</a><a href="#story">Our story</a><a href="#">Gifting</a></nav>
       <a href="#" class="brand"><img src="assets/shoot/logo-full-textured.png" alt="Splash, gourmet baking kits" width="2905" height="1232"></a>
       <div class="nav-right">
         <a class="icon-btn" href="#" aria-label="Account"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M40 21c0 10.5-8.5 19-19 19S2 31.5 2 21 10.5 2 21 2s19 8.5 19 19Z"/><path d="M21 13c2.2 0 3.7 1.5 3.7 3.7S23.2 20.5 21 20.5s-3.7-1.6-3.7-3.8S18.8 13 21 13Z"/><path d="M14.1 29.7c.8-3.6 3.4-5.4 6.9-5.4s6.1 1.8 6.9 5.3"/></svg></a>
@@ -499,22 +499,19 @@
     </ul>
   </div>
 
-  <section class="favs" id="shelf">
-    <div class="wrap">
-      <div class="favs-head">
-        <h2>The kit</h2>
-      </div>
-      <a class="kit" href="k-product.html">
-        <img src="assets/shoot/SPLASH8913.jpg" alt="A finished Everything cookie" width="2500" height="1667">
-        <div class="kit-copy">
-          <h3>The Everything</h3>
-          <p>Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every ingredient sourced and pre-measured.</p>
-          <ul class="kit-facts"><li>Bakes 6</li><li>Just add water</li><li>$22</li></ul>
-          <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
+  <div class="wrap">
+    <div class="panels">
+      <section class="panel blue" id="shelf">
+        <div class="panel-img"><img src="assets/shoot/SPLASH8820.jpg" alt="Water being poured into the dry mix" width="2500" height="1667"></div>
+        <div class="panel-copy">
+          <h2>Pre-measured by us, baked by you.</h2>
+          <p>One dry pouch with the add-ins built in. One wet pouch with avocado oil. One full scoop of water, and your hands.</p>
+          <p class="note">That&rsquo;s the whole shopping list.</p>
+          <a class="link" href="#how">See the steps <span aria-hidden="true">&rarr;</span></a>
         </div>
-      </a>
+      </section>
     </div>
-  </section>
+  </div>
 
   <section class="box" id="box">
     <div class="wrap">
@@ -549,16 +546,6 @@
 
   <div class="wrap">
     <div class="panels">
-      <section class="panel blue">
-        <div class="panel-img"><img src="assets/shoot/SPLASH8820.jpg" alt="Water being poured into the dry mix" width="2500" height="1667"></div>
-        <div class="panel-copy">
-          <h2>Pre-measured by us, baked by you.</h2>
-          <p>One dry pouch with the add-ins built in. One wet pouch with avocado oil. One full scoop of water, and your hands.</p>
-          <p class="note">That&rsquo;s the whole shopping list.</p>
-          <a class="link" href="#how">See the steps <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </section>
-
       <section class="panel pink" id="story">
         <div class="panel-img"><img src="assets/shoot/SPLASH8586.jpg" alt="Michele in her kitchen, placing Everything dough onto a lined tray" width="1667" height="2500"></div>
         <div class="panel-copy">
@@ -700,10 +687,10 @@
           }
         };
 
-        // Her flight is measured from "The kit" down, not from the top of the page:
-        // the hero is left alone, and she arrives as that section does. Only swoop
-        // runs the full length; the others finish within a screen or two.
-        const anchor = document.getElementById('shelf');
+        // Her flight is measured from the first section below the hero, not from the
+        // top of the page: the hero is left alone, and she arrives as that section
+        // does. Only swoop runs the full length; the others finish in a screen or two.
+        const anchor = document.getElementById('shelf') || document.getElementById('box');
         function span() {
           const docEnd = document.documentElement.scrollHeight - innerHeight;
           const start = anchor
