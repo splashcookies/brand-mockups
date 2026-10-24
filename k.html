@@ -80,7 +80,18 @@
                 padding: 0; cursor: pointer; }
     .icon-btn svg { width: 42px; height: 42px; display: block; }
     .icon-btn:hover { color: var(--cta); }
-    @media (max-width: 760px) { .nav .wrap { grid-template-columns: auto 1fr; } .nav-links { display: none; } .nav .brand { justify-self: start; } }
+    /* The links used to be hidden outright below 760px, with no menu behind them,
+       so a phone had the logo and two icons and no way to reach anything. With a
+       mark this wide they cannot share a row, so the header becomes two: mark and
+       icons above, links centred beneath. The mark shrinks to fit a 320px screen. */
+    @media (max-width: 760px) {
+      .nav .wrap { grid-template-columns: 1fr auto;
+                   grid-template-areas: "brand icons" "links links"; row-gap: 10px; }
+      .nav .brand { grid-area: brand; justify-self: start; }
+      .nav .brand img { height: clamp(54px, 15vw, 76px); }
+      .nav-right { grid-area: icons; }
+      .nav-links { grid-area: links; display: flex; justify-content: center; gap: 24px; }
+    }
     @media (max-width: 560px) { .nav .brand img { height: 54px; } }
 
     /* ===== HERO: the bakery two-panel, but the left half is alive ===== */
