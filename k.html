@@ -771,12 +771,15 @@
     const bits = q.get('bits') || 'none';
     const hero = q.get('hero') || 'static';
     const ww = q.get('ww') || 'fly';
-    const copy = q.get('copy');
+    // quiet is the chosen hero: headline, paragraph, one underlined link.
+    // ?copy=full restores the paragraph, the facts line and both buttons.
+    const copy = q.get('copy') || 'quiet';
     if (['lean', 'quiet', 'bare'].includes(copy)) document.documentElement.dataset.copy = copy;
 
     // ?rot= turns the headline's last word into a rotating occasion
     (function () {
-      const mode = q.get('rot');
+      // the hand-lettered rotator is the chosen one; ?rot=none turns it off
+      const mode = q.get('rot') || 'hand';
       if (!['pill', 'roll', 'hand'].includes(mode)) return;
       const h1 = document.querySelector('.hero-copy h1');
       if (!h1) return;
