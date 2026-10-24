@@ -81,3 +81,24 @@ a { color: inherit; }
   .seg-label { display: none; }
   .seg a + .seg-label { border-left: 0; }
 }
+
+/* ===== the nav's expanding menu ===== */
+.menu-btn { width: 44px; height: 44px; display: inline-grid; place-items: center; gap: 0;
+            background: none; border: 0; padding: 0; cursor: pointer; color: inherit; }
+.menu-btn span { display: block; width: 26px; height: 2.5px; border-radius: 2px;
+                 background: currentColor; transition: transform .22s ease, opacity .18s ease; }
+.menu-btn span + span { margin-top: 6px; }
+/* the three lines become a cross while it is open */
+.menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+@media (prefers-reduced-motion: reduce) { .menu-btn span { transition: none; } }
+
+.menu { position: absolute; top: calc(100% + 10px); right: 0; z-index: 60;
+        background: var(--paper); border: 2px solid var(--ink); border-radius: 20px;
+        padding: 14px 10px; min-width: 232px; display: grid;
+        box-shadow: 8px 10px 0 rgba(72,67,65,.14); }
+.menu a { display: block; padding: 10px 16px; text-decoration: none; font-weight: 600;
+          font-size: 16px; border-radius: 12px; color: var(--ink); }
+.menu a:hover { background: var(--accent-soft); }
+.menu hr { border: 0; border-top: 1px solid var(--rule); margin: 10px 14px; }
