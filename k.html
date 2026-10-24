@@ -397,16 +397,17 @@
     .box h2 { font-size: clamp(30px, 4.2vw, 54px); max-width: 18ch; }
     .box .lede { color: var(--muted); margin-top: 12px; margin-bottom: clamp(30px, 4vw, 54px); }
     .box-grid { display: grid; grid-template-columns: repeat(5, 1fr);
-                gap: clamp(16px, 2.2vw, 36px); width: 100%; }
+                gap: clamp(16px, 2.2vw, 36px); width: 100%; align-items: center; }
     /* No captions: each drawing is already hand-lettered with its own name, so a
        line underneath was labelling the same thing twice. The wording moved into
        the alt text, where it is read once. */
     .box-item { display: grid; justify-items: center; }
     .box-item .ill { height: clamp(96px, 10.5vw, 150px); color: var(--ink); }
     /* the scoop has no asset of its own — it is only ever drawn inside the
-       back-of-pouch artwork — so it is a window onto that file, sized by height
-       to stand the same as the four masks beside it */
-    .box-item .scoop-art { width: auto; height: clamp(96px, 10.5vw, 150px); }
+       back-of-pouch artwork — so it is a window onto that file. It runs taller
+       than the masks beside it because the window carries the pouch's own
+       margin around the drawing, so matching box heights drew a smaller scoop. */
+    .box-item .scoop-art { width: auto; height: clamp(124px, 13.6vw, 196px); }
     @media (max-width: 860px) { .box-grid { grid-template-columns: repeat(3, 1fr); row-gap: 32px; } }
     @media (max-width: 460px) { .box-grid { grid-template-columns: repeat(2, 1fr); } }
 
