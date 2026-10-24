@@ -676,7 +676,7 @@
         <span>birthdays</span><span>dinner parties</span><span>host gifts</span>
         <span>rainy Sunday</span><span>holidays</span><span>game days</span>
         <span>book clubs</span><span>snow days</span><span>board game nights</span>
-        <span>thank-you gifts</span>
+        <span>thank-you gifts</span><span>emergency snacks</span>
       </div>
     </div>
   </section>
@@ -756,7 +756,8 @@
       if (!h1) return;
       document.documentElement.dataset.rot = mode;
       const words = ['birthdays', 'dinner parties', 'host gifts', 'rainy Sunday', 'holidays',
-                     'game days', 'book clubs', 'snow days', 'board game nights', 'thank-you gifts'];
+                     'game days', 'book clubs', 'snow days', 'board game nights', 'thank-you gifts',
+                     'emergency snacks'];
       const rot = document.createElement('span');
       rot.className = 'rot';
       rot.setAttribute('aria-hidden', 'true');
