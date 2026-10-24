@@ -397,7 +397,7 @@
     .box h2 { font-size: clamp(30px, 4.2vw, 54px); max-width: 18ch; }
     .box .lede { color: var(--muted); margin-top: 12px; margin-bottom: clamp(30px, 4vw, 54px); }
     .box-grid { display: grid; grid-template-columns: repeat(5, 1fr);
-                gap: clamp(16px, 2.2vw, 36px); width: 100%; align-items: center; }
+                gap: clamp(16px, 2.2vw, 36px); width: 100%; align-items: end; }
     /* No captions: each drawing is already hand-lettered with its own name, so a
        line underneath was labelling the same thing twice. The wording moved into
        the alt text, where it is read once. */
@@ -409,10 +409,16 @@
        why the scoop floated high and had to be drawn oversize to compete. This
        one is cropped to the ink, so it can stand at the masks' own height and
        land on their line. */
-    .box-item .scoop-art { width: auto; height: clamp(96px, 10.5vw, 150px);
-                           aspect-ratio: 740 / 860;
-                           background-size: 1150% 1550.4%;
-                           background-position: 24.64% 29.33%; }
+    .box-item .scoop-art { width: auto;
+                           /* Measured: the pouch draws its caption at 31.6% of the
+                              artwork's height, the masks at 20.8% of theirs. Matched
+                              box heights therefore always draw the scoop's lettering
+                              half again too big, so it is scaled by that ratio and
+                              the hand reads the same size across all five. */
+                           height: calc(clamp(96px, 10.5vw, 150px) * .657);
+                           aspect-ratio: 743 / 778;
+                           background-size: 1150% 1713.8%;
+                           background-position: 24.64% 29.14%; }
     @media (max-width: 860px) { .box-grid { grid-template-columns: repeat(3, 1fr); row-gap: 32px; } }
     @media (max-width: 460px) { .box-grid { grid-template-columns: repeat(2, 1fr); } }
 
