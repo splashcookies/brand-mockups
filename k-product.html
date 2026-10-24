@@ -92,7 +92,8 @@
     @media (max-width: 560px) { .nav .brand img { height: 54px; } }
 
     /* ===== HERO: the bakery two-panel, but the left half is alive ===== */
-    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: min(84vh, 760px); }
+    .hero { display: grid; grid-template-columns: 1fr 1fr;
+            min-height: min(84vh, 760px); min-height: min(84dvh, 760px); }
     .hero-open { position: relative; background: var(--hero-a); overflow: hidden; display: grid; align-content: center; justify-items: center; gap: 10px; padding: clamp(24px, 3vw, 44px); }
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
 
@@ -214,7 +215,8 @@
                    padding: 18px 20px; border-bottom: 1px solid var(--rule); }
     .cart h2 { font-size: 20px; }
     .cart .close { background: none; border: 0; font: inherit; font-size: 22px; line-height: 1; cursor: pointer; color: var(--ink); padding: 4px 8px; }
-    .cart-items { list-style: none; margin: 0; padding: 12px 20px; overflow-y: auto; flex: 1; display: grid; gap: 12px; align-content: start; }
+    .cart-items { list-style: none; margin: 0; padding: 12px 20px; overflow-y: auto;
+                 -webkit-overflow-scrolling: touch; overscroll-behavior: contain; flex: 1; display: grid; gap: 12px; align-content: start; }
     .cart-items li { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center;
                      background: var(--surface); border-radius: 14px; padding: 10px; }
     .cart-items img { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; }

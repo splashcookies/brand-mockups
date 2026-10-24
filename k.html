@@ -98,7 +98,10 @@
     /* both panels take the SAME two rows, so the pull control and the buttons sit on
        one line instead of each column centring its own content independently */
     .hero { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto;
-            min-height: min(84vh, 760px); }
+            min-height: min(84vh, 760px);
+            /* iOS counts the address bar inside vh, so the hero overhangs the
+               screen until it collapses. dvh is the viewport actually showing. */
+            min-height: min(84dvh, 760px); }
     .hero-open, .hero-copy { grid-row: 1 / -1; grid-template-rows: subgrid; }
     .hero-open { position: relative; background: var(--hero-a); overflow: hidden; display: grid; justify-items: center; padding: clamp(24px, 3vw, 44px); }
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
@@ -836,7 +839,7 @@
       "ink": "#484341",
       "paper": "#fffdf5",
       "rule": "#e9e4d2",
-      "muted": "#6b625c",
+      "muted": "#5d5550",
       "accent": "#f6c787",
       "accent-soft": "#f9dfe4",
       "surface": "#fdfbe0",
@@ -856,7 +859,7 @@
       "ink": "#3f3a36",
       "paper": "#fcf9f3",
       "rule": "#e8e1d5",
-      "muted": "#786f67",
+      "muted": "#675f59",
       "accent": "#eeb679",
       "accent-soft": "#efe7da",
       "surface": "#f8f3ea",
@@ -876,7 +879,7 @@
       "ink": "#3b3028",
       "paper": "#fdf9f1",
       "rule": "#e6dac6",
-      "muted": "#7c6f60",
+      "muted": "#5f554a",
       "accent": "#dfa263",
       "accent-soft": "#eee1cd",
       "surface": "#f7efe1",
@@ -896,7 +899,7 @@
       "ink": "#35322f",
       "paper": "#faf9f7",
       "rule": "#e4e1dd",
-      "muted": "#74706c",
+      "muted": "#605d5a",
       "accent": "#e0a765",
       "accent-soft": "#ebe8e3",
       "surface": "#f5f3f0",
@@ -916,7 +919,7 @@
       "ink": "#484341",
       "paper": "#fbfcfa",
       "rule": "#dde6e0",
-      "muted": "#6e6760",
+      "muted": "#68625b",
       "accent": "#e9b67d",
       "accent-soft": "#e6efe8",
       "surface": "#f4f8f4",
@@ -936,7 +939,7 @@
       "ink": "#484341",
       "paper": "#fcfbf8",
       "rule": "#e2e5e8",
-      "muted": "#6e6760",
+      "muted": "#6c655e",
       "accent": "#efb877",
       "accent-soft": "#e8eff3",
       "surface": "#f7f4ed",
@@ -976,7 +979,7 @@
       "ink": "#484341",
       "paper": "#fdfaf7",
       "rule": "#e9ded5",
-      "muted": "#6e6760",
+      "muted": "#645e57",
       "accent": "#d99a6c",
       "accent-soft": "#f3e6de",
       "surface": "#f8f1ec",
@@ -996,7 +999,7 @@
       "ink": "#484341",
       "paper": "#fafcfc",
       "rule": "#dceae9",
-      "muted": "#6e6760",
+      "muted": "#6b645d",
       "accent": "#7fc0b8",
       "accent-soft": "#e6f3f1",
       "surface": "#f2f8f8",
@@ -1016,7 +1019,7 @@
       "ink": "#484341",
       "paper": "#fdfbf4",
       "rule": "#e8ddc4",
-      "muted": "#6e6760",
+      "muted": "#635d56",
       "accent": "#d9ab57",
       "accent-soft": "#f2e8d3",
       "surface": "#f8f3e4",
@@ -1036,7 +1039,7 @@
       "ink": "#484341",
       "paper": "#fbfbfc",
       "rule": "#dfe5ea",
-      "muted": "#6e6760",
+      "muted": "#67615a",
       "accent": "#8fa8bd",
       "accent-soft": "#e9eef3",
       "surface": "#f3f5f7",
@@ -1056,7 +1059,7 @@
       "ink": "#484341",
       "paper": "#fdfafa",
       "rule": "#ead9d8",
-      "muted": "#6e6760",
+      "muted": "#625c55",
       "accent": "#d79a95",
       "accent-soft": "#f4e8e7",
       "surface": "#f8f1f1",
@@ -1076,7 +1079,7 @@
       "ink": "#484341",
       "paper": "#fbfbf6",
       "rule": "#e2e4d2",
-      "muted": "#6e6760",
+      "muted": "#635d56",
       "accent": "#bfa65a",
       "accent-soft": "#eceedd",
       "surface": "#f4f5ea",
