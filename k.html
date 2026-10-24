@@ -61,17 +61,8 @@
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
 
     .pouch-area { position: relative; width: 100%; height: clamp(230px, 27vw, 310px); display: grid; place-items: center; }
-    .pouch { position: relative; width: clamp(140px, 16vw, 196px); aspect-ratio: 200 / 280; z-index: 3;
-             filter: drop-shadow(0 14px 24px rgba(72,67,65,.2)); }
-    .pouch-art { position: absolute; inset: 0; }
-    .pouch-shape { width: 100%; height: 100%; display: block; }
-    .pouch-logo { position: absolute; left: 20%; top: 44%; width: 60%; height: auto; }
-    .pouch .top {
-      position: absolute; inset: 0; clip-path: inset(0 0 82% 0);
-      transform: translate(calc(var(--t) * 104px), calc(var(--t) * -80px)) rotate(calc(var(--t) * 24deg));
-      opacity: calc(1 - var(--t));
-    }
-    .pouch .body { clip-path: inset(calc(18% * var(--t)) 0 0 0); }
+    .pouch { position: relative; width: clamp(300px, 40vw, 480px); z-index: 3; }
+    .pouch img { width: 100%; height: auto; display: block; }
 
     .bit {
       position: absolute; left: 50%; top: 42%; z-index: 2;
@@ -246,11 +237,11 @@
       <span class="sticker">Opens soon</span>
       <div class="pouch-area">
         <!-- what's included, drawn the way the back of the pouch draws it -->
-        <span class="bit" style="--dx:-158;--dy:-30;--r:-9"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
-        <span class="bit" style="--dx:-126;--dy:72;--r:7"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
-        <span class="bit" style="--dx:160;--dy:-34;--r:10"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
-        <span class="bit" style="--dx:128;--dy:74;--r:-8"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
-        <span class="bit bit-scoop" style="--dx:2;--dy:-104;--r:-4">
+        <span class="bit" style="--dx:-176;--dy:-70;--r:-9"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
+        <span class="bit" style="--dx:-150;--dy:92;--r:7"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
+        <span class="bit" style="--dx:178;--dy:-74;--r:10"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
+        <span class="bit" style="--dx:152;--dy:94;--r:-8"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
+        <span class="bit bit-scoop" style="--dx:0;--dy:-150;--r:-4">
           <svg viewBox="0 0 120 108" fill="none" stroke="currentColor" stroke-width="2.6"
                stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Water scoop">
             <ellipse cx="48" cy="40" rx="25" ry="8.5"/>
@@ -261,31 +252,14 @@
           <em>water scoop</em>
         </span>
         <div class="pouch">
-          <div class="pouch-art body">
-            <svg class="pouch-shape" viewBox="0 0 200 280" fill="none" aria-hidden="true">
-              <path d="M22 34C20 24 26 16 36 14L164 14C174 16 180 24 178 34L184 248C186 262 175 270 162 270L38 270C25 270 14 262 16 248Z" fill="var(--wonder-woman)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
-              <path d="M30 14L170 14L170 36L30 36Z" fill="#edb876" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
-              <path d="M40 22h120M40 29h120" stroke="var(--ink)" stroke-width="1.6" opacity=".45" stroke-linecap="round"/>
-              <path d="M34 252h132" stroke="var(--ink)" stroke-width="1.6" opacity=".35" stroke-linecap="round"/>
-            </svg>
-            <img class="pouch-logo" src="assets/logo-flat.png" alt="Splash" width="1070" height="392">
-          </div>
-          <div class="pouch-art top" aria-hidden="true">
-            <svg class="pouch-shape" viewBox="0 0 200 280" fill="none" aria-hidden="true">
-              <path d="M22 34C20 24 26 16 36 14L164 14C174 16 180 24 178 34L184 248C186 262 175 270 162 270L38 270C25 270 14 262 16 248Z" fill="var(--wonder-woman)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
-              <path d="M30 14L170 14L170 36L30 36Z" fill="#edb876" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
-              <path d="M40 22h120M40 29h120" stroke="var(--ink)" stroke-width="1.6" opacity=".45" stroke-linecap="round"/>
-              <path d="M34 252h132" stroke="var(--ink)" stroke-width="1.6" opacity=".35" stroke-linecap="round"/>
-            </svg>
-            <img class="pouch-logo" src="assets/logo-flat.png" alt="" width="1070" height="392">
-          </div>
+          <img src="assets/shoot/everything-illustration.png" alt="The Everything cookie, carried in" width="4428" height="3539">
         </div>
       </div>
       <div class="pull">
-        <span class="pull-label" id="pull-label">Pull to tear it open</span>
+        <span class="pull-label" id="pull-label">Pull to see what’s inside</span>
         <input class="tear-range" id="tear" type="range" min="0" max="100" value="0" step="1"
                aria-labelledby="pull-label" aria-describedby="pull-hint">
-        <p class="pull-hint" id="pull-hint">Drag it, or use the arrow keys &mdash; or <button type="button" id="justopen">just open it</button>.</p>
+        <p class="pull-hint" id="pull-hint">Drag it, or use the arrow keys &mdash; or <button type="button" id="justopen">just show me</button>.</p>
       </div>
     </div>
 
@@ -443,8 +417,8 @@
       // the hero copy reads --t too, so it has to live on something both share
       document.querySelector('.hero-copy').style.setProperty('--t', t.toFixed(3));
       const done = t > .92;
-      label.textContent = done ? 'Open' : t > .05 ? 'Keep pulling' : 'Pull to tear it open';
-      range.setAttribute('aria-valuetext', done ? 'Open' : Math.round(t * 100) + '% torn');
+      label.textContent = done ? 'That\u2019s the whole kit' : t > .05 ? 'Keep pulling' : 'Pull to see what\u2019s inside';
+      range.setAttribute('aria-valuetext', done ? 'Fully open' : Math.round(t * 100) + '% open');
     }
 
     range.addEventListener('input', () => set(+range.value));
