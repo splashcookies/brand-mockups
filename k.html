@@ -37,7 +37,7 @@
 
     .announce { background: var(--splash-blue); text-align: center; padding: 9px 16px; font-size: 14px; font-weight: 600; }
     .nav { background: var(--paper); border-bottom: 1px solid var(--rule); }
-    .nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding: 16px 0; }
+    .nav .wrap { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 20px; padding: 16px 0; }
     .nav-links { display: flex; gap: 26px; font-weight: 600; font-size: 15px; }
     .nav-links a { text-decoration: none; }
     .nav-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
@@ -45,8 +45,11 @@
        intrinsic size and got cropped. Pin the size, and give it room to breathe. */
     /* the wordmark is the real artwork, not a recoloured mask — a mask can be cropped by
        its own sizing, and this keeps the pencil texture the logo is drawn with. */
-    .nav .brand { justify-self: center; display: block; line-height: 0; }
-    .nav .brand img { height: 86px; width: auto; max-width: 100%; display: block; }
+    /* the centre grid track is `auto`, so a wide nav or a zoomed window could squeeze it
+       and clamp the mark. min-width:max-content stops the track collapsing, and no
+       max-width means the image is never forced narrower than it draws. */
+    .nav .brand { justify-self: center; display: block; line-height: 0; min-width: max-content; }
+    .nav .brand img { height: 86px; width: auto; display: block; flex: none; }
     .nav-right { display: flex; gap: 8px; justify-self: end; }
     .icon-btn { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-grid; place-items: center; color: inherit; }
     .icon-btn svg { width: 18px; height: 18px; }
@@ -152,7 +155,7 @@
     .panel.pink { background: var(--party-pink); }
     .panel.pink .panel-img { order: 2; }
     .panel-img img { border-radius: 16px; aspect-ratio: 4 / 3; object-fit: cover; width: 100%; transform: rotate(2deg); box-shadow: 0 22px 50px rgba(72,67,65,.16); }
-    .panel.pink .panel-img img { transform: rotate(-2.5deg); }
+    .panel.pink .panel-img img { transform: rotate(-2.5deg); aspect-ratio: 3 / 4; }
     .panel-copy { display: grid; gap: 14px; justify-items: start; }
     .panel h2 { font-size: clamp(28px, 3.8vw, 50px); max-width: 15ch; }
     .panel p { max-width: 44ch; }
@@ -310,7 +313,7 @@
         <h2>The kit</h2>
       </div>
       <a class="kit" href="#">
-        <img src="assets/shoot/SPLASH8912.jpg" alt="A finished Everything cookie" width="2500" height="1667">
+        <img src="assets/shoot/SPLASH8913.jpg" alt="A finished Everything cookie" width="2500" height="1667">
         <div class="kit-copy">
           <h3>The Everything</h3>
           <p>Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every gram already weighed.</p>
@@ -331,7 +334,7 @@
   <div class="wrap">
     <div class="panels">
       <section class="panel blue">
-        <div class="panel-img"><img src="assets/shoot/SPLASH8810.jpg" alt="Water being poured into the dry mix, chocolate, pretzels and cherries visible" width="2500" height="1667"></div>
+        <div class="panel-img"><img src="assets/shoot/SPLASH8820.jpg" alt="Water being poured into the dry mix" width="2500" height="1667"></div>
         <div class="panel-copy">
           <h2>Pre-measured in Chicago, baked at yours.</h2>
           <p>One dry pouch with the add-ins built in. One wet pouch with the butter and sugars already creamed. One full scoop of water, and your hands.</p>
@@ -341,7 +344,7 @@
       </section>
 
       <section class="panel pink" id="story">
-        <div class="panel-img"><img src="assets/shoot/SPLASH8494.jpg" alt="Michele placing balls of Everything dough onto a lined baking sheet" width="2500" height="1667"></div>
+        <div class="panel-img"><img src="assets/shoot/SPLASH8586.jpg" alt="Michele in her kitchen, placing Everything dough onto a lined tray" width="1667" height="2500"></div>
         <div class="panel-copy">
           <h2>Started in our mom&rsquo;s kitchen.</h2>
           <p>Michele is a chemical engineer by trade and a baker by heart. She spent her life making hard things look easy, and years getting this one to come out the same no matter whose hands were in the bowl.</p>
@@ -386,8 +389,8 @@
   </section>
 
   <section class="bigquote">
-    <img class="peek l" src="assets/everything-2-1600.jpg" alt="" width="1600" height="2400">
-    <img class="peek r" src="assets/everything-plate-1200.jpg" alt="" width="1200" height="1599">
+    <img class="peek l" src="assets/shoot/SPLASH8659.jpg" alt="" width="1667" height="2500">
+    <img class="peek r" src="assets/shoot/SPLASH9216.jpg" alt="" width="2500" height="1667">
     <div class="wrap">
       <blockquote>&ldquo;Best cookie I&rsquo;ve ever had, let alone made.&rdquo;</blockquote>
       <cite>Tasting feedback &middot; Chicago</cite>
