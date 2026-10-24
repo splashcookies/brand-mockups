@@ -360,8 +360,7 @@
 
     /* the shelf */
     .favs { padding: var(--sec) 0; }
-    .favs-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 22px; }
-    .favs h2 { font-size: 28px; }
+    .favs-head { display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; margin-bottom: 18px; }
     .kit { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(22px, 4vw, 56px); align-items: center;
            background: var(--pouch); border-radius: 28px; padding: clamp(28px, 5vw, 64px); text-decoration: none;
            /* its own ink, not the theme's: the card is packaging-orange on every theme,
@@ -389,6 +388,8 @@
        "See the steps" does rather than on a different uniform gap */
     .kit-copy { display: grid; gap: 0; justify-items: start; padding-right: clamp(0px, 2vw, 28px); }
     .kit-copy h3 { margin-bottom: 18px; }
+    .kit-copy .meet { font-family: var(--hand); font-weight: 400;
+                      font-size: .72em; letter-spacing: 0; margin-right: .12em; }
     .kit-copy p { margin-bottom: 14px; }
     /* the character line leads, the flavours follow as the spec — same order as
        the product page, so the two tell it the same way round */
@@ -640,14 +641,13 @@
   <section class="favs" id="shelf">
     <div class="wrap">
       <div class="favs-head">
-        <h2>The kit</h2>
         <a class="link" href="k-shop.html">Shop all <span aria-hidden="true">&rarr;</span></a>
       </div>
       <a class="kit" href="k-product.html">
         <img src="assets/shoot/SPLASH8913.jpg" alt="A finished Everything cookie" width="2500" height="1667">
         <div class="kit-copy">
-          <h3>Meet The Everything</h3>
-          <p>She doesn&rsquo;t ask much of you, and she&rsquo;s exactly the same every single time.</p>
+          <h3><span class="meet">Meet</span> The Everything</h3>
+          <p>The friend who turns up for anything. She doesn&rsquo;t ask much of you, and she&rsquo;s exactly the same every single time.</p>
           <p class="kit-spec">Two chocolates, toffee, caramel, pretzels, oats and dried cherries.</p>
           <ul class="kit-facts"><li>Bakes 6</li><li>10 minutes hands-on</li><li>Just add water</li><li>$22</li></ul>
           <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
