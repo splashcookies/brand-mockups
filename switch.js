@@ -49,7 +49,9 @@
   };
   // fold the bar away so it stops covering the bottom of the page being reviewed
   const toggle = bar.querySelector('#sw-toggle');
-  const read = () => { try { return localStorage.getItem('splash-switcher') === 'closed'; } catch (e) { return false; } };
+  // default to collapsed: expanded, the bar is tall enough to cover the bottom of a
+  // full-height hero and swallow clicks meant for the page.
+  const read = () => { try { return localStorage.getItem('splash-switcher') !== 'open'; } catch (e) { return true; } };
   function applyCollapsed(closed) {
     bar.classList.toggle('is-collapsed', closed);
     toggle.setAttribute('aria-expanded', String(!closed));

@@ -76,6 +76,9 @@
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
 
     .pouch-area { position: relative; width: 100%; height: clamp(230px, 27vw, 310px); display: grid; place-items: center; }
+    /* decoration only — without this the cards and the illustration can sit over the
+       slider and swallow the drag. */
+    .pouch, .bit { pointer-events: none; }
     .pouch { position: relative; width: clamp(310px, 42vw, 520px); z-index: 3; }
     .pouch img { width: 100%; height: auto; display: block; }
 
