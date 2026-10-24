@@ -76,8 +76,12 @@
     @media (max-width: 560px) { .nav .brand img { height: 54px; } }
 
     /* ===== HERO: the bakery two-panel, but the left half is alive ===== */
-    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: min(84vh, 760px); }
-    .hero-open { position: relative; background: var(--hero-a); overflow: hidden; display: grid; align-content: center; justify-items: center; gap: 10px; padding: clamp(24px, 3vw, 44px); }
+    /* both panels take the SAME two rows, so the pull control and the buttons sit on
+       one line instead of each column centring its own content independently */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto;
+            min-height: min(84vh, 760px); }
+    .hero-open, .hero-copy { grid-row: 1 / -1; grid-template-rows: subgrid; }
+    .hero-open { position: relative; background: var(--hero-a); overflow: hidden; display: grid; justify-items: center; padding: clamp(24px, 3vw, 44px); }
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
 
     .pouch-area { position: relative; width: 100%; height: clamp(380px, 39vw, 462px); display: grid; place-items: center; }
@@ -86,7 +90,7 @@
     .pouch, .bit { pointer-events: none; }
     .pouch, .bit, .core { will-change: transform, opacity; }
     /* she carries the closed state and hands off to the kit as it opens */
-    .pouch { position: relative; width: clamp(310px, 42vw, 520px); z-index: 3;
+    .pouch { position: relative; width: clamp(350px, 50vw, 640px); z-index: 3;
              opacity: calc(1 - var(--t) * 1.15); }
     /* the payoff, revealed in the middle of the ring */
     .core { position: absolute; left: 50%; top: 50%; margin: 0; z-index: 2;
@@ -130,7 +134,7 @@
        does not jump as the label text changes length while dragging */
     .pull { display: grid; grid-template-columns: 186px 1fr; align-items: center;
             column-gap: 16px; row-gap: 8px; width: 100%; max-width: 430px; margin-inline: auto;
-            margin-top: clamp(10px, 1.6vw, 22px); position: relative; z-index: 6; }
+            align-self: end; position: relative; z-index: 6; }
     .pull-hint { grid-column: 1 / -1; text-align: center; }
     @media (max-width: 560px) {
       .pull { grid-template-columns: 1fr; justify-items: center; }
@@ -146,7 +150,9 @@
     .pull-hint { font-size: 13.5px; color: var(--muted); }
     .pull-hint button { background: none; border: 0; color: var(--ink); font: inherit; text-decoration: underline; cursor: pointer; padding: 0; }
 
-    .hero-copy { background: var(--hero-b); display: grid; align-content: center; gap: 20px; padding: clamp(32px, 6vw, 80px); justify-items: start; }
+    .hero-copy { background: var(--hero-b); display: grid; padding: clamp(32px, 6vw, 80px); justify-items: start; }
+    .copy-top { align-self: center; display: grid; gap: 20px; justify-items: start; }
+    .pouch-area { align-self: center; }
     .hero-copy h1 { font-size: clamp(38px, 5.2vw, 72px); max-width: 11ch; text-wrap: balance; }
     .hero-copy p.sub { max-width: 40ch; font-size: clamp(16px, 1.3vw, 19px); }
     .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -319,9 +325,11 @@
     </div>
 
     <div class="hero-copy">
-      <h1>Show up with warm cookies.</h1>
-      <p class="sub">Every ingredient sourced and weighed out in Chicago and sealed into two pouches. You add one scoop of water, and six gourmet cookies come out of your oven.</p>
-      <p class="opened">That&rsquo;s everything, and none of it needed weighing.</p>
+      <div class="copy-top">
+        <h1>Gourmet baking for everyone.</h1>
+        <p class="sub">Every ingredient sourced and weighed out in Chicago and sealed into two pouches. You add one scoop of water, and six gourmet cookies come out of your oven.</p>
+        <p class="opened">That&rsquo;s everything, and none of it needed weighing.</p>
+      </div>
       <div class="hero-ctas">
         <a class="btn" href="#news">Get on the list</a>
         <a class="btn btn-peach" href="#how">See how it works</a>
