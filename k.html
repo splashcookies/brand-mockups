@@ -64,7 +64,8 @@
     .nav .brand { justify-self: center; display: block; line-height: 0; min-width: max-content; overflow: visible; }
     /* shared.css applies `img { max-width: 100% }` to everything, which can clamp this
        box; object-fit:contain means the artwork then scales instead of being cut. */
-    .nav .brand img { height: 80px; width: auto; max-width: none; display: block; flex: none; }
+    .nav .brand img { height: 86px; width: auto; max-width: none; display: block; flex: none;
+                      transform: translateX(2.5%); }
     .nav-right { display: flex; gap: 8px; justify-self: end; }
     .icon-btn { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-grid; place-items: center; color: inherit; }
     .icon-btn svg { width: 18px; height: 18px; }
@@ -261,7 +262,7 @@
   <header class="nav">
     <div class="wrap">
       <nav class="nav-links"><a href="#shelf">Kits</a><a href="#how">How it works</a><a href="#story">Our story</a><a href="#">Gifting</a></nav>
-      <a href="#" class="brand"><img src="assets/logo-flat-banner.png" alt="Splash, gourmet baking kits" width="1168" height="506"></a>
+      <a href="#" class="brand"><img src="assets/shoot/logo-full-textured.png" alt="Splash, gourmet baking kits" width="2905" height="1232"></a>
       <div class="nav-right">
         <a class="icon-btn" href="#" aria-label="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></a>
         <a class="icon-btn" href="#" aria-label="Cart, empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 7h12l-1.2 12H7.2L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></a>
