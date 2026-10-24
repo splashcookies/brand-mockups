@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Splash mockup: Our story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..800&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Our story. The words are the ones already on splashbaking.com/pages/our-story,
+       set in The counter's type and colour rather than rewritten. */
+    :root {
+      --ink: #484341; --paper: #fbfcfa; --rule: #dde6e0; --muted: #6e6760;
+      --accent: #e9b67d; --accent-soft: #e6efe8; --surface: #f4f8f4;
+      --hero-a: #e4ede6; --hero-b: #edf4f6;
+      --band-1: #eaf2f4; --band-2: #e4ede6; --band-3: #d6e6da;
+      --cta: #484341; --cta-ink: #f4f8f4;
+      --hand: 'Patrick Hand SC', 'Figtree', sans-serif;
+      --w: 1240px;
+      --sec: clamp(40px, 5.6vw, 78px);
+    }
+    body { background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.55; }
+    .wrap { width: min(var(--w), 100% - 40px); margin-inline: auto; }
+    h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+    p { margin: 0; }
+    [hidden] { display: none !important; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--cta); color: var(--cta-ink); font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid var(--cta); cursor: pointer; font-family: inherit; }
+    .btn:hover { background: var(--surface); color: var(--cta); }
+
+    .nav { background: var(--paper); border-bottom: 1px solid var(--rule); }
+    .nav .wrap { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 20px; padding: 16px 0; }
+    .nav-links { display: flex; gap: 26px; font-weight: 600; font-size: 15px; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover, .nav-links a[aria-current] { text-decoration: underline; text-underline-offset: 5px; }
+    .nav .brand { justify-self: center; display: block; line-height: 0; min-width: max-content; overflow: visible; }
+    .nav .brand img { height: 86px; width: auto; max-width: none; display: block; flex: none; transform: translateX(2.5%); }
+    .nav-right { display: flex; gap: 8px; justify-self: end; }
+    .icon-btn { width: 42px; height: 42px; display: inline-grid; place-items: center; color: inherit; text-decoration: none; background: none; border: 0; padding: 0; cursor: pointer; }
+    .icon-btn svg { width: 42px; height: 42px; display: block; }
+    .icon-btn:hover { color: var(--cta); }
+    @media (max-width: 760px) { .nav .wrap { grid-template-columns: auto 1fr; } .nav-links { display: none; } .nav .brand { justify-self: start; } }
+
+    /* the eyebrow is the one line on the real page that is set in caps, so it keeps
+       that treatment rather than being folded into the heading */
+    .story-head { background: var(--hero-b); padding: var(--sec) 0; }
+    .story-head .wrap { display: grid; gap: 0; justify-items: center; text-align: center; }
+    .eyebrow { font-family: var(--hand); font-size: clamp(17px, 1.7vw, 21px); color: var(--muted);
+               max-width: 44ch; letter-spacing: .02em; }
+    .story-head h1 { font-size: clamp(44px, 7vw, 96px); margin-top: 14px; }
+
+    .portrait { padding: var(--sec) 0; }
+    .portrait .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+                      gap: clamp(28px, 4vw, 64px); align-items: center; }
+    .portrait img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 24px; display: block; }
+    .portrait .body { display: grid; gap: 0; max-width: 46ch; }
+    .portrait .body p + p { margin-top: 18px; }
+    .portrait .body p { font-size: clamp(17px, 1.35vw, 19px); }
+    @media (max-width: 820px) { .portrait .wrap { grid-template-columns: 1fr; } }
+
+    /* the three short lines are the brand's own cadence, so they get the hand and
+       their own band rather than running on as another paragraph */
+    .creed { background: var(--accent-soft); padding: var(--sec) 0; }
+    .creed .wrap { display: grid; gap: 0; justify-items: center; text-align: center; }
+    .creed h2 { font-size: clamp(28px, 4vw, 50px); max-width: 20ch; }
+    .creed .lines { font-family: var(--hand); font-size: clamp(22px, 2.6vw, 34px);
+                    margin-top: 22px; display: grid; gap: 6px; }
+
+    .sign { padding: var(--sec) 0; }
+    .sign .wrap { display: grid; gap: 0; justify-items: center; text-align: center; }
+    .sign .names { font-family: var(--hand); font-size: clamp(26px, 3.4vw, 42px); }
+    .sign .btn { margin-top: 26px; }
+    .sign .note { color: var(--muted); font-size: 15px; margin-top: 14px; }
+
+    .foot { background: var(--ink); color: var(--surface); padding: 56px 0 24px; }
+    .foot .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; }
+    .foot-logo { height: 48px; width: auto; max-width: none; display: block; margin-bottom: 14px; }
+    .foot p { max-width: 32ch; }
+    .foot nav { display: grid; gap: 8px; text-align: right; }
+    .foot nav a { text-decoration: none; }
+    .foot small { display: block; margin-top: 36px; padding-top: 16px; border-top: 1px solid rgba(253,251,224,.25); font-size: 13px; }
+    @media (max-width: 600px) { .foot .wrap { grid-template-columns: 1fr; } .foot nav { text-align: left; } }
+  </style>
+</head>
+<body data-option="k">
+
+  <header class="nav">
+    <div class="wrap">
+      <nav class="nav-links" aria-label="Main">
+        <a href="k-shop.html">Shop</a><a href="k-product.html#how">How it works</a><a href="k-story.html" aria-current="page">Our story</a><a href="#">Gifting</a>
+      </nav>
+      <a href="k.html" class="brand"><img src="assets/shoot/logo-full-textured.png" alt="Splash, gourmet baking kits" width="2905" height="1232"></a>
+      <div class="nav-right">
+        <a class="icon-btn" href="#" aria-label="Account"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M40 21c0 10.5-8.5 19-19 19S2 31.5 2 21 10.5 2 21 2s19 8.5 19 19Z"/><path d="M21 13c2.2 0 3.7 1.5 3.7 3.7S23.2 20.5 21 20.5s-3.7-1.6-3.7-3.8S18.8 13 21 13Z"/><path d="M14.1 29.7c.8-3.6 3.4-5.4 6.9-5.4s6.1 1.8 6.9 5.3"/></svg></a>
+        <a class="icon-btn" href="k-product.html" aria-label="Cart"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M40 21c0 10.5-8.5 19-19 19S2 31.5 2 21 10.5 2 21 2s19 8.5 19 19Z"/><path d="M14.4 17.1c4.4-.5 8.8-.5 13.2 0 .5 4.3.8 8.6.9 12.9-5 .5-10 .5-15 0 .2-4.3.5-8.6.9-12.9Z"/><path d="M17.9 18.2c-.2-2.6.8-4 3.1-4s3.3 1.4 3.1 4"/></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="story-head">
+      <div class="wrap">
+        <p class="eyebrow">Born from family baking, a whole lot of tinkering, and a little bit of magic.</p>
+        <h1>Our story</h1>
+      </div>
+    </section>
+
+    <section class="portrait">
+      <div class="wrap">
+        <img src="assets/shoot/SPLASH8586.jpg" alt="Michele in her kitchen, placing Everything dough onto a lined tray" width="1667" height="2500">
+        <div class="body">
+          <p>If you know our mom, Michele, you know she walks through the world with some extra magic, somehow turning a list of 1,000 to-do&rsquo;s into one streamlined, efficient operation. As her children, we have always been impressed by her ability to do it all with grace and a smile. She balanced being the type of mom who did &ldquo;Wednesday Breakfast In Bed&rdquo; with working full-time, running marathons and volunteering at our schools.</p>
+          <p>Over the years, we have learned so much by observing the way she lives: she infuses efficiency with love and service.</p>
+          <p>That&rsquo;s why it makes sense to us that Splash woke her up in the middle of the night as an idea that could help others do the same.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="creed">
+      <div class="wrap">
+        <h2>Splash makes the joy of baking gourmet easier than ever.</h2>
+        <div class="lines">
+          <span>No mess, no measuring, no stress.</span>
+          <span>Just mix, scoop, bake&hellip; and enjoy.</span>
+          <span>Gourmet flavor. Zero fuss. Pure sweetness.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sign">
+      <div class="wrap">
+        <p class="names">Erica, Natalie &amp; Marc</p>
+        <a class="btn" href="k-product.html">Get the kit for $22 <span aria-hidden="true">&rarr;</span></a>
+        <p class="note">Mockup &mdash; nothing can be charged here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div>
+        <img class="foot-logo" src="assets/shoot/logo-full-white.png" alt="Splash" width="1540" height="531">
+        <p>Gourmet baking kits, pre-measured in Chicago and baked in your kitchen.</p>
+      </div>
+      <nav aria-label="Footer"><a href="#">FAQ</a><a href="#">Journal</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">hello@splashbaking.com</a></nav>
+    </div>
+    <div class="wrap"><small>&copy; 2026 Splash &middot; Chicago, IL &middot; Patent pending &middot; Contains wheat, milk, egg, soy and almond</small></div>
+  </footer>
+
+  <script src="switch.js"></script>
+  <script>
+  // ?theme= works here too, reading the table out of the page that owns it
+  (function () {
+    const name = new URLSearchParams(location.search).get('theme');
+    if (!name) return;
+    fetch('k.html').then(r => r.text()).then(html => {
+      const open = html.indexOf('{', html.indexOf('window.SPLASH_THEMES ='));
+      let depth = 0, end = open;
+      for (let i = open; i < html.length; i++) {
+        if (html[i] === '{') depth++;
+        else if (html[i] === '}' && !--depth) { end = i + 1; break; }
+      }
+      const t = JSON.parse(html.slice(open, end))[name.toLowerCase()];
+      if (!t) return;
+      for (const [role, hex] of Object.entries(t.v)) {
+        document.documentElement.style.setProperty('--' + role, hex);
+      }
+      document.documentElement.dataset.theme = name.toLowerCase();
+      if (t.dark) document.documentElement.dataset.mode = 'dark';
+    });
+  })();
+  </script>
+</body>
+</html>
