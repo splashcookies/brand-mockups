@@ -174,7 +174,12 @@
     .kit { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(22px, 4vw, 56px); align-items: center;
            background: var(--surface); border-radius: 28px; padding: clamp(28px, 5vw, 64px); text-decoration: none; color: inherit; }
     .kit img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px; }
-    .kit-copy { display: grid; gap: 12px; justify-items: start; padding-right: clamp(0px, 2vw, 28px); }
+    /* same rhythm as .panel-copy, so "Shop the kit" sits exactly where
+       "See the five steps" does rather than on a different uniform gap */
+    .kit-copy { display: grid; gap: 0; justify-items: start; padding-right: clamp(0px, 2vw, 28px); }
+    .kit-copy h3 { margin-bottom: 18px; }
+    .kit-copy p { margin-bottom: 14px; }
+    .kit-copy .kit-facts { margin-bottom: 26px; }
     .kit-copy h3 { font-size: clamp(28px, 3.4vw, 44px); }
     .kit-copy p { max-width: 36ch; }
     .kit-facts { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; flex-wrap: wrap; }
@@ -801,29 +806,52 @@
   }
   </script>
   <script>
-  // The mixing glove becomes the cursor. The source illustration is 568x690 with
-  // its "MIXING GLOVES" caption baked in and two gloves side by side, so crop to
-  // the right-hand glove and rescale at runtime rather than adding a derived asset.
-  // The drawing is thin outline work, which all but disappears at cursor size, so
-  // it is rendered with a white halo to stay legible on any ground.
+  // The mixing glove becomes the cursor. The source is 568x690 with its
+  // "MIXING GLOVES" caption baked in and two gloves side by side, so it is cropped
+  // to the right-hand glove and rescaled on a canvas at runtime.
+  //
+  // cursor:url() treats the bitmap's pixels as CSS pixels, so a single 1x image is
+  // upscaled by the OS on a retina display and looks soft. image-set() supplies 2x
+  // and 3x alongside, which is what keeps it sharp.
   (function () {
     if (matchMedia('(hover: none)').matches) return;   // nothing to style on touch
     const img = new Image();
     img.onload = () => {
-      const sx = img.naturalWidth * 0.52, sy = 0;                 // the right-hand glove
+      const H = 34;                                     // CSS pixels
+      const sx = img.naturalWidth * 0.52, sy = 0;       // the right-hand glove
       const sw = img.naturalWidth * 0.46, sh = img.naturalHeight * 0.72;
-      const H = 34, W = Math.round(sw / sh * H);
-      const c = document.createElement('canvas');
-      c.width = W; c.height = H;
-      const g = c.getContext('2d');
-      g.shadowColor = '#fff';
-      g.shadowBlur = 2;
-      for (let i = 0; i < 4; i++) g.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);  // build the halo
-      g.shadowBlur = 0;
-      g.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
-      let url;
-      try { url = c.toDataURL('image/png'); } catch (e) { return; }
-      document.body.style.cursor = `url(${url}) ${Math.round(W * 0.5)} 2, auto`;
+      const W = Math.round(sw / sh * H);
+
+      function render(scale) {
+        const c = document.createElement('canvas');
+        c.width = W * scale; c.height = H * scale;
+        const g = c.getContext('2d');
+        g.imageSmoothingEnabled = true;
+        g.imageSmoothingQuality = 'high';
+        g.shadowColor = '#fff';
+        g.shadowBlur = 1.6 * scale;                     // halo scales with density
+        g.drawImage(img, sx, sy, sw, sh, 0, 0, c.width, c.height);
+        g.drawImage(img, sx, sy, sw, sh, 0, 0, c.width, c.height);
+        g.shadowBlur = 0;
+        g.drawImage(img, sx, sy, sw, sh, 0, 0, c.width, c.height);
+        try { return c.toDataURL('image/png'); } catch (e) { return null; }
+      }
+
+      const u1 = render(1), u2 = render(2), u3 = render(3);
+      if (!u1) return;
+      const hx = Math.round(W * 0.5), hy = 2;
+      // CSS.supports() reports false for image-set in cursor even where it works,
+      // so detect by assigning and reading back.
+      if (u2) {
+        const probe = document.createElement('div');
+        probe.style.cursor =
+          `image-set(url(${u1}) 1x, url(${u2}) 2x${u3 ? `, url(${u3}) 3x` : ''}) ${hx} ${hy}, auto`;
+        if (probe.style.cursor.indexOf('image-set') === 0) {
+          document.body.style.cursor = probe.style.cursor;
+          return;
+        }
+      }
+      document.body.style.cursor = `url(${u1}) ${hx} ${hy}, auto`;
     };
     img.onerror = () => {};
     img.src = 'assets/ill-gloves.png';
