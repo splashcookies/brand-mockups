@@ -398,9 +398,11 @@
     .box .lede { color: var(--muted); margin-top: 12px; margin-bottom: clamp(30px, 4vw, 54px); }
     .box-grid { display: grid; grid-template-columns: repeat(5, 1fr);
                 gap: clamp(16px, 2.2vw, 36px); width: 100%; }
-    .box-item { display: grid; gap: 16px; justify-items: center; }
-    .box-item .ill { height: clamp(84px, 9vw, 126px); color: var(--ink); }
-    .box-item b { font-family: var(--hand); font-weight: 400; font-size: 18px; max-width: 17ch; }
+    /* No captions: each drawing is already hand-lettered with its own name, so a
+       line underneath was labelling the same thing twice. The wording moved into
+       the alt text, where it is read once. */
+    .box-item { display: grid; justify-items: center; }
+    .box-item .ill { height: clamp(96px, 10.5vw, 150px); color: var(--ink); }
     @media (max-width: 860px) { .box-grid { grid-template-columns: repeat(3, 1fr); row-gap: 32px; } }
     @media (max-width: 460px) { .box-grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -519,11 +521,11 @@
       <h2>Everything in the box.</h2>
       <p class="lede">Open it, and the only thing left to measure is water.</p>
       <div class="box-grid">
-        <div class="box-item"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span><b>Dry pouch, add-ins built in</b></div>
-        <div class="box-item"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span><b>Wet pouch, the avocado oil</b></div>
-        <div class="box-item"><span class="ill ill-water" role="img" aria-label="Water"></span><b>Just water, from your tap</b></div>
-        <div class="box-item"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span><b>Parchment, already cut</b></div>
-        <div class="box-item"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span><b>Mixing gloves, no mess</b></div>
+        <div class="box-item"><span class="ill ill-dry" role="img" aria-label="Dry pouch, add-ins built in"></span></div>
+        <div class="box-item"><span class="ill ill-wet" role="img" aria-label="Wet pouch, the avocado oil"></span></div>
+        <div class="box-item"><span class="ill ill-water" role="img" aria-label="Just water, from your tap"></span></div>
+        <div class="box-item"><span class="ill ill-parchment" role="img" aria-label="Parchment, already cut"></span></div>
+        <div class="box-item"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves, no mess"></span></div>
       </div>
     </div>
   </section>
@@ -550,7 +552,7 @@
       <section class="panel blue">
         <div class="panel-img"><img src="assets/shoot/SPLASH8820.jpg" alt="Water being poured into the dry mix" width="2500" height="1667"></div>
         <div class="panel-copy">
-          <h2>Pre-measured in Chicago, baked at yours.</h2>
+          <h2>Pre-measured by us, baked by you.</h2>
           <p>One dry pouch with the add-ins built in. One wet pouch with avocado oil. One full scoop of water, and your hands.</p>
           <p class="note">That&rsquo;s the whole shopping list.</p>
           <a class="link" href="#how">See the steps <span aria-hidden="true">&rarr;</span></a>
