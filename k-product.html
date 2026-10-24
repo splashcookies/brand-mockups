@@ -254,11 +254,14 @@
     .included { width: 100%; border-top: 1px solid var(--rule); padding-top: 18px; }
     .included h2 { font-size: 17px; margin-bottom: 12px; }
     .included ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-    .included li { display: flex; align-items: center; gap: 12px; font-size: 15px; }
-    .included .ill, .included .scoop-mini { width: 34px; height: 34px; flex: none; color: var(--ink); }
-    .included .scoop-mini { background-image: url(assets/shoot/pouch-back.jpg); background-repeat: no-repeat;
-                            background-size: 980.4% 1162.8%; background-position: 31% 32%;
-                            filter: grayscale(1) brightness(1.28) contrast(1.75); mix-blend-mode: multiply; }
+    .included li { display: grid; grid-template-columns: 38px 1fr; align-items: center; gap: 12px; font-size: 15px; }
+    .included .ill { width: 34px; height: 34px; justify-self: center; color: var(--ink); }
+    /* A tighter window than the ring's: the cup only, no hand-lettering, since the row
+       already names it. Wide, because the drawn cup is wider than it is tall. */
+    .included .scoop-mini { width: 38px; aspect-ratio: 1.445; justify-self: center;
+                            background-image: url(assets/shoot/pouch-back.jpg); background-repeat: no-repeat;
+                            background-size: 1136.4% 2564.1%; background-position: 24.72% 28.36%;
+                            filter: grayscale(1) brightness(1.3) contrast(1.8); mix-blend-mode: multiply; }
     .included .need { font-family: var(--hand); font-size: 21px; margin-top: 14px; }
 
     .spec { width: 100%; border-top: 1px solid var(--rule); padding-top: 14px; }
@@ -420,7 +423,7 @@
         <h1>The Everything</h1>
         <p class="lede">Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every ingredient sourced and pre-measured.</p>
         <p class="price">$22 <span>a kit &middot; bakes 6</span></p>
-        <ul class="kit-facts"><li>Bakes 6</li><li>25 minutes</li><li>16.4 oz</li></ul>
+        <ul class="kit-facts"><li>Bakes 6</li><li>Just add water</li></ul>
 
         <form class="buy" id="buy">
           <fieldset class="packs">

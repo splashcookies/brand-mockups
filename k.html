@@ -137,15 +137,18 @@
     }
     /* label and track share a line; the label column is a fixed width so the track
        does not jump as the label text changes length while dragging */
-    .pull { display: grid; grid-template-columns: 186px 1fr; align-items: center;
-            column-gap: 16px; row-gap: 8px; width: 100%; max-width: 430px; margin-inline: auto;
+    /* Label beside the track on one line. The column is a fixed width wide enough for
+       the longest label, not max-content: the label text changes while you drag, and a
+       content-sized column would resize the track under the thumb mid-pull. */
+    .pull { display: grid; grid-template-columns: 256px minmax(150px, 1fr); align-items: center;
+            column-gap: 16px; row-gap: 8px; width: 100%; max-width: 530px; margin-inline: auto;
             align-self: end; position: relative; z-index: 6; }
     .pull-hint { grid-column: 1 / -1; text-align: center; }
-    @media (max-width: 560px) {
+    @media (max-width: 860px) {
       .pull { grid-template-columns: 1fr; justify-items: center; }
       .pull-hint { grid-column: auto; }
     }
-    .pull-label { font-family: var(--hand); font-size: 21px; }
+    .pull-label { font-family: var(--hand); font-size: 21px; white-space: nowrap; }
     .tear-range { -webkit-appearance: none; appearance: none; width: 100%; height: 42px; background: transparent; cursor: grab; margin: 0; }
     .tear-range:active { cursor: grabbing; }
     .tear-range::-webkit-slider-runnable-track { height: 42px; background: repeating-linear-gradient(90deg, rgba(72,67,65,.42) 0 10px, transparent 10px 20px) center / 100% 3px no-repeat; }
@@ -327,7 +330,7 @@
         </div>
       </div>
       <div class="pull">
-        <span class="pull-label" id="pull-label">Pull to see what’s inside</span>
+        <span class="pull-label" id="pull-label">Pull to see what’s inside our kits</span>
         <input class="tear-range" id="tear" type="range" min="0" max="100" value="0" step="any"
                aria-labelledby="pull-label" aria-describedby="pull-hint">
         <p class="pull-hint" id="pull-hint">Drag it, or use the arrow keys &mdash; or <button type="button" id="justopen">just show me</button>.</p>
@@ -364,7 +367,7 @@
         <div class="kit-copy">
           <h3>The Everything</h3>
           <p>Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every ingredient sourced and pre-measured.</p>
-          <ul class="kit-facts"><li>Bakes 6</li><li>25 minutes</li><li>16.4 oz</li><li>$22</li></ul>
+          <ul class="kit-facts"><li>Bakes 6</li><li>Just add water</li><li>$22</li></ul>
           <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
         </div>
       </a>
@@ -485,7 +488,7 @@
       // the hero copy reads --t too, so it has to live on something both share
       document.querySelector('.hero-copy').style.setProperty('--t', t.toFixed(3));
       const done = t > .92;
-      label.textContent = done ? 'That\u2019s the whole kit' : t > .05 ? 'Keep pulling' : 'Pull to see what\u2019s inside';
+      label.textContent = done ? 'That\u2019s the whole kit' : t > .05 ? 'Keep pulling' : 'Pull to see what\u2019s inside our kits';
       range.setAttribute('aria-valuetext', done ? 'Fully open' : Math.round(t * 100) + '% open');
     }
 
