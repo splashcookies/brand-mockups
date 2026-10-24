@@ -393,6 +393,10 @@
     .kit-copy p { margin-bottom: 14px; }
     /* the character line leads, the flavours follow as the spec — same order as
        the product page, so the two tell it the same way round */
+    /* the payoff line gets the brand's own hand, because it is the line that is
+       speaking to her rather than describing the product */
+    .kit-copy .turn { font-family: var(--hand); font-size: clamp(20px, 2vw, 27px);
+                      line-height: 1.25; margin-bottom: 18px; max-width: 24ch; }
     .kit-copy .kit-spec { font-size: 15px; color: var(--pouch-ink); opacity: .72;
                           margin-top: -4px; margin-bottom: 20px; max-width: 34ch; }
     .kit-copy .kit-facts { margin-bottom: 26px; }
@@ -647,7 +651,8 @@
         <img src="assets/shoot/SPLASH8913.jpg" alt="A finished Everything cookie" width="2500" height="1667">
         <div class="kit-copy">
           <h3><span class="meet">Meet</span> The Everything</h3>
-          <p>The friend who turns up for anything and has it handled. Capable, confident, exactly the same every single time &mdash; so there is nothing left for you to stress about.</p>
+          <p>Inspired by everything you do where nobody&rsquo;s looking.</p>
+          <p class="turn">You make it look easy. Let something be easy.</p>
           <p class="kit-spec">Two chocolates, toffee, caramel, pretzels, oats and dried cherries.</p>
           <ul class="kit-facts"><li>Bakes 6</li><li>10 minutes hands-on</li><li>Just add water</li><li>$22</li></ul>
           <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
