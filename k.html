@@ -259,6 +259,15 @@
                  rotate(calc(var(--fr, 0) * 1deg));
       opacity: var(--fo, 0); will-change: transform, opacity; }
     [data-ww="fly"] .ww-fly img { width: 100%; height: auto; display: block; }
+    /* see the theme script: multiply onto a dark card renders black */
+    [data-mode="dark"] .scoop-art { mix-blend-mode: normal;
+      filter: grayscale(1) brightness(1.3) contrast(1.8) invert(1); }
+    /* Two logo files exist, one dark-on-light and one light-on-dark, and a dark
+       theme needs them the other way round in both places: the header goes dark,
+       but the footer is painted in --ink and so becomes the light surface. */
+    [data-mode="dark"] .brand img { content: url(assets/shoot/logo-full-white.png); }
+    [data-mode="dark"] .foot-logo { content: url(assets/shoot/logo-full-textured.png); }
+
     /* the quieter patterns are smaller as well as shorter-lived */
     [data-fly="cameo"] .ww-fly { width: clamp(165px, 19vw, 330px); }
     [data-fly="drift"] .ww-fly { width: clamp(110px, 12vw, 200px); }
@@ -987,6 +996,87 @@
       "cta": "#484341",
       "cta-ink": "#f4f5ea"
     }
+  },
+  "charcoal": {
+    "label": "Charcoal",
+    "dark": true,
+    "note": "The page goes dark and the photograph becomes the only light in it. Peach is the single warm note.",
+    "v": {
+      "ink": "#f2efe8",
+      "paper": "#23211f",
+      "rule": "#3c3835",
+      "muted": "#b9b3a9",
+      "accent": "#e9b67d",
+      "accent-soft": "#332f2b",
+      "surface": "#2b2825",
+      "hero-a": "#2b2825",
+      "hero-b": "#23211f",
+      "band-1": "#2b2825",
+      "band-2": "#302c29",
+      "band-3": "#3a3633",
+      "cta": "#e9b67d",
+      "cta-ink": "#23211f"
+    }
+  },
+  "butter": {
+    "label": "Butter",
+    "note": "Warm all the way through, no green anywhere. The yellow is a real ground colour rather than an accent.",
+    "v": {
+      "ink": "#453a26",
+      "paper": "#fffdf2",
+      "rule": "#eadfbb",
+      "muted": "#665a40",
+      "accent": "#e09526",
+      "accent-soft": "#fbeec6",
+      "surface": "#fdf6dd",
+      "hero-a": "#f7e3a8",
+      "hero-b": "#fdf6dd",
+      "band-1": "#fdf6dd",
+      "band-2": "#f7e3a8",
+      "band-3": "#f0d57f",
+      "cta": "#453a26",
+      "cta-ink": "#fffdf2"
+    }
+  },
+  "cherry": {
+    "label": "Cherry",
+    "note": "Taken from the dried cherries in the cookie rather than from the guide. Deep red on a warm off-white.",
+    "v": {
+      "ink": "#3d1f27",
+      "paper": "#fdf7f5",
+      "rule": "#e7cfd1",
+      "muted": "#6a3b45",
+      "accent": "#b4304a",
+      "accent-soft": "#f7e3e4",
+      "surface": "#faeeec",
+      "hero-a": "#f2d9d8",
+      "hero-b": "#faeeec",
+      "band-1": "#faeeec",
+      "band-2": "#f2d9d8",
+      "band-3": "#e7c0c0",
+      "cta": "#9c2740",
+      "cta-ink": "#fdf7f5"
+    }
+  },
+  "blueprint": {
+    "label": "Blueprint",
+    "note": "Splash Blue pushed from an accent into the ground, with peach left as the only warm thing on the page.",
+    "v": {
+      "ink": "#1e3144",
+      "paper": "#f6fafc",
+      "rule": "#cadfea",
+      "muted": "#43596c",
+      "accent": "#e9b67d",
+      "accent-soft": "#e2eff5",
+      "surface": "#eef6fa",
+      "hero-a": "#d3e6f0",
+      "hero-b": "#eef6fa",
+      "band-1": "#e2eff5",
+      "band-2": "#d3e6f0",
+      "band-3": "#bbd9e8",
+      "cta": "#1e3144",
+      "cta-ink": "#f6fafc"
+    }
   }
 };
   (function () {
@@ -997,6 +1087,10 @@
       document.documentElement.style.setProperty('--' + role, hex);
     }
     document.documentElement.dataset.theme = name.toLowerCase();
+    // A dark ground breaks anything that darkens what is under it: the scoop is a
+    // window onto the pouch artwork, lifted to white and multiplied onto the card.
+    // Multiply over a dark card is just black, so dark themes invert it instead.
+    if (t.dark) document.documentElement.dataset.mode = 'dark';
   })();
   </script>
   <script>
