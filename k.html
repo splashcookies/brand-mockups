@@ -451,10 +451,11 @@
     /* compare */
     .compare { background: var(--band-3); padding: var(--sec) 0; }
     .compare h2 { text-align: center; font-size: clamp(30px, 4.5vw, 56px); }
-    /* the table had a bare heading over it and no framing; this is the line that
-       says what the table is about to show */
+    /* the heading had nothing under it and the table started straight away, so
+       the band read as a strip rather than a section */
     .compare .lede { text-align: center; font-family: var(--hand);
-                     font-size: clamp(21px, 2.2vw, 28px); margin: 14px 0 30px; }
+                     font-size: clamp(21px, 2.3vw, 29px);
+                     margin: 16px auto clamp(30px, 3.6vw, 48px); max-width: 30ch; }
     .table-wrap { overflow-x: auto; background: var(--paper); border-radius: 20px; padding: 8px; }
     table { width: 100%; border-collapse: collapse; min-width: 620px; font-size: 15px; }
     th, td { padding: 14px 16px; text-align: center; border-top: 1px solid var(--rule); }
@@ -692,6 +693,7 @@
   <section class="compare">
     <div class="wrap">
       <h2>Why Splash?</h2>
+      <p class="lede">The flavors you love without the hassle.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>&nbsp;</th><th class="us">Splash kit</th><th>Bakery</th><th>From scratch</th></tr></thead>
