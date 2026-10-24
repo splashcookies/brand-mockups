@@ -6,7 +6,9 @@
     { key: 'k', file: 'k.html?bits=row', bits: 'row', hero: '', round: 5, name: 'The counter \u2014 row', desc: 'The same pull, but the five components stand in a line along the top of the panel, so the photograph of the six cookies is never covered. Wonder Woman still carries the closed state.' },
     { key: 'k', file: 'k.html?bits=row&hero=static', bits: 'row', hero: 'static', round: 5, name: 'The counter \u2014 photo hero', desc: 'No pull at all: the photograph is simply there, with the components along the top. Wonder Woman moves to a band of her own below the kit card. The calmest hero, at the cost of the page\u2019s one real interaction.' },
     { key: 'k', file: 'k.html?bits=none&hero=static', bits: 'none', hero: 'static', round: 5, name: 'The counter \u2014 photo only', desc: 'The photograph on its own, with nothing laid over it. The components are named by the kit card and the product page instead of in the hero. Wonder Woman keeps her band below.' },
-    { key: 'k', file: 'k.html?bits=none&hero=static&ww=fly', bits: 'none', hero: 'static', ww: 'fly', round: 5, name: 'The counter \u2014 she flies', desc: 'Same clean photo hero, but Wonder Woman has no section of her own: she crosses the whole page as you scroll, in from the left and out past the right, rising as she goes. Respects reduced-motion by holding still.' },
+    { key: 'k', file: 'k.html?bits=none&hero=static&ww=fly&fly=swoop', bits: 'none', hero: 'static', ww: 'fly', fly: 'swoop', round: 5, name: 'She flies \u2014 swoop', desc: 'She has no section of her own. From "The kit" down she crosses the entire page: in top left, diving through the middle, out climbing past the upper right. The boldest and the busiest \u2014 she is on screen the whole way.' },
+    { key: 'k', file: 'k.html?bits=none&hero=static&ww=fly&fly=cameo', bits: 'none', hero: 'static', ww: 'fly', fly: 'cameo', round: 5, name: 'She flies \u2014 cameo', desc: 'One pass and gone. She crosses only while the kit section goes by, then leaves the rest of the page alone. Smaller than the swoop. The same idea without being present for every scroll.' },
+    { key: 'k', file: 'k.html?bits=none&hero=static&ww=fly&fly=drift', bits: 'none', hero: 'static', ww: 'fly', fly: 'drift', round: 5, name: 'She flies \u2014 drift', desc: 'Never crosses the text. She hugs the left edge and sinks slowly past the kit and the story, small and out of the way. The quietest of the three.' },
     { key: 'h', file: 'h.html', round: 4, name: 'The bake', desc: 'Scroll position is oven time. A pinned stage takes the cookie from raw dough through the oven to done as you move down the page, the cavity glowing up around it, with the clock and the temperature counting alongside. Figtree only \u2014 the risk is all in the mechanic.' },
     { key: 'i', file: 'i.html', round: 4, name: "Michele's notebook", desc: 'The whole site as her test-kitchen book: ruled paper, taped photos, marker arrows, sticky notes. The signature is the batch log \u2014 forty-seven attempts, forty-six crossed out, the last one circled. Adds Caveat.' },
     { key: 'j', file: 'j.html', round: 4, name: 'Tear it open', desc: 'The hero is a sealed pouch you pull apart; the contents spill out and name themselves. Built on a range input, so it drags, takes arrow keys and announces itself rather than being a mouse-only stunt.' },
@@ -21,10 +23,12 @@
   // Several options can share a page and differ only by query string, so the
   // current one is matched on the variant params too, not the file alone.
   const sp = new URLSearchParams(location.search);
-  const curBits = sp.get('bits') || '', curHero = sp.get('hero') || '', curWw = sp.get('ww') || '';
+  const curBits = sp.get('bits') || '', curHero = sp.get('hero') || '',
+        curWw = sp.get('ww') || '', curFly = sp.get('fly') || '';
   const current = document.body.dataset.option || OPTIONS[0].key;
   const me = OPTIONS.find(o => o.key === current && (o.bits || '') === curBits
-                            && (o.hero || '') === curHero && (o.ww || '') === curWw)
+                            && (o.hero || '') === curHero && (o.ww || '') === curWw
+                            && (o.fly || '') === curFly)
           || OPTIONS.find(o => o.key === current) || OPTIONS[0];
   const group = OPTIONS.filter(o => o.round === me.round);
   const pos = group.indexOf(me) + 1;

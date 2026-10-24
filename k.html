@@ -259,6 +259,9 @@
                  rotate(calc(var(--fr, 0) * 1deg));
       opacity: var(--fo, 0); will-change: transform, opacity; }
     [data-ww="fly"] .ww-fly img { width: 100%; height: auto; display: block; }
+    /* the quieter patterns are smaller as well as shorter-lived */
+    [data-fly="cameo"] .ww-fly { width: clamp(165px, 19vw, 330px); }
+    [data-fly="drift"] .ww-fly { width: clamp(110px, 12vw, 200px); }
     [data-ww="fly"] .ww-band,
     [data-ww="fly"] .pouch { display: none; }
 
@@ -599,32 +602,66 @@
       (function () {
         const el = document.querySelector('.ww-fly');
         if (!el) return;
-        // She enters top left, dives through the middle of the page and climbs away
-        // to the upper right. The sine bows the path into that swoop; the cosine
-        // tips her nose down on the way in and up on the way out, so the tilt always
-        // matches the direction of travel.
-        function place(p) {
-          // no fade-in: she is already there, top left, when the page opens
-          const fade = Math.min(Math.max((.99 - p) / .06, 0), 1);
-          el.style.setProperty('--fx', (-1 + p * 132).toFixed(2));
-          el.style.setProperty('--fy', (12 + Math.sin(p * Math.PI) * 46).toFixed(2));
-          el.style.setProperty('--fr', (Math.cos(p * Math.PI) * 16).toFixed(2));
+        // Three flight patterns, ?fly=. They differ in how much of the page she is
+        // present for, which is what makes her calm or busy — not how fast she moves.
+        //   swoop  the whole page, top left to upper right, diving through the middle
+        //   cameo  one pass over the kit section and gone; absent from the rest
+        //   drift  never crosses the text: hugs the outer edge and sinks slowly
+        const mode = q.get('fly') || 'swoop';
+        document.documentElement.dataset.fly = mode;
+
+        const PATH = {
+          // the sine bows the path into a swoop; the cosine tips her nose to match it
+          swoop: function (p) {
+            return { x: -1 + p * 132, y: 12 + Math.sin(p * Math.PI) * 46,
+                     r: Math.cos(p * Math.PI) * 16 };
+          },
+          cameo: function (p) {
+            return { x: -24 + p * 146, y: 62 - p * 20, r: -9 + p * 5 };
+          },
+          drift: function (p) {
+            return { x: 1.5, y: 16 + p * 54, r: -5 + p * 7 };
+          }
+        };
+
+        // Her flight is measured from "The kit" down, not from the top of the page:
+        // the hero is left alone, and she arrives as that section does. Only swoop
+        // runs the full length; the others finish within a screen or two.
+        const anchor = document.getElementById('shelf');
+        function span() {
+          const docEnd = document.documentElement.scrollHeight - innerHeight;
+          const start = anchor
+            ? Math.max(0, anchor.getBoundingClientRect().top + scrollY - innerHeight * .7)
+            : 0;
+          if (mode === 'swoop') return { start: start, end: Math.max(start + 1, docEnd) };
+          return { start: start, end: start + innerHeight * (mode === 'cameo' ? 1.8 : 2.6) };
+        }
+
+        function draw(p, fade) {
+          const at = (PATH[mode] || PATH.swoop)(p);
+          el.style.setProperty('--fx', at.x.toFixed(2));
+          el.style.setProperty('--fy', at.y.toFixed(2));
+          el.style.setProperty('--fr', at.r.toFixed(2));
           el.style.setProperty('--fo', fade.toFixed(3));
         }
-        function progress() {
-          const h = document.documentElement.scrollHeight - innerHeight;
-          return h > 0 ? Math.min(1, Math.max(0, scrollY / h)) : 0;
+        function place() {
+          const s = span();
+          const u = (scrollY - s.start) / (s.end - s.start);
+          if (u <= 0) { draw(0, 0); return; }            // still up in the hero
+          const p = Math.min(1, u);
+          const inn = mode === 'swoop' ? .05 : .14, out = mode === 'swoop' ? .06 : .16;
+          draw(p, Math.min(1, p / inn) * Math.min(Math.max((1 - p) / out, 0), 1));
         }
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { place(.5); return; }
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(.5, 1); return; }
         let queued = false;
         const onScroll = () => {
           if (queued) return;
           queued = true;
-          requestAnimationFrame(() => { queued = false; place(progress()); });
+          requestAnimationFrame(() => { queued = false; place(); });
         };
         addEventListener('scroll', onScroll, { passive: true });
         addEventListener('resize', onScroll);
-        place(progress());
+        place();
       })();
     }
     if (bits === 'row') {
