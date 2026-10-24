@@ -28,6 +28,8 @@
       --band-1: #ebf7f9;       /* announce, blue panel, news  */
       --band-2: #f9dfe4;       /* pink panel, the "us" column */
       --band-3: #c7e9c7;       /* the comparison band         */
+      --cta: #484341;          /* primary button              */
+      --cta-ink: #fdfbe0;      /* text on it                  */
       --hand: 'Patrick Hand SC', 'Figtree', sans-serif;
       --t: 0;              /* reveal progress 0 → 1 */
       --w: 1240px;
@@ -37,8 +39,8 @@
     h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
     p { margin: 0; }
     :focus-visible { outline: 3px solid var(--chocolate); outline-offset: 3px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--ink); color: var(--surface); font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid var(--ink); cursor: pointer; font-family: inherit; }
-    .btn:hover { background: var(--surface); color: var(--ink); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--cta); color: var(--cta-ink); font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid var(--cta); cursor: pointer; font-family: inherit; }
+    .btn:hover { background: var(--surface); color: var(--cta); }
     .btn-peach { background: var(--accent); color: var(--ink); border-color: var(--accent); }
     .btn-peach:hover { background: var(--ink); color: var(--surface); border-color: var(--ink); }
     .link { font-weight: 700; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
@@ -471,7 +473,9 @@
       "hero-b": "#ebf7f9",
       "band-1": "#ebf7f9",
       "band-2": "#f9dfe4",
-      "band-3": "#c7e9c7"
+      "band-3": "#c7e9c7",
+      "cta": "#484341",
+      "cta-ink": "#fdfbe0"
     }
   },
   "linen": {
@@ -489,7 +493,9 @@
       "hero-b": "#e8e2d6",
       "band-1": "#efe9de",
       "band-2": "#f4ede1",
-      "band-3": "#e6ded0"
+      "band-3": "#e6ded0",
+      "cta": "#3f3a36",
+      "cta-ink": "#f8f3ea"
     }
   },
   "kraft": {
@@ -507,7 +513,9 @@
       "hero-b": "#e0d2b9",
       "band-1": "#f0e6d5",
       "band-2": "#e7dac2",
-      "band-3": "#dccfb6"
+      "band-3": "#dccfb6",
+      "cta": "#3b3028",
+      "cta-ink": "#f7efe1"
     }
   },
   "stone": {
@@ -525,7 +533,9 @@
       "hero-b": "#e2dfda",
       "band-1": "#edebe7",
       "band-2": "#e8e5e0",
-      "band-3": "#ddd9d4"
+      "band-3": "#ddd9d4",
+      "cta": "#35322f",
+      "cta-ink": "#f5f3f0"
     }
   },
   "sage": {
@@ -543,7 +553,9 @@
       "hero-b": "#edf4f6",
       "band-1": "#eaf2f4",
       "band-2": "#e4ede6",
-      "band-3": "#d6e6da"
+      "band-3": "#d6e6da",
+      "cta": "#33403a",
+      "cta-ink": "#f4f8f4"
     }
   },
   "harbour": {
@@ -561,7 +573,29 @@
       "hero-b": "#f4eee2",
       "band-1": "#eaf1f5",
       "band-2": "#f2ebdd",
-      "band-3": "#dfe8ed"
+      "band-3": "#dfe8ed",
+      "cta": "#3a3f45",
+      "cta-ink": "#f7f4ed"
+    }
+  },
+  "splashbaking": {
+    "label": "splashbaking.com",
+    "note": "Lifted from the live site's own tokens: bone, bone-warm, shell, saffron, burgundy terra, forest ink.",
+    "v": {
+      "ink": "#4A372C",
+      "paper": "#f6efdc",
+      "rule": "#ded5c3",
+      "muted": "#6e5d51",
+      "accent": "#D99A2B",
+      "accent-soft": "#f0d9c9",
+      "surface": "#fbf6e9",
+      "hero-a": "#F3DDD6",
+      "hero-b": "#ece0c4",
+      "band-1": "#fbf6e9",
+      "band-2": "#F3DDD6",
+      "band-3": "#e8ddbf",
+      "cta": "#6f2233",
+      "cta-ink": "#fbf6e9"
     }
   }
 };
