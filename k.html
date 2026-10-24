@@ -75,7 +75,7 @@
     .hero-open { position: relative; background: var(--hero-a); overflow: hidden; display: grid; align-content: center; justify-items: center; gap: 10px; padding: clamp(24px, 3vw, 44px); }
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
 
-    .pouch-area { position: relative; width: 100%; height: clamp(340px, 36vw, 432px); display: grid; place-items: center; }
+    .pouch-area { position: relative; width: 100%; height: clamp(355px, 37.5vw, 460px); display: grid; place-items: center; }
     /* decoration only — without this the cards and the illustration can sit over the
        slider and swallow the drag. */
     .pouch, .bit { pointer-events: none; }
@@ -84,7 +84,7 @@
              opacity: calc(1 - var(--t) * 1.15); }
     /* the payoff, revealed in the middle of the ring */
     .core { position: absolute; left: 50%; top: 50%; margin: 0; z-index: 2;
-            width: clamp(128px, 16vw, 196px); aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+            width: clamp(116px, 14vw, 172px); aspect-ratio: 1; border-radius: 50%; overflow: hidden;
             transform: translate(-50%, -50%) scale(calc(.72 + .28 * var(--t)));
             opacity: clamp(0, calc(var(--t) * 1.6 - .45), 1);
             box-shadow: 0 14px 30px rgba(72,67,65,.18); }
@@ -274,11 +274,11 @@
       <span class="sticker">Opens soon</span>
       <div class="pouch-area">
         <!-- what's included, drawn the way the back of the pouch draws it -->
-        <span class="bit" style="--dx:-145;--dy:-47;--r:-6"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
-        <span class="bit" style="--dx:-89;--dy:123;--r:4"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
-        <span class="bit" style="--dx:145;--dy:-47;--r:6"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
-        <span class="bit" style="--dx:89;--dy:123;--r:-4"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
-        <span class="bit bit-scoop" style="--dx:0;--dy:-152;--r:0">
+        <span class="bit" style="--dx:-160;--dy:-52;--r:-6"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
+        <span class="bit" style="--dx:-99;--dy:136;--r:4"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
+        <span class="bit" style="--dx:160;--dy:-52;--r:6"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
+        <span class="bit" style="--dx:99;--dy:136;--r:-4"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
+        <span class="bit bit-scoop" style="--dx:0;--dy:-168;--r:0">
           <i class="scoop-art" role="img" aria-label="Water scoop"></i>
         </span>
         <figure class="core">
@@ -297,8 +297,8 @@
     </div>
 
     <div class="hero-copy">
-      <h1>Show up with warm cookies.</h1>
-      <p class="sub">Every gram weighed out in Chicago and sealed into two pouches. You add one scoop of water, and six gourmet cookies come out of your oven.</p>
+      <h1>Gourmet cookies anyone can bake.</h1>
+      <p class="sub">Show up with warm, homemade cookies without the hassle and cleanup that comes with baking from scratch.</p>
       <p class="opened">That&rsquo;s everything, and none of it needed weighing.</p>
       <div class="hero-ctas">
         <a class="btn" href="#news">Get on the list</a>
@@ -323,18 +323,11 @@
         <img src="assets/shoot/SPLASH8913.jpg" alt="A finished Everything cookie" width="2500" height="1667">
         <div class="kit-copy">
           <h3>The Everything</h3>
-          <p>Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every gram already weighed.</p>
-          <ul class="kit-facts"><li>Bakes 6</li><li>25 minutes</li><li>14.4 oz</li></ul>
-          <span class="link">See the kit <span aria-hidden="true">&rarr;</span></span>
+          <p>Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every ingredient sourced and pre-measured.</p>
+          <ul class="kit-facts"><li>Bakes 6</li><li>25 minutes</li><li>16.4 oz</li></ul>
+          <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
         </div>
       </a>
-    </div>
-  </section>
-
-  <section class="cut">
-    <div class="wrap">
-      <h2>Everything for six gourmet cookies <img src="assets/shoot/SPLASH8899.jpg" alt=""> already ready.</h2>
-      <p>The only thing you measure is nothing, because the scoop in the box is already the right size.</p>
     </div>
   </section>
 
