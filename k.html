@@ -114,7 +114,8 @@
       background: var(--paper); border-radius: 18px; box-shadow: 0 8px 18px rgba(72,67,65,.14);
       transform:
         translate(-50%, -50%)
-        translate(calc(var(--dx) * var(--t) * 1px), calc(var(--dy) * var(--t) * 1px))
+        translate(calc(var(--dx) * var(--t) * var(--ring, 1) * 1px),
+                  calc(var(--dy) * var(--t) * var(--ring, 1) * 1px))
         rotate(calc(var(--r) * var(--t) * 1deg))
         scale(calc(.35 + .65 * var(--t)));
       opacity: clamp(0, calc(var(--t) * 3 - .25), 1);
@@ -135,8 +136,6 @@
       filter: grayscale(1) brightness(1.28) contrast(1.75);
       mix-blend-mode: multiply;
     }
-    /* label and track share a line; the label column is a fixed width so the track
-       does not jump as the label text changes length while dragging */
     /* Label beside the track on one line. The column is a fixed width wide enough for
        the longest label, not max-content: the label text changes while you drag, and a
        content-sized column would resize the track under the thumb mid-pull. */
@@ -156,7 +155,10 @@
     .tear-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 66px; height: 42px; border: 2px solid var(--ink); border-radius: 999px; background: var(--accent); cursor: grab; }
     .tear-range::-moz-range-thumb { width: 66px; height: 42px; border: 2px solid var(--ink); border-radius: 999px; background: var(--accent); }
     .pull-hint { font-size: 13.5px; color: var(--muted); }
-    .pull-hint button { background: none; border: 0; color: var(--ink); font: inherit; text-decoration: underline; cursor: pointer; padding: 0; }
+    /* padding, not height: vertical padding on an inline element grows the tap target
+       without changing the line box, so the sentence still sets normally */
+    .pull-hint button { background: none; border: 0; color: var(--ink); font: inherit;
+                        text-decoration: underline; cursor: pointer; padding: 4px; margin: 0 -4px; }
 
     .hero-copy { background: var(--hero-b); display: grid; padding: clamp(32px, 6vw, 80px); justify-items: start; }
     .copy-top { align-self: center; display: grid; gap: 20px; justify-items: start; }
@@ -166,7 +168,19 @@
     .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
     /* the line that only makes sense once the pouch is open */
     .hero-copy .opened { font-family: var(--hand); font-size: 23px; opacity: var(--t); transition: opacity .3s ease; min-height: 1.4em; }
-    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) {
+      /* Going to one column means the two panels stack, so the subgrid row-span that
+         pairs them has to be undone as well. Left in place it has no row to span into,
+         the copy panel is pushed out to an implicit second column, and the left panel
+         collapses to a sliver with the illustration and the pull control inside it. */
+      .hero { grid-template-columns: 1fr; grid-template-rows: auto auto; min-height: 0; }
+      .hero-open, .hero-copy { grid-row: auto; grid-template-rows: none; }
+      .hero-open { padding-bottom: clamp(28px, 6vw, 44px); }
+      /* The ring radius is fixed pixels, so on a narrow panel the cards hang off the
+         sides. Shrink the radius with the viewport and bring her width down to match. */
+      .pouch-area { --ring: clamp(.5, calc((100vw - 120px) / 340px), 1); }
+      .pouch { width: clamp(260px, 62vw, 640px); }
+    }
 
     /* hand-lettered icon strip */
     .strip { background: var(--paper); border-bottom: 1px solid var(--rule); overflow: hidden; }
@@ -390,7 +404,7 @@
         <div class="panel-img"><img src="assets/shoot/SPLASH8586.jpg" alt="Michele in her kitchen, placing Everything dough onto a lined tray" width="1667" height="2500"></div>
         <div class="panel-copy">
           <h2>Started in our mom&rsquo;s kitchen.</h2>
-          <p>Michele is a chemical engineer by trade and a baker by heart. She spent her life making hard things look easy, and years getting this one to come out the same no matter whose hands were in the bowl.</p>
+          <p>Michele is a chemical engineer by trade and a baker by heart. She is someone who makes hard things look easy and spent years getting this one to come out the same no matter whose hands were in the bowl.</p>
           <p class="note">&mdash; Erica, Natalie &amp; Marc</p>
           <a class="link" href="#">Read the whole story <span aria-hidden="true">&rarr;</span></a>
         </div>

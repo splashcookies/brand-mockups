@@ -221,8 +221,10 @@
     .cart .ship { font-size: 13px; color: var(--muted); }
 
     /* ---- product page ---- */
-    .crumbs { padding: 16px 0 4px; font-size: 13.5px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; }
-    .crumbs a { text-decoration: none; }
+    .crumbs { padding: 16px 0 4px; font-size: 13.5px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap;
+              align-items: center; }
+    /* these are short words, so they need padding to clear 24px for a thumb */
+    .crumbs a { text-decoration: none; padding: 4px 6px; margin: 0 -6px; }
     .crumbs a:hover { text-decoration: underline; }
     .product { padding: clamp(18px, 3vw, 34px) 0 clamp(40px, 6vw, 80px); }
     .product .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(26px, 5vw, 64px); align-items: start; }
