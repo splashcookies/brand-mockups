@@ -161,12 +161,16 @@
        matches the window's own aspect so the drawing is not stretched, and the filter
        lifts the pouch's peach ground to white so it sits on the card like the others. */
     .bit-scoop { display: grid; place-items: center; }
+    /* Cut from the back-of-pouch print file rather than windowed out of it: the
+       browser was fetching 4.7MB to paint a thumbnail, which is why the scoop
+       arrived visibly after the four masks. assets/scoop.jpg is 25KB and the
+       original is untouched on disk. */
     .scoop-art {
-      width: 88%; aspect-ratio: 871 / 1147;
-      background-image: url(assets/shoot/pouch-back.jpg);
+      width: 80%; aspect-ratio: 439 / 460;
+      background-image: url(assets/scoop.jpg);
       background-repeat: no-repeat;
-      background-size: 980.4% 1162.8%;
-      background-position: 24.28% 29.1%;
+      background-size: contain;
+      background-position: center;
       filter: grayscale(1) brightness(1.28) contrast(1.75);
       mix-blend-mode: multiply;
     }
@@ -430,9 +434,7 @@
                               half again too big, so it is scaled by that ratio and
                               the hand reads the same size across all five. */
                            height: calc(clamp(96px, 10.5vw, 150px) * .657);
-                           aspect-ratio: 743 / 778;
-                           background-size: 1150% 1713.8%;
-                           background-position: 24.64% 29.14%; }
+                           aspect-ratio: 439 / 460; }
     @media (max-width: 860px) { .box-grid { grid-template-columns: repeat(3, 1fr); row-gap: 32px; } }
     @media (max-width: 460px) { .box-grid { grid-template-columns: repeat(2, 1fr); } }
 

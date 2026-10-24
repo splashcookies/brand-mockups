@@ -130,16 +130,16 @@
 
     .bit .ill { width: 100%; height: 100%; color: var(--ink); }
     /* No standalone scoop asset exists — it is only drawn inside the back-of-pouch
-       artwork — so this is a window onto that file. Nothing is edited on disk: the box
-       matches the window's own aspect so the drawing is not stretched, and the filter
-       lifts the pouch's peach ground to white so it sits on the card like the others. */
+       artwork — so it was cut out of that file into assets/scoop.jpg. The original
+       print file is untouched on disk; the filter lifts the pouch's peach ground to
+       white so the drawing sits on the card like the others. */
     .bit-scoop { display: grid; place-items: center; }
     .scoop-art {
-      width: 88%; aspect-ratio: 871 / 1147;
-      background-image: url(assets/shoot/pouch-back.jpg);
+      width: 80%; aspect-ratio: 439 / 460;
+      background-image: url(assets/scoop.jpg);
       background-repeat: no-repeat;
-      background-size: 980.4% 1162.8%;
-      background-position: 24.28% 29.1%;
+      background-size: contain;
+      background-position: center;
       filter: grayscale(1) brightness(1.28) contrast(1.75);
       mix-blend-mode: multiply;
     }
@@ -273,9 +273,10 @@
     .included .ill { width: 34px; height: 34px; justify-self: center; color: var(--ink); }
     /* A tighter window than the ring's: the cup only, no hand-lettering, since the row
        already names it. Wide, because the drawn cup is wider than it is tall. */
-    .included .scoop-mini { width: 38px; aspect-ratio: 1.445; justify-self: center;
-                            background-image: url(assets/shoot/pouch-back.jpg); background-repeat: no-repeat;
-                            background-size: 1136.4% 2564.1%; background-position: 24.72% 28.36%;
+    /* a 15KB crop of the print file, not a window onto all 4.7MB of it */
+    .included .scoop-mini { width: 38px; aspect-ratio: 420 / 290; justify-self: center;
+                            background-image: url(assets/scoop-cup.jpg); background-repeat: no-repeat;
+                            background-size: contain; background-position: center;
                             filter: grayscale(1) brightness(1.3) contrast(1.8); mix-blend-mode: multiply; }
     .included .need { font-family: var(--hand); font-size: 21px; margin-top: 14px; }
 
