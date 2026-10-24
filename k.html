@@ -403,11 +403,16 @@
        the alt text, where it is read once. */
     .box-item { display: grid; justify-items: center; }
     .box-item .ill { height: clamp(96px, 10.5vw, 150px); color: var(--ink); }
-    /* the scoop has no asset of its own — it is only ever drawn inside the
-       back-of-pouch artwork — so it is a window onto that file. It runs taller
-       than the masks beside it because the window carries the pouch's own
-       margin around the drawing, so matching box heights drew a smaller scoop. */
-    .box-item .scoop-art { width: auto; height: clamp(124px, 13.6vw, 196px); }
+    /* The scoop has no asset of its own — it is only ever drawn inside the
+       back-of-pouch artwork — so it is a window onto that file. The ring's window
+       keeps a quarter of its height as empty pouch below the lettering, which is
+       why the scoop floated high and had to be drawn oversize to compete. This
+       one is cropped to the ink, so it can stand at the masks' own height and
+       land on their line. */
+    .box-item .scoop-art { width: auto; height: clamp(96px, 10.5vw, 150px);
+                           aspect-ratio: 740 / 860;
+                           background-size: 1150% 1550.4%;
+                           background-position: 24.64% 29.33%; }
     @media (max-width: 860px) { .box-grid { grid-template-columns: repeat(3, 1fr); row-gap: 32px; } }
     @media (max-width: 460px) { .box-grid { grid-template-columns: repeat(2, 1fr); } }
 
