@@ -14,7 +14,7 @@
        tear-open pouch from "Tear it open" as the living half of its two-panel hero.
        Hand-lettering is kept as a system (stickers, strip, table, stars), the way the pouch does it. */
     :root {
-      /* Colour is expressed as ROLES, so a theme is a swap of these and nothing
+      /* Colours_tmp is expressed as ROLES, so a theme is a swap of these and nothing
          structural moves. Default is Sage; ?theme=<name> swaps to any other. */
       --ink: #484341;          /* body text and linework        */
       --paper: #fbfcfa;        /* the page itself               */
@@ -57,16 +57,16 @@
     .nav-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
     /* -webkit-mask shorthand was dropping the `contain` size, so the mark painted at
        intrinsic size and got cropped. Pin the size, and give it room to breathe. */
-    /* the wordmark is the real artwork, not a recoloured mask — a mask can be cropped by
+    /* the wordmark is the real artwork, not a recolored mask — a mask can be cropped by
        its own sizing, and this keeps the pencil texture the logo is drawn with. */
-    /* the centre grid track is `auto`, so a wide nav or a zoomed window could squeeze it
+    /* the center grid track is `auto`, so a wide nav or a zoomed window could squeeze it
        and clamp the mark. min-width:max-content stops the track collapsing, and no
        max-width means the image is never forced narrower than it draws. */
     .nav .brand { justify-self: center; display: block; line-height: 0; min-width: max-content; overflow: visible; }
     /* shared.css applies `img { max-width: 100% }` to everything, which can clamp this
        box; object-fit:contain means the artwork then scales instead of being cut. */
     /* artwork sits flush left in its canvas with 147px spare on the right, so nudge it to
-       optically centre the ink rather than the box */
+       optically center the ink rather than the box */
     .nav .brand img { height: 86px; width: auto; max-width: none; display: block; flex: none;
                       transform: translateX(2.5%); }
     .nav-right { display: flex; gap: 8px; justify-self: end; }
@@ -403,7 +403,7 @@
         <div class="step"><span class="n">Prep</span><h3>Heat the oven</h3><p>350&deg;F. Parchment from the box onto a baking sheet, medium bowl out.</p><span class="t">1 min</span></div>
         <div class="step"><span class="n">Mix</span><h3>Both pouches</h3><p>Into the bowl with one full scoop of water. Gloves on, mix by hand until well combined.</p><span class="t">2&ndash;3 min</span></div>
         <div class="step"><span class="n">Scoop</span><h3>Form six</h3><p>Six balls, spaced equally on the sheet.</p><span class="t">7 min</span></div>
-        <div class="step"><span class="n">Bake</span><h3>12 to 15 minutes</h3><p>Out when the edges are golden and the centres still look soft.</p><span class="t">15 min</span></div>
+        <div class="step"><span class="n">Bake</span><h3>12 to 15 minutes</h3><p>Out when the edges are golden and the centers still look soft.</p><span class="t">15 min</span></div>
         <div class="step"><span class="n">Cool</span><h3>Ten minutes</h3><p>While tempting, do not skip this step. It&rsquo;s worth the wait.</p><span class="t">10 min</span></div>
       </div>
     </div>
@@ -441,7 +441,7 @@
     <div class="wrap">
       <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;I felt very accomplished.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
       <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;Our kids had a blast making these. And no mess for us.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
-      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;Incredible flavour. I&rsquo;d love to give these as gifts.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
+      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;Incredible flavor. I&rsquo;d love to give these as gifts.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
     </div>
   </section>
 
@@ -510,7 +510,7 @@
 
   <script>
   // ?theme=<name> repaints the whole page by swapping the role tokens.
-  // Structure, type and spacing are untouched; only colour moves.
+  // Structure, type and spacing are untouched; only color moves.
   window.SPLASH_THEMES = {
   "brand": {
     "label": "Brand",
@@ -534,7 +534,7 @@
   },
   "linen": {
     "label": "Linen",
-    "note": "Warm neutrals throughout, peach kept as the only saturated colour.",
+    "note": "Warm neutrals throughout, peach kept as the only saturated color.",
     "v": {
       "ink": "#3f3a36",
       "paper": "#fcf9f3",
@@ -574,7 +574,7 @@
   },
   "stone": {
     "label": "Stone",
-    "note": "Cool-leaning greys. The most neutral, least 'food' of the set.",
+    "note": "Cool-leaning grays. The most neutral, least 'food' of the set.",
     "v": {
       "ink": "#35322f",
       "paper": "#faf9f7",
@@ -714,7 +714,7 @@
   },
   "fog": {
     "label": "Fog",
-    "note": "Cool blue-grey. The quietest option \u2014 nothing competes with the photography.",
+    "note": "Cool blue-gray. The quietest option \u2014 nothing competes with the photography.",
     "v": {
       "ink": "#484341",
       "paper": "#fbfbfc",
