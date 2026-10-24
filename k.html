@@ -371,7 +371,7 @@
     .no { border: 1.5px solid var(--ink); }
 
     /* big quote */
-    .bigquote { position: relative; padding: clamp(64px, 9vw, 130px) 0; text-align: center; overflow: hidden; background: var(--paper); }
+    .bigquote { position: relative; padding: var(--sec) 0; text-align: center; overflow: hidden; background: var(--paper); }
     .bigquote blockquote { margin: 0 auto; max-width: 22ch; font-size: clamp(30px, 4.6vw, 60px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; text-wrap: balance; }
     .bigquote cite { display: block; margin-top: 22px; font-style: normal; font-weight: 600; font-size: 15px; }
     .bigquote .peek { position: absolute; width: clamp(185px, 23vw, 340px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; }
@@ -566,11 +566,12 @@
 
 
 
-  <section class="reviews">
+  <section class="bigquote">
+    <img class="peek l" src="assets/shoot/SPLASH8659.jpg" alt="" width="1667" height="2500">
+    <img class="peek r" src="assets/shoot/SPLASH9216.jpg" alt="" width="2500" height="1667">
     <div class="wrap">
-      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;I felt very accomplished.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
-      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;Our kids had a blast making these. And no mess for us.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
-      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;Incredible flavor. I&rsquo;d love to give these as gifts.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
+      <blockquote>&ldquo;Best cookie I&rsquo;ve ever had, let alone made.&rdquo;</blockquote>
+      <cite>Tasting feedback &middot; Chicago</cite>
     </div>
   </section>
 
