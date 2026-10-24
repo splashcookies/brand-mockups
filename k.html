@@ -265,10 +265,7 @@
     /* Two logo files exist, one dark-on-light and one light-on-dark, and a dark
        theme needs them the other way round in both places: the header goes dark,
        but the footer is painted in --ink and so becomes the light surface. */
-    /* The peach pill stays light in a dark theme while --ink becomes the light
-       colour, so the text on that one has to flip the other way. */
-    [data-mode="dark"] .tags span:nth-child(5n+3) { color: var(--cta-ink); border-color: var(--cta-ink); }
-
+    
     [data-mode="dark"] .brand img { content: url(assets/shoot/logo-full-white.png); }
     [data-mode="dark"] .foot-logo { content: url(assets/shoot/logo-full-textured.png); }
 
@@ -416,10 +413,7 @@
     .tags { display: flex; flex-wrap: wrap; gap: 11px 12px; justify-content: center; max-width: 62ch; }
     .tags span { border: 2px solid var(--ink); border-radius: 999px; padding: 9px 21px;
                  font-weight: 700; font-size: 16px; background: var(--paper); }
-    .tags span:nth-child(5n+1) { background: var(--accent-soft); }
-    .tags span:nth-child(5n+2) { background: var(--band-3); }
-    .tags span:nth-child(5n+3) { background: var(--accent); }
-    .tags span:nth-child(5n+4) { background: var(--band-1); }
+
 
     /* newsletter */
     .news { background: var(--band-1); padding: clamp(48px, 7vw, 90px) 0; }
@@ -492,26 +486,6 @@
     </div>
   </section>
 
-  <div class="strip" aria-hidden="true">
-    <ul>
-      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured by us, baked by you</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-parchment"></span>Patent pending</li>
-      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured by us, baked by you</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-parchment"></span>Patent pending</li>
-    </ul>
-  </div>
-
-  <div class="wrap">
-    <div class="panels">
-      <section class="panel blue" id="shelf">
-        <div class="panel-img"><img src="assets/shoot/SPLASH8820.jpg" alt="Water being poured into the dry mix" width="2500" height="1667"></div>
-        <div class="panel-copy">
-          <h2>Pre-measured by us, baked by you.</h2>
-          <p>One dry pouch with the add-ins built in. One wet pouch with avocado oil. One full scoop of water, and your hands.</p>
-          <p class="note">That&rsquo;s the whole shopping list.</p>
-          <a class="link" href="#how">See the steps <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </section>
-    </div>
-  </div>
 
   <section class="box" id="box">
     <div class="wrap">
@@ -527,36 +501,27 @@
     </div>
   </section>
 
+  <div class="wrap">
+    <div class="panels">
+      <section class="panel blue">
+        <div class="panel-img"><img src="assets/shoot/SPLASH8820.jpg" alt="Water being poured into the dry mix" width="2500" height="1667"></div>
+        <div class="panel-copy">
+          <h2>Pre-measured by us, baked by you.</h2>
+          <p>One dry pouch with the add-ins built in. One wet pouch with avocado oil. One full scoop of water, and your hands.</p>
+          <p class="note">That&rsquo;s the whole shopping list.</p>
+          <a class="link" href="#how">See the steps <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+
   <!-- Only shown by ?ww=fly: she travels across the page as you scroll -->
   <div class="ww-fly" aria-hidden="true">
     <img src="assets/shoot/everything-illustration.png" alt="" width="4428" height="3539">
   </div>
 
-  <!-- Only shown by ?hero=static, where she has left the hero and needs a home -->
-  <section class="ww-band" id="ww">
-    <div class="wrap">
-      <img src="assets/shoot/everything-illustration.png" alt="The Everything cookie, carried in" width="4428" height="3539">
-      <div>
-        <h2>Show up with warm cookies.</h2>
-        <p>Not a tray you bought on the way. Six of them, out of your own oven, from two pouches and one scoop of water.</p>
-        <p class="note">Nobody has to know how easy it was.</p>
-      </div>
-    </div>
-  </section>
 
-  <div class="wrap">
-    <div class="panels">
-      <section class="panel pink" id="story">
-        <div class="panel-img"><img src="assets/shoot/SPLASH8586.jpg" alt="Michele in her kitchen, placing Everything dough onto a lined tray" width="1667" height="2500"></div>
-        <div class="panel-copy">
-          <h2>Started in our mom&rsquo;s kitchen.</h2>
-          <p>Michele is a chemical engineer by trade and a baker by heart. She is someone who makes hard things look easy and spent years getting this one to come out the same no matter whose hands were in the bowl.</p>
-          <p class="note">&mdash; Erica, Natalie &amp; Marc</p>
-          <a class="link" href="#">Read the whole story <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </section>
-    </div>
-  </div>
 
   <section class="steps" id="how">
     <div class="wrap">
@@ -591,12 +556,13 @@
     </div>
   </section>
 
-  <section class="bigquote">
-    <img class="peek l" src="assets/shoot/SPLASH8659.jpg" alt="" width="1667" height="2500">
-    <img class="peek r" src="assets/shoot/SPLASH9216.jpg" alt="" width="2500" height="1667">
+
+
+  <section class="reviews">
     <div class="wrap">
-      <blockquote>&ldquo;Best cookie I&rsquo;ve ever had, let alone made.&rdquo;</blockquote>
-      <cite>Tasting feedback &middot; Chicago</cite>
+      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;I felt very accomplished.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
+      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;Our kids had a blast making these. And no mess for us.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
+      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;Incredible flavor. I&rsquo;d love to give these as gifts.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
     </div>
   </section>
 
@@ -611,13 +577,31 @@
     </div>
   </section>
 
-  <section class="reviews">
+  <!-- Only shown by ?hero=static, where she has left the hero and needs a home -->
+  <section class="ww-band" id="ww">
     <div class="wrap">
-      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;I felt very accomplished.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
-      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;Our kids had a blast making these. And no mess for us.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
-      <div class="review"><p class="stars" role="img" aria-label="Five out of five">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p>&ldquo;Incredible flavor. I&rsquo;d love to give these as gifts.&rdquo;</p><span>Tasting feedback &middot; Chicago</span></div>
+      <img src="assets/shoot/everything-illustration.png" alt="The Everything cookie, carried in" width="4428" height="3539">
+      <div>
+        <h2>Show up with warm cookies.</h2>
+        <p>Not a tray you bought on the way. Six of them, out of your own oven, from two pouches and one scoop of water.</p>
+        <p class="note">Nobody has to know how easy it was.</p>
+      </div>
     </div>
   </section>
+
+  <div class="wrap">
+    <div class="panels">
+      <section class="panel pink" id="story">
+        <div class="panel-img"><img src="assets/shoot/SPLASH8586.jpg" alt="Michele in her kitchen, placing Everything dough onto a lined tray" width="1667" height="2500"></div>
+        <div class="panel-copy">
+          <h2>Started in our mom&rsquo;s kitchen.</h2>
+          <p>Michele is a chemical engineer by trade and a baker by heart. She is someone who makes hard things look easy and spent years getting this one to come out the same no matter whose hands were in the bowl.</p>
+          <p class="note">&mdash; Erica, Natalie &amp; Marc</p>
+          <a class="link" href="#">Read the whole story <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </section>
+    </div>
+  </div>
 
   <section class="news" id="news">
     <div class="wrap">
