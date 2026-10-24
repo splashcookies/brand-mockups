@@ -265,6 +265,13 @@
     /* Two logo files exist, one dark-on-light and one light-on-dark, and a dark
        theme needs them the other way round in both places: the header goes dark,
        but the footer is painted in --ink and so becomes the light surface. */
+    /* The peach band and the peach pill stay light in a dark theme, so the text on
+       them has to flip the other way — --ink is the light colour there. */
+    [data-mode="dark"] .strip { color: var(--cta-ink); }
+    [data-mode="dark"] .strip .chip { background: var(--cta-ink); border-color: var(--cta-ink); }
+    [data-mode="dark"] .strip .ill { color: var(--accent); }
+    [data-mode="dark"] .tags span:nth-child(5n+3) { color: var(--cta-ink); border-color: var(--cta-ink); }
+
     [data-mode="dark"] .brand img { content: url(assets/shoot/logo-full-white.png); }
     [data-mode="dark"] .foot-logo { content: url(assets/shoot/logo-full-textured.png); }
 
@@ -275,10 +282,20 @@
     [data-ww="fly"] .pouch { display: none; }
 
     /* hand-lettered icon strip */
-    .strip { background: var(--paper); border-bottom: 1px solid var(--rule); overflow: hidden; }
-    .strip ul { list-style: none; margin: 0; padding: 12px 0; display: flex; gap: 56px; width: max-content; animation: slide 44s linear infinite; font-family: var(--hand); font-size: 22px; }
-    .strip li { display: flex; align-items: center; gap: 12px; }
-    .strip .ill { height: 34px; color: var(--ink); }
+    /* Ticker, with each mark in its own circle on a colour band — from Kitchen party.
+       The icon needs the wrapper: .ill is itself the artwork (a mask painted in
+       currentColor), so a background on it would be covered by the mask, not show
+       behind it. */
+    .strip { background: var(--accent); border-top: 2px solid var(--ink);
+             border-bottom: 2px solid var(--ink); overflow: hidden; }
+    .strip ul { list-style: none; margin: 0; padding: 14px 0; display: flex; gap: 46px;
+                width: max-content; animation: slide 44s linear infinite;
+                font-weight: 700; font-size: 19px; }
+    .strip li { display: flex; align-items: center; gap: 14px; }
+    .strip .chip { width: 52px; height: 52px; flex: none; border-radius: 50%;
+                   background: var(--paper); border: 2px solid var(--ink);
+                   display: grid; place-items: center; }
+    .strip .ill { height: 30px; color: var(--ink); }
     @keyframes slide { to { transform: translateX(-50%); } }
 
     /* the shelf */
@@ -384,6 +401,37 @@
     .review span { font-size: 14px; color: var(--muted); }
     @media (max-width: 760px) { .reviews .wrap { grid-template-columns: 1fr; } }
 
+    /* "Everything in the box" — carried over from Cream & line. It matters more
+       here than it did there: the hero no longer shows the components, so this is
+       where the five of them are actually seen. The captions add to the drawings'
+       own hand-lettering rather than repeating it. */
+    .box { background: var(--surface); padding: clamp(44px, 6vw, 88px) 0; }
+    .box .wrap { display: grid; gap: 0; justify-items: center; text-align: center; }
+    .box h2 { font-size: clamp(30px, 4.2vw, 54px); max-width: 18ch; }
+    .box .lede { color: var(--muted); margin-top: 12px; margin-bottom: clamp(30px, 4vw, 54px); }
+    .box-grid { display: grid; grid-template-columns: repeat(5, 1fr);
+                gap: clamp(16px, 2.2vw, 36px); width: 100%; }
+    .box-item { display: grid; gap: 16px; justify-items: center; }
+    .box-item .ill { height: clamp(84px, 9vw, 126px); color: var(--ink); }
+    .box-item b { font-family: var(--hand); font-weight: 400; font-size: 18px; max-width: 17ch; }
+    @media (max-width: 860px) { .box-grid { grid-template-columns: repeat(3, 1fr); row-gap: 32px; } }
+    @media (max-width: 460px) { .box-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* "Good for a Tuesday" — from Kitchen party. The pills cycle through the role
+       tokens rather than fixed pastels, so they recolour with every theme. */
+    .occasions { background: var(--band-2); padding: clamp(44px, 6vw, 88px) 0; }
+    .occasions .wrap { display: grid; gap: 0; justify-items: center; text-align: center; }
+    .occasions h2 { font-size: clamp(30px, 4.2vw, 54px); max-width: 17ch; }
+    .occasions .lede { color: var(--muted); max-width: 46ch; margin-top: 12px;
+                       margin-bottom: clamp(26px, 3.4vw, 44px); }
+    .tags { display: flex; flex-wrap: wrap; gap: 11px 12px; justify-content: center; max-width: 62ch; }
+    .tags span { border: 2px solid var(--ink); border-radius: 999px; padding: 9px 21px;
+                 font-weight: 700; font-size: 16px; background: var(--paper); }
+    .tags span:nth-child(5n+1) { background: var(--accent-soft); }
+    .tags span:nth-child(5n+2) { background: var(--band-3); }
+    .tags span:nth-child(5n+3) { background: var(--accent); }
+    .tags span:nth-child(5n+4) { background: var(--band-1); }
+
     /* newsletter */
     .news { background: var(--band-1); padding: clamp(48px, 7vw, 90px) 0; }
     .news .wrap { display: grid; gap: 18px; justify-items: center; text-align: center; }
@@ -444,7 +492,7 @@
 
     <div class="hero-copy">
       <div class="copy-top">
-        <h1>Gourmet baking for everyone.</h1>
+        <h1>Gourmet baking made easy.</h1>
         <p class="sub">We source premium ingredients and measure each of them for you. You add one scoop of water, and six gourmet cookies come out of your oven.</p>
         <p class="opened">That&rsquo;s everything. No extra grocery runs.</p>
       </div>
@@ -457,8 +505,8 @@
 
   <div class="strip" aria-hidden="true">
     <ul>
-      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured by us, baked by you</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-parchment"></span>Patent pending</li>
-      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured by us, baked by you</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-parchment"></span>Patent pending</li>
+      <li><i class="chip"><span class="ill ill-wet"></span></i>Premium ingredients</li><li><i class="chip"><span class="ill ill-dry"></span></i>Pre-measured by us, baked by you</li><li><i class="chip"><span class="ill ill-water"></span></i>Just add water</li><li><i class="chip"><span class="ill ill-gloves"></span></i>No mess</li><li><i class="chip"><span class="ill ill-parchment"></span></i>Patent pending</li>
+      <li><i class="chip"><span class="ill ill-wet"></span></i>Premium ingredients</li><li><i class="chip"><span class="ill ill-dry"></span></i>Pre-measured by us, baked by you</li><li><i class="chip"><span class="ill ill-water"></span></i>Just add water</li><li><i class="chip"><span class="ill ill-gloves"></span></i>No mess</li><li><i class="chip"><span class="ill ill-parchment"></span></i>Patent pending</li>
     </ul>
   </div>
 
@@ -476,6 +524,20 @@
           <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
         </div>
       </a>
+    </div>
+  </section>
+
+  <section class="box" id="box">
+    <div class="wrap">
+      <h2>Everything in the box.</h2>
+      <p class="lede">Open it, and the only thing left to measure is water.</p>
+      <div class="box-grid">
+        <div class="box-item"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span><b>Dry pouch, add-ins built in</b></div>
+        <div class="box-item"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span><b>Wet pouch, the avocado oil</b></div>
+        <div class="box-item"><span class="ill ill-water" role="img" aria-label="Water"></span><b>Just water, from your tap</b></div>
+        <div class="box-item"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span><b>Parchment, already cut</b></div>
+        <div class="box-item"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span><b>Mixing gloves, no mess</b></div>
+      </div>
     </div>
   </section>
 
@@ -559,6 +621,17 @@
     <div class="wrap">
       <blockquote>&ldquo;Best cookie I&rsquo;ve ever had, let alone made.&rdquo;</blockquote>
       <cite>Tasting feedback &middot; Chicago</cite>
+    </div>
+  </section>
+
+  <section class="occasions">
+    <div class="wrap">
+      <h2>Good for a Tuesday. Great for everything else.</h2>
+      <p class="lede">It keeps in the cupboard for six months, so there is always one in the house for whatever turns up.</p>
+      <div class="tags">
+        <span>birthdays</span><span>sleepovers</span><span>snow days</span><span>new neighbors</span><span>school holidays</span>
+        <span>rainy Sunday</span><span>bake sale</span><span>thank-you gift</span><span>the in-laws</span><span>a Tuesday</span>
+      </div>
     </div>
   </section>
 
