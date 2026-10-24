@@ -234,6 +234,38 @@
         var(--hero-a) 100%); }
     }
 
+    /* ===== a rotating occasion in the headline: ?rot=pill|roll|hand =====
+       The word that changes is aria-hidden and a static "any occasion." carries
+       the sentence for screen readers, so nothing is announced on a loop. The
+       slot reserves the width of the longest word in all three, so the headline
+       never reflows as it turns. Everything stops on prefers-reduced-motion. */
+    .rot { display: inline-block; text-align: left; max-width: 100%; }
+    .rot i { font-style: normal; }
+    /* the headline is capped at 11ch, which the longest occasion does not fit in */
+    [data-rot] .hero-copy h1 { max-width: 17ch; }
+
+    /* pill — the word sits in a peach pill and crossfades */
+    [data-rot="pill"] .rot { background: var(--accent); color: var(--pouch-ink);
+                             border-radius: 999px; padding: .02em .3em .1em; }
+    [data-rot="pill"] .rot i { display: inline-block; transition: opacity .28s ease, transform .28s ease; }
+    [data-rot="pill"] .rot.out i { opacity: 0; transform: translateY(-.14em); }
+
+    /* roll — the words are stacked and the column slides, like a counter */
+    [data-rot="roll"] .rot { overflow: hidden; height: 1.06em; vertical-align: bottom; }
+    [data-rot="roll"] .rot-slot { display: block; transition: transform .52s cubic-bezier(.3,.7,.2,1); }
+    [data-rot="roll"] .rot i { display: block; line-height: 1.06; }
+
+    /* hand — no pill: the word is hand-lettered with a drawn rule under it */
+    [data-rot="hand"] .rot { font-family: var(--hand); position: relative; padding-bottom: .06em; }
+    [data-rot="hand"] .rot::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+                                    height: .055em; background: var(--accent); border-radius: 999px; }
+    [data-rot="hand"] .rot i { display: inline-block; transition: opacity .3s ease, transform .3s ease; }
+    [data-rot="hand"] .rot.out i { opacity: 0; transform: translateY(.1em); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rot i, [data-rot="roll"] .rot-slot { transition: none !important; }
+    }
+
     /* ===== hero variants, so the directions can be compared rather than argued =====
        ?bits=row     the five components stand in a line along the top of the panel
                      instead of ringing the cookies, so nothing sits on the food
@@ -716,6 +748,73 @@
     const bits = q.get('bits') || 'none';
     const hero = q.get('hero') || 'static';
     const ww = q.get('ww') || 'fly';
+    // ?rot= turns the headline's last word into a rotating occasion
+    (function () {
+      const mode = q.get('rot');
+      if (!['pill', 'roll', 'hand'].includes(mode)) return;
+      const h1 = document.querySelector('.hero-copy h1');
+      if (!h1) return;
+      document.documentElement.dataset.rot = mode;
+      const words = ['birthdays', 'dinner parties', 'host gifts', 'rainy Sunday', 'holidays',
+                     'game days', 'book clubs', 'snow days', 'board game nights', 'thank-you gifts'];
+      const rot = document.createElement('span');
+      rot.className = 'rot';
+      rot.setAttribute('aria-hidden', 'true');
+      const sr = document.createElement('span');
+      sr.className = 'visually-hidden';
+      sr.textContent = 'any occasion.';
+      h1.textContent = 'Gourmet baking made easy for ';
+      h1.append(rot, sr);
+
+      if (mode === 'roll') {
+        const slot = document.createElement('span');
+        slot.className = 'rot-slot';
+        words.concat(words[0]).forEach(w => {
+          const i = document.createElement('i'); i.textContent = w; slot.append(i);
+        });
+        rot.append(slot);
+        let n = 0;
+        setInterval(() => {
+          n++;
+          slot.style.transform = 'translateY(-' + (n * 1.06) + 'em)';
+          if (n === words.length) setTimeout(() => {
+            slot.style.transition = 'none';
+            slot.style.transform = 'translateY(0)';
+            n = 0;
+            requestAnimationFrame(() => requestAnimationFrame(() => slot.style.transition = ''));
+          }, 540);
+        }, 2100);
+        return;
+      }
+
+      // pill and hand both swap one word, so the slot has to hold the widest
+      const word = document.createElement('i');
+      word.textContent = words[0];
+      rot.append(word);
+      const probe = rot.cloneNode(true);
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+      h1.append(probe);
+      let widest = 0;
+      words.forEach(w => {
+        probe.firstChild.textContent = w;
+        widest = Math.max(widest, probe.getBoundingClientRect().width);
+      });
+      probe.remove();
+      // reserve the widest word so the headline never reflows, but never wider
+      // than the column itself or the hero pushes the page sideways
+      rot.style.minWidth = 'min(' + Math.ceil(widest) + 'px, 100%)';
+
+      let n = 0;
+      setInterval(() => {
+        rot.classList.add('out');
+        setTimeout(() => {
+          n = (n + 1) % words.length;
+          word.textContent = words[n];
+          rot.classList.remove('out');
+        }, 300);
+      }, 2100);
+    })();
+
     if (hero === 'static') document.documentElement.dataset.hero = 'static';
     if (bits === 'none') document.documentElement.dataset.bits = 'none';
     if (ww === 'fly') {
