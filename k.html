@@ -78,7 +78,7 @@
     .hero-open { position: relative; background: var(--hero-a); overflow: hidden; display: grid; align-content: center; justify-items: center; gap: 10px; padding: clamp(24px, 3vw, 44px); }
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
 
-    .pouch-area { position: relative; width: 100%; height: clamp(355px, 37.5vw, 460px); display: grid; place-items: center; }
+    .pouch-area { position: relative; width: 100%; height: clamp(380px, 39vw, 462px); display: grid; place-items: center; }
     /* decoration only — without this the cards and the illustration can sit over the
        slider and swallow the drag. */
     .pouch, .bit { pointer-events: none; }
@@ -95,9 +95,9 @@
     .pouch img { width: 100%; height: auto; display: block; }
 
     .bit {
-      position: absolute; left: 50%; top: 42%; z-index: 2;
+      position: absolute; left: 50%; top: 50%; z-index: 2;
       display: grid; place-items: center; text-align: center;
-      width: clamp(76px, 8.2vw, 102px); aspect-ratio: 1; padding: 8px;
+      width: clamp(70px, 7.4vw, 92px); aspect-ratio: 1; padding: 7px;
       font-family: var(--hand); font-size: clamp(15px, 1.5vw, 19px); line-height: 1.1; color: var(--ink);
       background: var(--paper); border-radius: 18px; box-shadow: 0 8px 18px rgba(72,67,65,.14);
       transform:
@@ -277,11 +277,11 @@
       <span class="sticker">Opens soon</span>
       <div class="pouch-area">
         <!-- what's included, drawn the way the back of the pouch draws it -->
-        <span class="bit" style="--dx:-160;--dy:-52;--r:-6"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
-        <span class="bit" style="--dx:-99;--dy:136;--r:4"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
-        <span class="bit" style="--dx:160;--dy:-52;--r:6"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
-        <span class="bit" style="--dx:99;--dy:136;--r:-4"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
-        <span class="bit bit-scoop" style="--dx:0;--dy:-168;--r:0">
+        <span class="bit" style="--dx:-167;--dy:-54;--r:-6"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
+        <span class="bit" style="--dx:-103;--dy:142;--r:4"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
+        <span class="bit" style="--dx:167;--dy:-54;--r:6"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
+        <span class="bit" style="--dx:103;--dy:142;--r:-4"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
+        <span class="bit bit-scoop" style="--dx:0;--dy:-176;--r:0">
           <i class="scoop-art" role="img" aria-label="Water scoop"></i>
         </span>
         <figure class="core">
