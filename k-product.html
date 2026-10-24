@@ -251,8 +251,15 @@
     /* grouped deliberately: the title block reads as one unit, the buy form is an
        action and sits apart, and the two bordered blocks below are separate again. */
     .buybox { display: grid; gap: 0; justify-items: start; }
-    .buybox h1 { margin-bottom: 10px; }
-    .buybox .lede { margin-bottom: 20px; }
+    /* "Meet" rides above the name rather than inside the heading, so the h1 is
+       still just the product */
+    .buybox .meet { font-family: var(--hand); font-size: clamp(21px, 2vw, 26px);
+                    color: var(--muted); margin-bottom: 2px; }
+    .buybox h1 { margin-bottom: 14px; }
+    .buybox .lede + .lede { margin-top: 12px; }
+    .buybox .lede { margin-bottom: 18px; }
+    .buybox .spec-line { font-size: 15px; color: var(--muted); max-width: 48ch;
+                         margin-bottom: 24px; }
     .buybox .price { margin-bottom: 14px; }
     .buybox .kit-facts { margin-bottom: 30px; }
     .buybox .included { margin-top: 30px; }
@@ -440,8 +447,11 @@
       </div>
 
       <div class="buybox">
+        <p class="meet">Meet</p>
         <h1>The Everything</h1>
-        <p class="lede">Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every ingredient sourced and pre-measured.</p>
+        <p class="lede">The friend who turns up for anything. A game night, a dinner party, a bad Tuesday.</p>
+        <p class="lede">She doesn&rsquo;t ask much of you, and she&rsquo;s exactly the same every single time.</p>
+        <p class="spec-line">Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every ingredient sourced and pre-measured.</p>
         <p class="price">$22 <span>a kit &middot; bakes 6</span></p>
         <ul class="kit-facts"><li>Bakes 6</li><li>10 minutes hands-on</li><li>Just add water</li></ul>
 
