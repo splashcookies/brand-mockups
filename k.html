@@ -387,18 +387,14 @@
     /* same rhythm as .panel-copy, so "Shop the kit" sits exactly where
        "See the steps" does rather than on a different uniform gap */
     .kit-copy { display: grid; gap: 0; justify-items: start; padding-right: clamp(0px, 2vw, 28px); }
-    .kit-copy h3 { margin-bottom: 18px; }
+    .kit-copy h3 { margin-bottom: 14px; }
     .kit-copy .meet { font-family: var(--hand); font-weight: 400;
                       font-size: .72em; letter-spacing: 0; margin-right: .12em; }
-    .kit-copy p { margin-bottom: 14px; }
+    .kit-copy p { margin-bottom: 12px; max-width: 38ch; }
     /* the character line leads, the flavours follow as the spec — same order as
        the product page, so the two tell it the same way round */
-    /* the payoff line gets the brand's own hand, because it is the line that is
-       speaking to her rather than describing the product */
-    .kit-copy .turn { font-family: var(--hand); font-size: clamp(20px, 2vw, 27px);
-                      line-height: 1.25; margin-bottom: 18px; max-width: 24ch; }
-    .kit-copy .kit-spec { font-size: 15px; color: var(--pouch-ink); opacity: .72;
-                          margin-top: -4px; margin-bottom: 20px; max-width: 34ch; }
+    .kit-copy .kit-spec { font-size: 15px; color: var(--pouch-ink); opacity: .7;
+                          margin-bottom: 24px; max-width: 36ch; }
     .kit-copy .kit-facts { margin-bottom: 26px; }
     .kit-copy h3 { font-size: clamp(28px, 3.4vw, 44px); }
     .kit-copy p { max-width: 36ch; }
@@ -651,8 +647,7 @@
         <img src="assets/shoot/SPLASH8913.jpg" alt="A finished Everything cookie" width="2500" height="1667">
         <div class="kit-copy">
           <h3><span class="meet">Meet</span> The Everything</h3>
-          <p>Inspired by everything you do where nobody&rsquo;s looking.</p>
-          <p class="turn">You make it look easy. Let something be easy.</p>
+          <p>She&rsquo;s the one who has it handled, before you even ask. Let her make something easy for you.</p>
           <p class="kit-spec">Two chocolates, toffee, caramel, pretzels, oats and dried cherries.</p>
           <ul class="kit-facts"><li>Bakes 6</li><li>10 minutes hands-on</li><li>Just add water</li><li>$22</li></ul>
           <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
