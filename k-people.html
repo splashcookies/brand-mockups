@@ -57,7 +57,9 @@
     .people-head { background: var(--hero-b); padding: var(--sec) 0; }
     .people-head .wrap { display: grid; gap: 0; justify-items: center; text-align: center; }
     .people-head h1 { font-size: clamp(44px, 7vw, 96px); }
-    .people-head .lede { color: var(--muted); max-width: 46ch; margin-top: 16px; }
+    /* balance evens the two lines; a forced <br> here left "here." orphaned */
+    .people-head .lede { color: var(--muted); max-width: 46ch; margin-top: 16px;
+                         text-wrap: balance; }
 
     /* a wall rather than a grid: columns let the tiles keep their own proportions,
        which is how tagged photographs actually arrive */
@@ -88,8 +90,8 @@
     .invite h2 { font-size: clamp(28px, 4.1vw, 50px); max-width: 18ch; text-wrap: balance; }
     .invite p { color: var(--muted); max-width: 44ch; margin-top: 14px; }
     .invite .btn { margin-top: 26px; }
-    .invite .tag { font-family: var(--hand); font-weight: 400; font-size: 1.5em;
-                   line-height: 1; white-space: nowrap; }
+    .tag { font-family: var(--hand); font-weight: 400; font-size: 1.5em;
+           line-height: 1; white-space: nowrap; color: var(--ink); }
     .invite .fine { font-family: var(--hand); font-size: 19px; margin-top: 16px; }
     @media (max-width: 560px) { .invite-card { transform: none; box-shadow: 6px 7px 0 rgba(72,67,65,.14); } }
     @media (prefers-reduced-motion: reduce) { .invite-card { transform: none; } }
@@ -133,7 +135,8 @@
     <section class="people-head">
       <div class="wrap">
         <h1>Our people</h1>
-        <p class="lede">Everyone who has had their hands in the bowl. Tag us and you land on the wall.</p>
+        <p class="lede">Everyone who has had their hands in the bowl.
+           Tag us or hashtag <b class="tag">#MakeASplash</b> for a chance to be featured here.</p>
       </div>
     </section>
 
@@ -213,7 +216,7 @@
         <div class="invite-card">
           <span class="sticker">Send yours</span>
           <h2>We would rather show you than us.</h2>
-          <p>Tag us or hashtag <b class="tag">#MakeASplash</b> for a chance to be featured here.</p>
+          <p>Tag us or <b class="tag">#MakeASplash</b> and we will put you on this wall.</p>
           <a class="btn" href="k-product.html">Get the kit <span aria-hidden="true">&rarr;</span></a>
           <p class="fine">Mockup &mdash; the wall mixes real photographs with empty slots waiting to be filled.</p>
         </div>
