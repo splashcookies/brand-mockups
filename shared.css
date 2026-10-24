@@ -24,6 +24,10 @@ a { color: inherit; }
 .logo, .ill { display: inline-block; background-color: currentColor;
   mask: var(--m) center / contain no-repeat; -webkit-mask: var(--m) center / contain no-repeat;
   mask-size: contain; -webkit-mask-size: contain; }
+/* WARNING: logo-primary.png is cropped in the source file. Its ink runs to x=1599 of a
+   1600px canvas with 406 ink pixels in the final column, so the H is sliced off and no
+   CSS can recover it. Use logo-textured / logo-flat / logo-flat-banner, which all carry
+   a clean 7-8px margin. Kept here only so existing references do not break. */
 .logo-primary { --m: url(assets/logo-primary.png); aspect-ratio: 1872 / 903; }
 .logo-flat-banner { --m: url(assets/logo-flat-banner.png); aspect-ratio: 1168 / 506; }
 .logo-flat { --m: url(assets/logo-flat.png); aspect-ratio: 1070 / 392; }
