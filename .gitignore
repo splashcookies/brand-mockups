@@ -1,8 +1,21 @@
 node_modules
 
-# Brand shoot photography — local review only, never publish.
-# This repo is public and serves GitHub Pages.
-assets/shoot/
+# Brand shoot photography. This repo is public and serves GitHub Pages, so only
+# the frames an actual page displays are allowed through — everything else in the
+# folder stays local. Note the trailing /* : with "assets/shoot/" git never looks
+# inside the folder and the negations below would be ignored.
+assets/shoot/*
+!assets/shoot/SPLASH8566.jpg
+!assets/shoot/SPLASH8586.jpg
+!assets/shoot/SPLASH8659.jpg
+!assets/shoot/SPLASH8820.jpg
+!assets/shoot/SPLASH8902.jpg
+!assets/shoot/SPLASH8913.jpg
+!assets/shoot/SPLASH9216.jpg
+!assets/shoot/everything-illustration.png
+!assets/shoot/logo-full-textured.png
+!assets/shoot/logo-full-white.png
+!assets/shoot/pouch-back.jpg
 _picker.html
 assets/_all
 _measure.html

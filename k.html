@@ -93,17 +93,34 @@
     /* decoration only — without this the cards and the illustration can sit over the
        slider and swallow the drag. */
     .pouch, .bit { pointer-events: none; }
-    .pouch, .bit, .core { will-change: transform, opacity; }
+    .pouch, .bit, .hero-photo { will-change: transform, opacity; }
     /* she carries the closed state and hands off to the kit as it opens */
     .pouch { position: relative; width: clamp(350px, 50vw, 640px); z-index: 3;
              opacity: calc(1 - var(--t) * 1.15); }
-    /* the payoff, revealed in the middle of the ring */
-    .core { position: absolute; left: 50%; top: 50%; margin: 0; z-index: 2;
-            width: clamp(116px, 14vw, 172px); aspect-ratio: 1; border-radius: 50%; overflow: hidden;
-            transform: translate(-50%, -50%) scale(calc(.72 + .28 * var(--t)));
-            opacity: clamp(0, calc(var(--t) * 1.6 - .45), 1);
-            box-shadow: 0 14px 30px rgba(72,67,65,.18); }
-    .core img { width: 100%; height: 100%; object-fit: cover; }
+    /* The payoff fills the whole panel rather than a circle in the middle: the sage
+       ground gives way to the photograph as you pull. It arrives late and a little
+       faster than the pull, so the cards have landed before the floor drops away.
+       The wash on top is what keeps the hand-lettering and the track legible once
+       the photo is under them. */
+    .hero-photo {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url(assets/shoot/SPLASH9216.jpg);
+      background-size: cover; background-position: center;
+      opacity: clamp(0, calc(var(--t) * 1.7 - .5), 1);
+      transform: scale(calc(1.06 - .06 * var(--t)));
+    }
+    /* A flat wash would mute the photo everywhere. This one is nearly clear across
+       the top, where the cards sit on their own white, and builds to almost solid
+       at the foot, where the hand-lettering and the track need a ground to read on. */
+    .hero-photo::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        color-mix(in srgb, var(--hero-a) 18%, transparent) 0%,
+        color-mix(in srgb, var(--hero-a) 18%, transparent) 46%,
+        color-mix(in srgb, var(--hero-a) 62%, transparent) 70%,
+        var(--hero-a) 84%,
+        var(--hero-a) 100%);
+    }
     .pouch img { width: 100%; height: auto; display: block; }
 
     .bit {
@@ -180,6 +197,13 @@
          sides. Shrink the radius with the viewport and bring her width down to match. */
       .pouch-area { --ring: clamp(.5, calc((100vw - 120px) / 340px), 1); }
       .pouch { width: clamp(260px, 62vw, 640px); }
+      /* the stacked panel is shorter, so the solid foot has to start sooner */
+      .hero-photo::after { background: linear-gradient(to bottom,
+        color-mix(in srgb, var(--hero-a) 18%, transparent) 0%,
+        color-mix(in srgb, var(--hero-a) 18%, transparent) 40%,
+        color-mix(in srgb, var(--hero-a) 62%, transparent) 62%,
+        var(--hero-a) 76%,
+        var(--hero-a) 100%); }
     }
 
     /* hand-lettered icon strip */
@@ -327,6 +351,8 @@
 
   <section class="hero">
     <div class="hero-open" id="stage">
+      <!-- the payoff: the panel itself becomes the photo as you pull -->
+      <div class="hero-photo" role="img" aria-label="Six baked Everything cookies cooling on a rack"></div>
       <div class="pouch-area">
         <!-- what's included, drawn the way the back of the pouch draws it -->
         <span class="bit" style="--dx:-167;--dy:-54;--r:-6"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
@@ -336,9 +362,6 @@
         <span class="bit bit-scoop" style="--dx:0;--dy:-176;--r:0">
           <i class="scoop-art" role="img" aria-label="Water scoop"></i>
         </span>
-        <figure class="core">
-          <img src="assets/shoot/SPLASH9216.jpg" alt="Six baked Everything cookies cooling on a rack" width="2500" height="1667">
-        </figure>
         <div class="pouch">
           <img src="assets/shoot/everything-illustration.png" alt="The Everything cookie, carried in" width="4428" height="3539">
         </div>
