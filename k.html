@@ -25,7 +25,7 @@
       --surface: #f4f8f4;      /* cards and the steps band      */
       --hero-a: #e4ede6;       /* hero, left                    */
       --hero-b: #edf4f6;       /* hero, right                   */
-      --band-1: #eaf2f4;       /* announce, blue panel, news    */
+      --band-1: #eaf2f4;       /* blue panel, newsletter       */
       --band-2: #e4ede6;       /* pink panel, the "us" column   */
       --band-3: #d6e6da;       /* the comparison band           */
       --cta: #484341;          /* primary button                */
@@ -46,9 +46,7 @@
     .link { font-weight: 700; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
     .link:hover { text-decoration: underline; }
     .sticker { font-family: var(--hand); font-size: 20px; line-height: 1; padding: 10px 14px; background: var(--accent); border-radius: 999px; display: inline-block; transform: rotate(-6deg); }
-    .hero-open .sticker { background: var(--accent-soft); }
 
-    .announce { background: var(--band-1); text-align: center; padding: 9px 16px; font-size: 14px; font-weight: 600; }
     .nav { background: var(--paper); border-bottom: 1px solid var(--rule); }
     .nav .wrap { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 20px; padding: 16px 0; }
     .nav-links { display: flex; gap: 26px; font-weight: 600; font-size: 15px; }
@@ -188,7 +186,13 @@
     .panel.pink .panel-img { order: 2; }
     .panel-img img { border-radius: 16px; aspect-ratio: 4 / 3; object-fit: cover; width: 100%; transform: rotate(2deg); box-shadow: 0 22px 50px rgba(72,67,65,.16); }
     .panel.pink .panel-img img { transform: rotate(-2.5deg); aspect-ratio: 3 / 4; }
-    .panel-copy { display: grid; gap: 14px; justify-items: start; }
+    /* a single uniform gap gave the heading, body, note and link identical
+       spacing, so nothing read as belonging to anything. The note is a kicker
+       on the paragraph and hugs it; the link is a separate action and sits apart. */
+    .panel-copy { display: grid; gap: 0; justify-items: start; }
+    .panel-copy h2 { margin-bottom: 18px; }
+    .panel-copy .note { margin-top: 10px; }
+    .panel-copy .link { margin-top: 26px; }
     .panel h2 { font-size: clamp(28px, 3.8vw, 50px); max-width: 15ch; }
     .panel p { max-width: 44ch; }
     .panel .note { font-family: var(--hand); font-size: 22px; }
@@ -244,8 +248,10 @@
     .news { background: var(--band-1); padding: clamp(48px, 7vw, 90px) 0; }
     .news .wrap { display: grid; gap: 18px; justify-items: center; text-align: center; }
     .news h2 { font-size: clamp(30px, 4.5vw, 56px); max-width: 18ch; }
-    .news form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 560px; }
-    .news input { flex: 1 1 240px; min-height: 48px; padding: 0 18px; border: 2px solid var(--ink); background: var(--paper); font: inherit; border-radius: 999px; }
+    .news form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 700px; }
+    .news input { min-height: 48px; padding: 0 18px; border: 2px solid var(--ink); background: var(--paper); font: inherit; border-radius: 999px; }
+    .news input[type="text"] { flex: 1 1 150px; }
+    .news input[type="email"] { flex: 1.6 1 220px; }
     .news [data-status] { font-family: var(--hand); font-size: 21px; min-height: 1.4em; }
 
     .foot { background: var(--ink); color: var(--surface); padding: 56px 0 24px; }
@@ -260,8 +266,6 @@
 </head>
 <body data-option="k">
 
-  <div class="announce">Free shipping on your first kit &middot; Pre-measured in Chicago &middot; Baked at yours</div>
-
   <header class="nav">
     <div class="wrap">
       <nav class="nav-links"><a href="#shelf">Kits</a><a href="#how">How it works</a><a href="#story">Our story</a><a href="#">Gifting</a></nav>
@@ -275,7 +279,6 @@
 
   <section class="hero">
     <div class="hero-open" id="stage">
-      <span class="sticker">Opens soon</span>
       <div class="pouch-area">
         <!-- what's included, drawn the way the back of the pouch draws it -->
         <span class="bit" style="--dx:-167;--dy:-54;--r:-6"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
@@ -414,6 +417,8 @@
       <span class="sticker">Nearly there</span>
       <h2>First in line when the kits go up.</h2>
       <form>
+        <label class="visually-hidden" for="first-name">First name</label>
+        <input id="first-name" name="first_name" type="text" autocomplete="given-name" placeholder="First name">
         <label class="visually-hidden" for="email">Email address</label>
         <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
         <button class="btn" type="submit">Get on the list</button>
