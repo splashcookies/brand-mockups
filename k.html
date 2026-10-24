@@ -206,6 +206,44 @@
         var(--hero-a) 100%); }
     }
 
+    /* ===== hero variants, so the directions can be compared rather than argued =====
+       ?bits=row     the five components stand in a line along the top of the panel
+                     instead of ringing the cookies, so nothing sits on the food
+       ?hero=static  the photograph is just there — no pull, no slider — and Wonder
+                     Woman leaves the hero for a band of her own further down
+       They compose. With neither attribute set the page is exactly as it was. */
+
+    /* A line pinned to the top of the panel. Anchoring to top:0 rather than the
+       centre keeps the row at the top whatever height the panel takes, instead of
+       drifting down onto the cookies as the panel grows. --dx is rewritten in JS,
+       because the ring values are inline on each card and inline beats a rule. */
+    [data-bits="row"] .pouch-area { position: static; }
+    [data-bits="row"] .bit {
+      top: clamp(16px, 2.6vw, 34px);
+      transform:
+        translate(-50%, 0)
+        translate(calc(var(--dx) * var(--ring, 1) * 1px), calc((1 - var(--t)) * -18px))
+        rotate(calc(var(--r) * 1deg))
+        scale(calc(.84 + .16 * var(--t)));
+    }
+
+    /* no control at the foot, so the photo does not need a ground to protect */
+    [data-hero="static"] .pull,
+    [data-hero="static"] .pouch { display: none; }
+    [data-hero="static"] .hero-photo::after {
+      background: color-mix(in srgb, var(--hero-a) 14%, transparent); }
+
+    .ww-band { display: none; }
+    [data-hero="static"] .ww-band { display: block; background: var(--band-2);
+                                    padding: clamp(36px, 5vw, 76px) 0; }
+    .ww-band .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+                     gap: clamp(24px, 4vw, 60px); align-items: center; }
+    .ww-band img { width: 100%; height: auto; display: block; }
+    .ww-band h2 { font-size: clamp(28px, 3.6vw, 50px); max-width: 13ch; }
+    .ww-band p { max-width: 36ch; margin-top: 16px; }
+    .ww-band .note { font-family: var(--hand); font-size: 22px; margin-top: 18px; }
+    @media (max-width: 760px) { .ww-band .wrap { grid-template-columns: 1fr; } }
+
     /* hand-lettered icon strip */
     .strip { background: var(--paper); border-bottom: 1px solid var(--rule); overflow: hidden; }
     .strip ul { list-style: none; margin: 0; padding: 12px 0; display: flex; gap: 56px; width: max-content; animation: slide 44s linear infinite; font-family: var(--hand); font-size: 22px; }
@@ -411,6 +449,18 @@
     </div>
   </section>
 
+  <!-- Only shown by ?hero=static, where she has left the hero and needs a home -->
+  <section class="ww-band" id="ww">
+    <div class="wrap">
+      <img src="assets/shoot/everything-illustration.png" alt="The Everything cookie, carried in" width="4428" height="3539">
+      <div>
+        <h2>Show up with warm cookies.</h2>
+        <p>Not a tray you bought on the way. Six of them, out of your own oven, from two pouches and one scoop of water.</p>
+        <p class="note">Nobody has to know how easy it was.</p>
+      </div>
+    </div>
+  </section>
+
   <div class="wrap">
     <div class="panels">
       <section class="panel blue">
@@ -512,12 +562,37 @@
   </footer>
 
   <script>
+  // Hero variants for review: ?bits=row and ?hero=static (they compose).
+  // Set before anything paints so the page never flashes the default first.
+  (function () {
+    const q = new URLSearchParams(location.search);
+    const bits = q.get('bits'), hero = q.get('hero');
+    if (hero === 'static') document.documentElement.dataset.hero = 'static';
+    if (bits === 'row') {
+      document.documentElement.dataset.bits = 'row';
+      // even spacing along the line, in DOM order: dry, wet, parchment, gloves, scoop
+      const dx = [-214, -107, 107, 214, 0], r = [-3, 2, -2, 3, 0];
+      document.querySelectorAll('.bit').forEach((el, i) => {
+        el.style.setProperty('--dx', dx[i]);
+        el.style.setProperty('--r', r[i]);
+      });
+    }
+  })();
+
   (function () {
     const stage = document.getElementById('stage');
     const range = document.getElementById('tear');
     const label = document.getElementById('pull-label');
     const justopen = document.getElementById('justopen');
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+    // In the static variant there is no control to drive --t, so pin it open and
+    // leave the rest of this alone.
+    if (document.documentElement.dataset.hero === 'static') {
+      stage.style.setProperty('--t', '1');
+      document.querySelector('.hero-copy').style.setProperty('--t', '1');
+      return;
+    }
 
     function set(v) {
       const t = Math.max(0, Math.min(1, v / 100));
