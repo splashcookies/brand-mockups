@@ -419,14 +419,32 @@
 
 
     /* newsletter */
-    .news { background: var(--band-1); padding: var(--sec) 0; }
-    .news .wrap { display: grid; gap: 18px; justify-items: center; text-align: center; }
-    .news h2 { font-size: clamp(30px, 4.5vw, 56px); max-width: 18ch; }
-    .news form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 700px; }
-    .news input { min-height: 48px; padding: 0 18px; border: 2px solid var(--ink); background: var(--paper); font: inherit; border-radius: 999px; }
+    /* The last thing anyone sees, so it stops being the palest band on the page and
+       becomes the one warm block — the job the ticker used to do before it went.
+       The form sits on a card pinned to the peach, which is the brand's own
+       sticker logic rather than another centred box on another tint. */
+    .news { background: var(--accent); padding: var(--sec) 0; }
+    .news .wrap { display: grid; justify-items: center; }
+    .news-card { background: var(--paper); border: 2px solid var(--ink); border-radius: 30px;
+                 padding: clamp(28px, 4vw, 52px) clamp(22px, 4vw, 56px);
+                 width: min(880px, 100%); display: grid; gap: 0; justify-items: center;
+                 text-align: center; position: relative; transform: rotate(-.7deg);
+                 box-shadow: 10px 12px 0 rgba(72,67,65,.14); }
+    /* the sticker rides the card's corner rather than floating above the heading */
+    .news-card .sticker { position: absolute; top: -18px; left: clamp(18px, 5vw, 54px);
+                          border: 2px solid var(--ink); transform: rotate(-7deg); }
+    .news h2 { font-size: clamp(28px, 4.1vw, 52px); max-width: 17ch; text-wrap: balance; }
+    .news .why { color: var(--muted); max-width: 44ch; margin-top: 14px; }
+    .news form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+                 width: 100%; max-width: 660px; margin-top: 26px; }
+    .news input { min-height: 50px; padding: 0 18px; border: 2px solid var(--ink); background: var(--paper); font: inherit; border-radius: 999px; }
     .news input[type="text"] { flex: 1 1 150px; }
     .news input[type="email"] { flex: 1.6 1 220px; }
-    .news [data-status] { font-family: var(--hand); font-size: 21px; min-height: 1.4em; }
+    .news .fine { font-family: var(--hand); font-size: 19px; color: var(--muted); margin-top: 16px; }
+    .news [data-status] { font-family: var(--hand); font-size: 21px; min-height: 1.4em; margin-top: 10px; }
+    /* straighten up where a tilt would just look like a mistake */
+    @media (max-width: 560px) { .news-card { transform: none; box-shadow: 6px 7px 0 rgba(72,67,65,.14); } }
+    @media (prefers-reduced-motion: reduce) { .news-card { transform: none; } }
 
     .foot { background: var(--ink); color: var(--surface); padding: 56px 0 24px; }
     .foot .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; }
@@ -615,16 +633,20 @@
 
   <section class="news" id="news">
     <div class="wrap">
-      <span class="sticker">Nearly there</span>
-      <h2>Stay in the know.</h2>
-      <form>
-        <label class="visually-hidden" for="first-name">First name</label>
-        <input id="first-name" name="first_name" type="text" autocomplete="given-name" placeholder="First name">
-        <label class="visually-hidden" for="email">Email address</label>
-        <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-        <button class="btn" type="submit">Get on the list</button>
-      </form>
-      <p data-status role="status"></p>
+      <div class="news-card">
+        <span class="sticker">Nearly there</span>
+        <h2>Know when the next one lands.</h2>
+        <p class="why">Michele is on batch forty-something. We&rsquo;ll write when it comes out the same every time.</p>
+        <form>
+          <label class="visually-hidden" for="first-name">First name</label>
+          <input id="first-name" name="first_name" type="text" autocomplete="given-name" placeholder="First name">
+          <label class="visually-hidden" for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <button class="btn" type="submit">Get on the list</button>
+        </form>
+        <p class="fine">One email when there is something to say. Nothing else.</p>
+        <p data-status role="status"></p>
+      </div>
     </div>
   </section>
 
