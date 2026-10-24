@@ -32,6 +32,9 @@
       --cta-ink: #f4f8f4;      /* text on it                    */
       --hand: 'Patrick Hand SC', 'Figtree', sans-serif;
       --t: 0;              /* reveal progress 0 → 1 */
+      /* every band's vertical padding. Where two bands meet you get two of
+         these, so the rhythm down the page stays even. */
+      --sec: clamp(40px, 5.6vw, 78px);
       --w: 1240px;
     }
     body { background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.55; }
@@ -239,7 +242,7 @@
 
     .ww-band { display: none; }
     [data-hero="static"] .ww-band { display: block; background: var(--band-2);
-                                    padding: clamp(36px, 5vw, 76px) 0; }
+                                    padding: var(--sec) 0; }
     .ww-band .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
                      gap: clamp(24px, 4vw, 60px); align-items: center; }
     .ww-band img { width: 100%; height: auto; display: block; }
@@ -319,7 +322,7 @@
     .cut p { max-width: 52ch; margin: 18px auto 0; }
 
     /* story panels */
-    .panels { display: grid; gap: 30px; padding: 0 0 clamp(40px, 6vw, 80px); }
+    .panels { display: grid; gap: 30px; padding: var(--sec) 0; }
     .panel { border-radius: 28px; padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
     .panel.blue { background: var(--band-1); }
     .panel.pink { background: var(--band-2); }
@@ -340,7 +343,7 @@
     @media (max-width: 860px) { .panel { grid-template-columns: 1fr; } .panel.pink .panel-img { order: 0; } }
 
     /* the five steps, as the pouch lists them */
-    .steps { background: var(--surface); padding: clamp(44px, 6.5vw, 92px) 0; }
+    .steps { background: var(--surface); padding: var(--sec) 0; }
     .steps h2 { text-align: center; font-size: clamp(30px, 4.4vw, 54px); margin-bottom: 8px; }
     .steps > .wrap > p { text-align: center; max-width: 46ch; margin: 0 auto clamp(28px, 4vw, 44px); color: var(--muted); }
     .step-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
@@ -353,7 +356,7 @@
     @media (max-width: 520px) { .step-grid { grid-template-columns: 1fr; } }
 
     /* compare */
-    .compare { background: var(--band-3); padding: clamp(48px, 7vw, 100px) 0; }
+    .compare { background: var(--band-3); padding: var(--sec) 0; }
     .compare h2 { text-align: center; font-size: clamp(30px, 4.5vw, 56px); margin-bottom: 30px; }
     .table-wrap { overflow-x: auto; background: var(--paper); border-radius: 20px; padding: 8px; }
     table { width: 100%; border-collapse: collapse; min-width: 620px; font-size: 15px; }
@@ -377,7 +380,7 @@
     @media (max-width: 760px) { .bigquote .peek { display: none; } }
 
     /* reviews */
-    .reviews { padding: clamp(40px, 6vw, 80px) 0; }
+    .reviews { padding: var(--sec) 0; }
     .reviews .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .review { border: 1.5px solid var(--ink); border-radius: 20px; padding: 24px; display: grid; gap: 10px; }
     .review .stars { font-family: var(--hand); font-size: 22px; letter-spacing: 2px; }
@@ -389,7 +392,7 @@
        here than it did there: the hero no longer shows the components, so this is
        where the five of them are actually seen. The captions add to the drawings'
        own hand-lettering rather than repeating it. */
-    .box { background: var(--surface); padding: clamp(44px, 6vw, 88px) 0; }
+    .box { background: var(--surface); padding: var(--sec) 0; }
     .box .wrap { display: grid; gap: 0; justify-items: center; text-align: center; }
     .box h2 { font-size: clamp(30px, 4.2vw, 54px); max-width: 18ch; }
     .box .lede { color: var(--muted); margin-top: 12px; margin-bottom: clamp(30px, 4vw, 54px); }
@@ -405,7 +408,7 @@
 
     /* "Good for a Tuesday" — from Kitchen party. The pills cycle through the role
        tokens rather than fixed pastels, so they recolour with every theme. */
-    .occasions { background: var(--band-2); padding: clamp(44px, 6vw, 88px) 0; }
+    .occasions { background: var(--band-2); padding: var(--sec) 0; }
     .occasions .wrap { display: grid; gap: 0; justify-items: center; text-align: center; }
     .occasions h2 { font-size: clamp(30px, 4.2vw, 54px); max-width: 17ch; }
     .occasions .lede { color: var(--muted); max-width: 46ch; margin-top: 12px;
@@ -416,7 +419,7 @@
 
 
     /* newsletter */
-    .news { background: var(--band-1); padding: clamp(48px, 7vw, 90px) 0; }
+    .news { background: var(--band-1); padding: var(--sec) 0; }
     .news .wrap { display: grid; gap: 18px; justify-items: center; text-align: center; }
     .news h2 { font-size: clamp(30px, 4.5vw, 56px); max-width: 18ch; }
     .news form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 700px; }
