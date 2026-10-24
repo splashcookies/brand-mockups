@@ -227,6 +227,10 @@
         scale(calc(.84 + .16 * var(--t)));
     }
 
+    /* nothing laid over the photograph at all; the components are named by the kit
+       card and the product page instead */
+    [data-bits="none"] .bit { display: none; }
+
     /* no control at the foot, so the photo does not need a ground to protect */
     [data-hero="static"] .pull,
     [data-hero="static"] .pouch { display: none; }
@@ -568,6 +572,7 @@
     const q = new URLSearchParams(location.search);
     const bits = q.get('bits'), hero = q.get('hero');
     if (hero === 'static') document.documentElement.dataset.hero = 'static';
+    if (bits === 'none') document.documentElement.dataset.bits = 'none';
     if (bits === 'row') {
       document.documentElement.dataset.bits = 'row';
       // even spacing along the line, in DOM order: dry, wet, parchment, gloves, scoop
