@@ -1,7 +1,10 @@
 // Injects the option switcher and wires the number-key shortcuts. Each mockup is its own page.
 (function () {
   const OPTIONS = [
-    { key: 'k', file: 'k.html', round: 5, name: 'The counter', desc: 'The merge of your two favourites: Bakery counter\u2019s light, shoppable, photo-led world, with the tear-open pouch as the living half of its two-panel hero. Real Everything photography, packaging-accurate copy, and hand-lettering kept as a system.' },
+    // Round 5 is one page with three hero treatments, switched by query string.
+    { key: 'k', file: 'k.html', bits: '', hero: '', round: 5, name: 'The counter \u2014 ring', desc: 'The kit components ring the cookies and are revealed by pulling. The original: the most interactive, but the cards sit on top of the food.' },
+    { key: 'k', file: 'k.html?bits=row', bits: 'row', hero: '', round: 5, name: 'The counter \u2014 row', desc: 'The same pull, but the five components stand in a line along the top of the panel, so the photograph of the six cookies is never covered. Wonder Woman still carries the closed state.' },
+    { key: 'k', file: 'k.html?bits=row&hero=static', bits: 'row', hero: 'static', round: 5, name: 'The counter \u2014 photo hero', desc: 'No pull at all: the photograph is simply there, with the components along the top. Wonder Woman moves to a band of her own below the kit card. The calmest hero, at the cost of the page\u2019s one real interaction.' },
     { key: 'h', file: 'h.html', round: 4, name: 'The bake', desc: 'Scroll position is oven time. A pinned stage takes the cookie from raw dough through the oven to done as you move down the page, the cavity glowing up around it, with the clock and the temperature counting alongside. Figtree only \u2014 the risk is all in the mechanic.' },
     { key: 'i', file: 'i.html', round: 4, name: "Michele's notebook", desc: 'The whole site as her test-kitchen book: ruled paper, taped photos, marker arrows, sticky notes. The signature is the batch log \u2014 forty-seven attempts, forty-six crossed out, the last one circled. Adds Caveat.' },
     { key: 'j', file: 'j.html', round: 4, name: 'Tear it open', desc: 'The hero is a sealed pouch you pull apart; the contents spill out and name themselves. Built on a range input, so it drags, takes arrow keys and announces itself rather than being a mouse-only stunt.' },
@@ -13,17 +16,25 @@
     { key: 'b', file: 'b.html', round: 2, name: 'Bakery counter', desc: 'Levain + Deux. Shoppable and photo-led: icon ticker, tilted photos on pink and blue panels, kit vs box mix table, big quote.' },
     { key: 'c', file: 'c.html', round: 2, name: 'The drop', desc: 'Last Crumb + Fly By Jing. Chocolate ground, countdown to the drop, poster-size manifesto, one loud peach family section.' }
   ];
+  // Several options can share a page and differ only by query string, so the
+  // current one is matched on the variant params too, not the file alone.
+  const sp = new URLSearchParams(location.search);
+  const curBits = sp.get('bits') || '', curHero = sp.get('hero') || '';
   const current = document.body.dataset.option || OPTIONS[0].key;
-  const me = OPTIONS.find(o => o.key === current) || OPTIONS[0];
+  const me = OPTIONS.find(o => o.key === current && (o.bits || '') === curBits && (o.hero || '') === curHero)
+          || OPTIONS.find(o => o.key === current) || OPTIONS[0];
   const group = OPTIONS.filter(o => o.round === me.round);
   const pos = group.indexOf(me) + 1;
+
+  // one key per option, in order; anything past the list is click-only
+  const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-'];
 
   let segInner = '';
   let lastRound = null;
   OPTIONS.forEach((o, i) => {
     if (o.round !== lastRound) { segInner += '<span class="seg-label">Round ' + o.round + '</span>'; lastRound = o.round; }
     segInner += '<a href="' + o.file + '"' + (o === me ? ' aria-current="page"' : '') +
-      '><b>' + (i === 10 ? '-' : (i + 1) % 10) + '</b><span class="nm">' + o.name + '</span></a>';
+      '><b>' + (KEYS[i] || '·') + '</b><span class="nm">' + o.name + '</span></a>';
   });
 
   const bar = document.createElement('div');
@@ -33,7 +44,7 @@
     '<p class="switcher-about" title="' + me.desc.replace(/"/g, '&quot;') + '"><strong>Round ' + me.round + ' \u00b7 ' + pos + '/' + group.length + ' \u00b7 ' + me.name + '</strong>' + me.desc + '</p>' +
     '<div class="switcher-bar">' +
       '<nav class="seg" aria-label="Design options">' + segInner + '</nav>' +
-      '<p class="switcher-hint">Press <kbd>1</kbd>–<kbd>' + (OPTIONS.length >= 10 ? '0' : OPTIONS.length) + '</kbd> to switch · <a href="v1/">first round</a> · <a href="https://github.com/splashcookies/brand-mockups">repo</a></p>' +
+      '<p class="switcher-hint">Press <kbd>' + KEYS[0] + '</kbd>–<kbd>' + KEYS[Math.min(KEYS.length, OPTIONS.length) - 1] + '</kbd> to switch · <a href="v1/">first round</a> · <a href="https://github.com/splashcookies/brand-mockups">repo</a></p>' +
     '</div>' +
     '</div>';
   document.body.appendChild(bar);
@@ -79,9 +90,8 @@
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const t = e.target; if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
-    if (!/^[0-9-]$/.test(e.key)) return;
-    const n = e.key === '0' ? 10 : e.key === '-' ? 11 : parseInt(e.key, 10);   // 0 and - reach the last two
-    if (n >= 1 && n <= OPTIONS.length && OPTIONS[n - 1] !== me) location.href = OPTIONS[n - 1].file;
+    const n = KEYS.indexOf(e.key);
+    if (n >= 0 && n < OPTIONS.length && OPTIONS[n] !== me) location.href = OPTIONS[n].file;
   });
 
   // mock forms only confirm
