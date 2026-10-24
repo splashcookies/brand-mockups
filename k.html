@@ -286,7 +286,7 @@
     @keyframes slide { to { transform: translateX(-50%); } }
 
     /* the shelf */
-    .favs { padding: clamp(40px, 6vw, 72px) 0 30px; }
+    .favs { padding: var(--sec) 0; }
     .favs-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 22px; }
     .favs h2 { font-size: 28px; }
     .kit { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(22px, 4vw, 56px); align-items: center;
@@ -489,6 +489,24 @@
     </div>
   </section>
 
+
+  <section class="favs" id="shelf">
+    <div class="wrap">
+      <div class="favs-head">
+        <h2>The kit</h2>
+        <a class="link" href="k-shop.html">All kits <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <a class="kit" href="k-product.html">
+        <img src="assets/shoot/SPLASH8913.jpg" alt="A finished Everything cookie" width="2500" height="1667">
+        <div class="kit-copy">
+          <h3>The Everything</h3>
+          <p>Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every ingredient sourced and pre-measured.</p>
+          <ul class="kit-facts"><li>Bakes 6</li><li>Just add water</li><li>$22</li></ul>
+          <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+    </div>
+  </section>
 
   <section class="box" id="box">
     <div class="wrap">
