@@ -265,11 +265,8 @@
     /* Two logo files exist, one dark-on-light and one light-on-dark, and a dark
        theme needs them the other way round in both places: the header goes dark,
        but the footer is painted in --ink and so becomes the light surface. */
-    /* The peach band and the peach pill stay light in a dark theme, so the text on
-       them has to flip the other way — --ink is the light colour there. */
-    [data-mode="dark"] .strip { color: var(--cta-ink); }
-    [data-mode="dark"] .strip .chip { background: var(--cta-ink); border-color: var(--cta-ink); }
-    [data-mode="dark"] .strip .ill { color: var(--accent); }
+    /* The peach pill stays light in a dark theme while --ink becomes the light
+       colour, so the text on that one has to flip the other way. */
     [data-mode="dark"] .tags span:nth-child(5n+3) { color: var(--cta-ink); border-color: var(--cta-ink); }
 
     [data-mode="dark"] .brand img { content: url(assets/shoot/logo-full-white.png); }
@@ -282,20 +279,10 @@
     [data-ww="fly"] .pouch { display: none; }
 
     /* hand-lettered icon strip */
-    /* Ticker, with each mark in its own circle on a colour band — from Kitchen party.
-       The icon needs the wrapper: .ill is itself the artwork (a mask painted in
-       currentColor), so a background on it would be covered by the mask, not show
-       behind it. */
-    .strip { background: var(--accent); border-top: 2px solid var(--ink);
-             border-bottom: 2px solid var(--ink); overflow: hidden; }
-    .strip ul { list-style: none; margin: 0; padding: 14px 0; display: flex; gap: 46px;
-                width: max-content; animation: slide 44s linear infinite;
-                font-weight: 700; font-size: 19px; }
-    .strip li { display: flex; align-items: center; gap: 14px; }
-    .strip .chip { width: 52px; height: 52px; flex: none; border-radius: 50%;
-                   background: var(--paper); border: 2px solid var(--ink);
-                   display: grid; place-items: center; }
-    .strip .ill { height: 30px; color: var(--ink); }
+    .strip { background: var(--paper); border-bottom: 1px solid var(--rule); overflow: hidden; }
+    .strip ul { list-style: none; margin: 0; padding: 12px 0; display: flex; gap: 56px; width: max-content; animation: slide 44s linear infinite; font-family: var(--hand); font-size: 22px; }
+    .strip li { display: flex; align-items: center; gap: 12px; }
+    .strip .ill { height: 34px; color: var(--ink); }
     @keyframes slide { to { transform: translateX(-50%); } }
 
     /* the shelf */
@@ -505,8 +492,8 @@
 
   <div class="strip" aria-hidden="true">
     <ul>
-      <li><i class="chip"><span class="ill ill-wet"></span></i>Premium ingredients</li><li><i class="chip"><span class="ill ill-dry"></span></i>Pre-measured by us, baked by you</li><li><i class="chip"><span class="ill ill-water"></span></i>Just add water</li><li><i class="chip"><span class="ill ill-gloves"></span></i>No mess</li><li><i class="chip"><span class="ill ill-parchment"></span></i>Patent pending</li>
-      <li><i class="chip"><span class="ill ill-wet"></span></i>Premium ingredients</li><li><i class="chip"><span class="ill ill-dry"></span></i>Pre-measured by us, baked by you</li><li><i class="chip"><span class="ill ill-water"></span></i>Just add water</li><li><i class="chip"><span class="ill ill-gloves"></span></i>No mess</li><li><i class="chip"><span class="ill ill-parchment"></span></i>Patent pending</li>
+      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured by us, baked by you</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-parchment"></span>Patent pending</li>
+      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured by us, baked by you</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-parchment"></span>Patent pending</li>
     </ul>
   </div>
 
