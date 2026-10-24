@@ -35,6 +35,13 @@
       /* every band's vertical padding. Where two bands meet you get two of
          these, so the rhythm down the page stays even. */
       --sec: clamp(40px, 5.6vw, 78px);
+      /* The pouch's own ground, sampled off the back-of-pouch print file. It sits
+         outside the theme tokens on purpose: the packaging is one colour whatever
+         the page is themed to, so the card carries its own ink and chip colours
+         too and stays legible on the dark themes. */
+      --pouch: #f8cc98;
+      --pouch-ink: #484341;
+      --pouch-chip: #fffaf2;
       --w: 1240px;
     }
     body { background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.55; }
@@ -305,7 +312,10 @@
     .favs-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 22px; }
     .favs h2 { font-size: 28px; }
     .kit { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(22px, 4vw, 56px); align-items: center;
-           background: var(--accent-soft); border-radius: 28px; padding: clamp(28px, 5vw, 64px); text-decoration: none; color: inherit; }
+           background: var(--pouch); border-radius: 28px; padding: clamp(28px, 5vw, 64px); text-decoration: none;
+           /* its own ink, not the theme's: the card is packaging-orange on every theme,
+              so inheriting a dark theme's light text would leave it unreadable */
+           color: var(--pouch-ink); }
     .kit img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px; }
     /* same rhythm as .panel-copy, so "Shop the kit" sits exactly where
        "See the steps" does rather than on a different uniform gap */
@@ -316,7 +326,7 @@
     .kit-copy h3 { font-size: clamp(28px, 3.4vw, 44px); }
     .kit-copy p { max-width: 36ch; }
     .kit-facts { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; flex-wrap: wrap; }
-    .kit-facts li { font-family: var(--hand); font-size: 19px; background: var(--paper); border-radius: 999px; padding: 5px 15px; }
+    .kit-facts li { font-family: var(--hand); font-size: 19px; background: var(--pouch-chip); border-radius: 999px; padding: 5px 15px; }
 
     @media (max-width: 820px) { .kit { grid-template-columns: 1fr; } }
     .fav-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
