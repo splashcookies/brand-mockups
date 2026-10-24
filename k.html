@@ -414,7 +414,11 @@
 
     /* compare */
     .compare { background: var(--band-3); padding: var(--sec) 0; }
-    .compare h2 { text-align: center; font-size: clamp(30px, 4.5vw, 56px); margin-bottom: 30px; }
+    .compare h2 { text-align: center; font-size: clamp(30px, 4.5vw, 56px); }
+    /* the table had a bare heading over it and no framing; this is the line that
+       says what the table is about to show */
+    .compare .lede { text-align: center; font-family: var(--hand);
+                     font-size: clamp(21px, 2.2vw, 28px); margin: 14px 0 30px; }
     .table-wrap { overflow-x: auto; background: var(--paper); border-radius: 20px; padding: 8px; }
     table { width: 100%; border-collapse: collapse; min-width: 620px; font-size: 15px; }
     th, td { padding: 14px 16px; text-align: center; border-top: 1px solid var(--rule); }
@@ -573,7 +577,6 @@
       <div class="copy-top">
         <h1>Gourmet baking made easy.</h1>
         <p class="sub">We source premium ingredients and measure each of them for you. You add one scoop of water, and six gourmet cookies come out of your oven.</p>
-        <p class="opened">That&rsquo;s everything. No extra grocery runs.</p>
       </div>
       <div class="hero-ctas">
         <a class="btn" href="k-product.html">Get the kit</a>
@@ -594,7 +597,7 @@
         <div class="kit-copy">
           <h3>The Everything</h3>
           <p>Two chocolates, toffee, caramel, pretzels, oats and dried cherries &mdash; every ingredient sourced and pre-measured.</p>
-          <ul class="kit-facts"><li>Bakes 6</li><li>Just add water</li><li>$22</li></ul>
+          <ul class="kit-facts"><li>Bakes 6</li><li>10 minutes hands-on</li><li>Just add water</li><li>$22</li></ul>
           <span class="link">Shop the kit <span aria-hidden="true">&rarr;</span></span>
         </div>
       </a>
@@ -641,6 +644,7 @@
   <section class="compare">
     <div class="wrap">
       <h2>Why Splash?</h2>
+      <p class="lede">That&rsquo;s everything. No extra grocery runs.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>&nbsp;</th><th class="us">Splash kit</th><th>Bakery</th><th>From scratch</th></tr></thead>
