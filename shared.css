@@ -40,6 +40,8 @@ a { color: inherit; }
 /* traced out of the back-of-pouch artwork, which is the only place the scoop is
    drawn, so it recolours and stays transparent like the other four */
 .ill-scoop { --m: url(assets/ill-scoop.png); aspect-ratio: 496 / 520; }
+/* the hand-drawn "Just add Water!" burst, traced off the front of the pouch */
+.ill-water-badge { --m: url(assets/ill-water-badge.png); aspect-ratio: 540 / 461; }
 
 /* option switcher (review chrome, not part of the design) */
 .switcher { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; background: #1f1c1a; color: #fdfbe0; font-family: var(--sans); border-top: 1px solid #4a4440; }
