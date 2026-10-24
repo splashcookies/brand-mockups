@@ -588,14 +588,19 @@
   </footer>
 
   <script>
-  // Hero variants for review: ?bits=row and ?hero=static (they compose).
-  // Set before anything paints so the page never flashes the default first.
+  // The chosen design is the default: the photograph as the hero with nothing laid
+  // over it, no pull control, and a Wonder Woman cameo as the kit section goes by.
+  // The earlier treatments are all still reachable by asking for them:
+  //   bits=ring|row|none   hero=pull|static   ww=hero|band|fly   fly=cameo|swoop|drift
+  // Set before anything paints, so the page never flashes one treatment then another.
   (function () {
     const q = new URLSearchParams(location.search);
-    const bits = q.get('bits'), hero = q.get('hero');
+    const bits = q.get('bits') || 'none';
+    const hero = q.get('hero') || 'static';
+    const ww = q.get('ww') || 'fly';
     if (hero === 'static') document.documentElement.dataset.hero = 'static';
     if (bits === 'none') document.documentElement.dataset.bits = 'none';
-    if (q.get('ww') === 'fly') {
+    if (ww === 'fly') {
       document.documentElement.dataset.ww = 'fly';
       // this script sits at the foot of the body, so .ww-fly is already parsed —
       // no need to wait for DOMContentLoaded, which may already have gone by

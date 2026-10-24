@@ -1,14 +1,15 @@
 // Injects the option switcher and wires the number-key shortcuts. Each mockup is its own page.
 (function () {
   const OPTIONS = [
-    // Round 5 is one page with three hero treatments, switched by query string.
-    { key: 'k', file: 'k.html', bits: '', hero: '', round: 5, name: 'The counter \u2014 ring', desc: 'The kit components ring the cookies and are revealed by pulling. The original: the most interactive, but the cards sit on top of the food.' },
-    { key: 'k', file: 'k.html?bits=row', bits: 'row', hero: '', round: 5, name: 'The counter \u2014 row', desc: 'The same pull, but the five components stand in a line along the top of the panel, so the photograph of the six cookies is never covered. Wonder Woman still carries the closed state.' },
-    { key: 'k', file: 'k.html?bits=row&hero=static', bits: 'row', hero: 'static', round: 5, name: 'The counter \u2014 photo hero', desc: 'No pull at all: the photograph is simply there, with the components along the top. Wonder Woman moves to a band of her own below the kit card. The calmest hero, at the cost of the page\u2019s one real interaction.' },
-    { key: 'k', file: 'k.html?bits=none&hero=static', bits: 'none', hero: 'static', round: 5, name: 'The counter \u2014 photo only', desc: 'The photograph on its own, with nothing laid over it. The components are named by the kit card and the product page instead of in the hero. Wonder Woman keeps her band below.' },
-    { key: 'k', file: 'k.html?bits=none&hero=static&ww=fly&fly=cameo', bits: 'none', hero: 'static', ww: 'fly', fly: 'cameo', round: 5, name: 'She flies \u2014 cameo', desc: 'Chosen. Clean photo hero, and Wonder Woman has no section of her own: she crosses once while the kit section goes by, then leaves the rest of the page alone. The surprise without her becoming furniture.' },
-    { key: 'k', file: 'k.html?bits=none&hero=static&ww=fly&fly=swoop', bits: 'none', hero: 'static', ww: 'fly', fly: 'swoop', round: 5, name: 'She flies \u2014 swoop (alt)', desc: 'The same idea at full length: from "The kit" down she crosses the entire page, in top left, diving through the middle, out past the upper right. Bolder, but she is on screen for every scroll.' },
-    { key: 'k', file: 'k.html?bits=none&hero=static&ww=fly&fly=drift', bits: 'none', hero: 'static', ww: 'fly', fly: 'drift', round: 5, name: 'She flies \u2014 drift (alt)', desc: 'The quiet end of the range. She never crosses the text at all: hugs the left edge and sinks slowly past the kit and the story, small and out of the way.' },
+    // Round 5 is one page. The chosen treatment is the bare URL; the rest ask for
+    // themselves by query string, which is also how the page reads its defaults.
+    { key: 'k', file: 'k.html', bits: 'none', hero: 'static', ww: 'fly', fly: 'cameo', round: 5, name: 'The counter', desc: 'Chosen. The photograph is the hero with nothing laid over it, and Wonder Woman has no section of her own \u2014 she crosses once while the kit section goes by, then leaves the rest of the page alone.' },
+    { key: 'k', file: 'k.html?fly=swoop', bits: 'none', hero: 'static', ww: 'fly', fly: 'swoop', round: 5, name: 'alt \u00b7 she swoops', desc: 'The cameo at full length: from "The kit" down she crosses the entire page, in top left, diving through the middle, out past the upper right. Bolder, but she is on screen for every scroll.' },
+    { key: 'k', file: 'k.html?fly=drift', bits: 'none', hero: 'static', ww: 'fly', fly: 'drift', round: 5, name: 'alt \u00b7 she drifts', desc: 'The quiet end of the range. She never crosses the text at all: hugs the left edge and sinks slowly past the kit and the story, small and out of the way.' },
+    { key: 'k', file: 'k.html?ww=band', bits: 'none', hero: 'static', ww: 'band', fly: '', round: 5, name: 'alt \u00b7 her own band', desc: 'Same photo hero, but instead of flying she gets a band of her own below the kit card: "Show up with warm cookies."' },
+    { key: 'k', file: 'k.html?bits=row&ww=band', bits: 'row', hero: 'static', ww: 'band', fly: '', round: 5, name: 'alt \u00b7 components on the photo', desc: 'The five components stand in a line along the top of the photograph rather than being left to the kit card and the product page.' },
+    { key: 'k', file: 'k.html?bits=row&hero=pull&ww=hero', bits: 'row', hero: 'pull', ww: 'hero', fly: '', round: 5, name: 'alt \u00b7 pull, row', desc: 'The interactive hero: Wonder Woman carries the closed state, and pulling the slider brings the photograph up with the components in a line along the top.' },
+    { key: 'k', file: 'k.html?bits=ring&hero=pull&ww=hero', bits: 'ring', hero: 'pull', ww: 'hero', fly: '', round: 5, name: 'alt \u00b7 pull, ring', desc: 'The original interactive hero, with the components ringing the cookies rather than lined up. The most interactive, but the cards sit on top of the food.' },
     { key: 'h', file: 'h.html', round: 4, name: 'The bake', desc: 'Scroll position is oven time. A pinned stage takes the cookie from raw dough through the oven to done as you move down the page, the cavity glowing up around it, with the clock and the temperature counting alongside. Figtree only \u2014 the risk is all in the mechanic.' },
     { key: 'i', file: 'i.html', round: 4, name: "Michele's notebook", desc: 'The whole site as her test-kitchen book: ruled paper, taped photos, marker arrows, sticky notes. The signature is the batch log \u2014 forty-seven attempts, forty-six crossed out, the last one circled. Adds Caveat.' },
     { key: 'j', file: 'j.html', round: 4, name: 'Tear it open', desc: 'The hero is a sealed pouch you pull apart; the contents spill out and name themselves. Built on a range input, so it drags, takes arrow keys and announces itself rather than being a mouse-only stunt.' },
@@ -23,10 +24,12 @@
   // Several options can share a page and differ only by query string, so the
   // current one is matched on the variant params too, not the file alone.
   const sp = new URLSearchParams(location.search);
-  const curBits = sp.get('bits') || '', curHero = sp.get('hero') || '',
-        curWw = sp.get('ww') || '',
-        // the page defaults a bare ?ww=fly to the cameo, so match that here too
-        curFly = sp.get('fly') || (sp.get('ww') === 'fly' ? 'cameo' : '');
+  // mirror the page's own defaults, so the bare URL matches the chosen option
+  const onK = (document.body.dataset.option || '') === 'k';
+  const curBits = sp.get('bits') || (onK ? 'none' : ''),
+        curHero = sp.get('hero') || (onK ? 'static' : ''),
+        curWw = sp.get('ww') || (onK ? 'fly' : ''),
+        curFly = sp.get('fly') || (curWw === 'fly' ? 'cameo' : '');
   const current = document.body.dataset.option || OPTIONS[0].key;
   const me = OPTIONS.find(o => o.key === current && (o.bits || '') === curBits
                             && (o.hero || '') === curHero && (o.ww || '') === curWw
