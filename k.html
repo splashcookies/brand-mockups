@@ -403,6 +403,10 @@
        the alt text, where it is read once. */
     .box-item { display: grid; justify-items: center; }
     .box-item .ill { height: clamp(96px, 10.5vw, 150px); color: var(--ink); }
+    /* the scoop has no asset of its own — it is only ever drawn inside the
+       back-of-pouch artwork — so it is a window onto that file, sized by height
+       to stand the same as the four masks beside it */
+    .box-item .scoop-art { width: auto; height: clamp(96px, 10.5vw, 150px); }
     @media (max-width: 860px) { .box-grid { grid-template-columns: repeat(3, 1fr); row-gap: 32px; } }
     @media (max-width: 460px) { .box-grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -533,7 +537,7 @@
       <div class="box-grid">
         <div class="box-item"><span class="ill ill-dry" role="img" aria-label="Dry pouch, add-ins built in"></span></div>
         <div class="box-item"><span class="ill ill-wet" role="img" aria-label="Wet pouch, the avocado oil"></span></div>
-        <div class="box-item"><span class="ill ill-water" role="img" aria-label="Just water, from your tap"></span></div>
+        <div class="box-item"><i class="scoop-art" role="img" aria-label="Water scoop, pre-sized"></i></div>
         <div class="box-item"><span class="ill ill-parchment" role="img" aria-label="Parchment, already cut"></span></div>
         <div class="box-item"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves, no mess"></span></div>
       </div>
