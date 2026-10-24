@@ -927,27 +927,27 @@
   <script>
   // The mixing glove becomes the cursor. The source illustration is 568x690 with
   // its "MIXING GLOVES" caption baked in and two gloves side by side, so crop to
-  // one glove and rescale at runtime rather than adding a derived asset.
+  // the right-hand glove and rescale at runtime rather than adding a derived asset.
   // The drawing is thin outline work, which all but disappears at cursor size, so
   // it is rendered with a white halo to stay legible on any ground.
   (function () {
     if (matchMedia('(hover: none)').matches) return;   // nothing to style on touch
     const img = new Image();
     img.onload = () => {
-      const sx = img.naturalWidth * 0.02, sy = 0;
-      const sw = img.naturalWidth * 0.54, sh = img.naturalHeight * 0.72;
-      const H = 56, W = Math.round(sw / sh * H);
+      const sx = img.naturalWidth * 0.52, sy = 0;                 // the right-hand glove
+      const sw = img.naturalWidth * 0.46, sh = img.naturalHeight * 0.72;
+      const H = 34, W = Math.round(sw / sh * H);
       const c = document.createElement('canvas');
       c.width = W; c.height = H;
       const g = c.getContext('2d');
       g.shadowColor = '#fff';
-      g.shadowBlur = 3;
+      g.shadowBlur = 2;
       for (let i = 0; i < 4; i++) g.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);  // build the halo
       g.shadowBlur = 0;
       g.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
       let url;
       try { url = c.toDataURL('image/png'); } catch (e) { return; }
-      document.body.style.cursor = `url(${url}) ${Math.round(W * 0.45)} 2, auto`;
+      document.body.style.cursor = `url(${url}) ${Math.round(W * 0.5)} 2, auto`;
     };
     img.onerror = () => {};
     img.src = 'assets/ill-gloves.png';
