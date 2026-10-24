@@ -168,7 +168,7 @@
     @keyframes slide { to { transform: translateX(-50%); } }
 
     /* the shelf */
-    .favs { padding: clamp(40px, 6vw, 72px) 0 18px; }
+    .favs { padding: clamp(40px, 6vw, 72px) 0 30px; }
     .favs-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 22px; }
     .favs h2 { font-size: 28px; }
     .kit { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(22px, 4vw, 56px); align-items: center;
@@ -199,7 +199,7 @@
     .cut p { max-width: 52ch; margin: 18px auto 0; }
 
     /* story panels */
-    .panels { display: grid; gap: 18px; padding: 0 0 clamp(40px, 6vw, 80px); }
+    .panels { display: grid; gap: 30px; padding: 0 0 clamp(40px, 6vw, 80px); }
     .panel { border-radius: 28px; padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
     .panel.blue { background: var(--band-1); }
     .panel.pink { background: var(--band-2); }
@@ -799,6 +799,35 @@
       document.body.appendChild(box);
     });
   }
+  </script>
+  <script>
+  // The mixing glove becomes the cursor. The source illustration is 568x690 with
+  // its "MIXING GLOVES" caption baked in and two gloves side by side, so crop to
+  // one glove and rescale at runtime rather than adding a derived asset.
+  // The drawing is thin outline work, which all but disappears at cursor size, so
+  // it is rendered with a white halo to stay legible on any ground.
+  (function () {
+    if (matchMedia('(hover: none)').matches) return;   // nothing to style on touch
+    const img = new Image();
+    img.onload = () => {
+      const sx = img.naturalWidth * 0.02, sy = 0;
+      const sw = img.naturalWidth * 0.54, sh = img.naturalHeight * 0.72;
+      const H = 56, W = Math.round(sw / sh * H);
+      const c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      const g = c.getContext('2d');
+      g.shadowColor = '#fff';
+      g.shadowBlur = 3;
+      for (let i = 0; i < 4; i++) g.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);  // build the halo
+      g.shadowBlur = 0;
+      g.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
+      let url;
+      try { url = c.toDataURL('image/png'); } catch (e) { return; }
+      document.body.style.cursor = `url(${url}) ${Math.round(W * 0.45)} 2, auto`;
+    };
+    img.onerror = () => {};
+    img.src = 'assets/ill-gloves.png';
+  })();
   </script>
   <script src="switch.js" defer></script>
 </body>
