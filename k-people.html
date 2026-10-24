@@ -65,7 +65,7 @@
     .wall-cols { columns: 4 240px; column-gap: clamp(12px, 1.6vw, 20px); }
     .tile { break-inside: avoid; margin-bottom: clamp(12px, 1.6vw, 20px); border-radius: 18px;
             overflow: hidden; background: var(--surface); }
-    .tile img { width: 100%; height: auto; display: block; }
+    .tile img, .tile video { width: 100%; height: auto; display: block; background: var(--ink); }
     .tile figcaption { font-family: var(--hand); font-size: 18px; padding: 10px 14px 12px; }
     /* an empty slot, drawn as empty. Nothing here pretends to be a real post. */
     .slot { break-inside: avoid; margin-bottom: clamp(12px, 1.6vw, 20px); border-radius: 18px;
@@ -144,44 +144,42 @@
             <figcaption>Michele, where it started</figcaption>
           </figure>
 
-          <div class="slot">
-            <span class="ill ill-gloves" aria-hidden="true"></span>
-            <b>Your kitchen here</b>
-            <span>Empty slot &mdash; tagged photos go in these</span>
-          </div>
+          <figure class="tile">
+            <video src="assets/people-mixing.mp4" poster="assets/people-mixing-poster.jpg"
+                   controls muted playsinline preload="metadata"></video>
+            <figcaption>Gloves on, hands in</figcaption>
+          </figure>
 
           <figure class="tile">
             <img src="assets/shoot/SPLASH8820.jpg" alt="Water being poured into the dry mix" width="2500" height="1667">
             <figcaption>One scoop, that&rsquo;s it</figcaption>
           </figure>
 
-          <div class="slot tall">
-            <span class="ill ill-dry" aria-hidden="true"></span>
-            <b>Your kitchen here</b>
-            <span>Empty slot</span>
-          </div>
+          <figure class="tile">
+            <img src="assets/people-bowl.jpg" alt="A girl placing balls of Everything dough onto a lined tray" width="900" height="1200">
+            <figcaption>Six onto the tray</figcaption>
+          </figure>
 
           <figure class="tile">
             <img src="assets/shoot/SPLASH9216.jpg" alt="Six baked Everything cookies cooling on a rack" width="2500" height="1667">
             <figcaption>Six out of the oven</figcaption>
           </figure>
 
-          <div class="slot">
-            <span class="ill ill-wet" aria-hidden="true"></span>
-            <b>Your kitchen here</b>
-            <span>Empty slot</span>
-          </div>
+          <figure class="tile">
+            <video src="assets/people-table.mp4" poster="assets/people-table-poster.jpg"
+                   controls muted playsinline preload="metadata"></video>
+            <figcaption>Waiting on the oven</figcaption>
+          </figure>
 
           <figure class="tile">
             <img src="assets/shoot/SPLASH8659.jpg" alt="Raw dough portioned on a tray" width="1667" height="2500">
             <figcaption>Before the oven</figcaption>
           </figure>
 
-          <div class="slot tall">
-            <span class="ill ill-parchment" aria-hidden="true"></span>
-            <b>Your kitchen here</b>
-            <span>Empty slot</span>
-          </div>
+          <figure class="tile">
+            <img src="assets/people-gloves.jpg" alt="A small girl mixing Everything dough by hand in a steel bowl" width="1071" height="1428">
+            <figcaption>Mixing by hand</figcaption>
+          </figure>
 
           <figure class="tile">
             <img src="assets/shoot/SPLASH8902.jpg" alt="Close up of a finished Everything cookie" width="2500" height="1667">
@@ -205,7 +203,7 @@
           <h2>We would rather show you than us.</h2>
           <p>Tag Splash in whatever comes out of your oven and we will put it on this wall.</p>
           <a class="btn" href="k-product.html">Get the kit <span aria-hidden="true">&rarr;</span></a>
-          <p class="fine">Mockup &mdash; the wall above is Splash&rsquo;s own photography and empty slots, not real posts.</p>
+          <p class="fine">Mockup &mdash; the wall mixes real photographs with empty slots waiting to be filled.</p>
         </div>
       </div>
     </section>
