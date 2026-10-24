@@ -7,6 +7,9 @@
     { key: 'k', file: 'k.html?rot=pill', bits: 'none', hero: 'static', ww: 'fly', fly: 'cameo', rot: 'pill', round: 5, name: 'rotating \u00b7 pill', desc: 'The headline becomes "Gourmet baking made easy for \u2014" and the occasion turns over in a peach pill. The loudest of the three, and the one that most obviously says the kit is for whatever you have on.' },
     { key: 'k', file: 'k.html?rot=roll', bits: 'none', hero: 'static', ww: 'fly', fly: 'cameo', rot: 'roll', round: 5, name: 'rotating \u00b7 roll', desc: 'Same sentence, but the words are stacked and the column slides, like a counter turning over. Quieter than the pill and the motion reads as mechanical rather than decorative.' },
     { key: 'k', file: 'k.html?rot=hand', bits: 'none', hero: 'static', ww: 'fly', fly: 'cameo', rot: 'hand', round: 5, name: 'rotating \u00b7 hand', desc: 'No pill: the occasion is hand-lettered under a drawn rule, in the brand\u2019s own hand. The quietest, and the only one where the rotating word is not a different shape from the rest of the headline.' },
+    { key: 'k', file: 'k.html?rot=hand&copy=lean', bits: 'none', hero: 'static', ww: 'fly', fly: 'cameo', rot: 'hand', copy: 'lean', round: 5, name: 'hero \u00b7 lean', desc: 'The paragraph goes and the hand-lettered facts carry the argument instead; one button. What it is, what it costs you, one way forward.' },
+    { key: 'k', file: 'k.html?rot=hand&copy=quiet', bits: 'none', hero: 'static', ww: 'fly', fly: 'cameo', rot: 'hand', copy: 'quiet', round: 5, name: 'hero \u00b7 quiet', desc: 'Keeps the paragraph, drops the facts line, and the buttons become one underlined link. The most editorial, and the least like a shop.' },
+    { key: 'k', file: 'k.html?rot=hand&copy=bare', bits: 'none', hero: 'static', ww: 'fly', fly: 'cameo', rot: 'hand', copy: 'bare', round: 5, name: 'hero \u00b7 bare', desc: 'The headline and one button. Everything else is left to the sections below, which already say all of it.' },
     { key: 'k', file: 'k.html?fly=swoop', bits: 'none', hero: 'static', ww: 'fly', fly: 'swoop', round: 5, name: 'alt \u00b7 she swoops', desc: 'The cameo at full length: from "The kit" down she crosses the entire page, in top left, diving through the middle, out past the upper right. Bolder, but she is on screen for every scroll.' },
     { key: 'k', file: 'k.html?fly=drift', bits: 'none', hero: 'static', ww: 'fly', fly: 'drift', round: 5, name: 'alt \u00b7 she drifts', desc: 'The quiet end of the range. She never crosses the text at all: hugs the left edge and sinks slowly past the kit and the story, small and out of the way.' },
     { key: 'k', file: 'k.html?ww=band', bits: 'none', hero: 'static', ww: 'band', fly: '', round: 5, name: 'alt \u00b7 her own band', desc: 'Same photo hero, but instead of flying she gets a band of her own below the kit card: "Show up with warm cookies."' },
@@ -33,11 +36,13 @@
         curHero = sp.get('hero') || (onK ? 'static' : ''),
         curWw = sp.get('ww') || (onK ? 'fly' : ''),
         curFly = sp.get('fly') || (curWw === 'fly' ? 'cameo' : ''),
-        curRot = sp.get('rot') || '';
+        curRot = sp.get('rot') || '',
+        curCopy = sp.get('copy') || '';
   const current = document.body.dataset.option || OPTIONS[0].key;
   const me = OPTIONS.find(o => o.key === current && (o.bits || '') === curBits
                             && (o.hero || '') === curHero && (o.ww || '') === curWw
-                            && (o.fly || '') === curFly && (o.rot || '') === curRot)
+                            && (o.fly || '') === curFly && (o.rot || '') === curRot
+                            && (o.copy || '') === curCopy)
           || OPTIONS.find(o => o.key === current) || OPTIONS[0];
   const group = OPTIONS.filter(o => o.round === me.round);
   const pos = group.indexOf(me) + 1;

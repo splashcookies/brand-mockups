@@ -235,6 +235,24 @@
         var(--hero-a) 100%); }
     }
 
+    /* ===== how much the hero carries: ?copy=lean|quiet|bare =====
+       The default says five things: headline, paragraph, facts line, and two
+       buttons. These drop one or more of them. */
+    [data-copy="lean"] .hero-copy .sub,
+    [data-copy="bare"] .hero-copy .sub,
+    [data-copy="bare"] .hero-copy .hero-facts,
+    [data-copy="quiet"] .hero-copy .hero-facts { display: none; }
+    /* one way forward instead of two */
+    [data-copy="lean"] .hero-ctas .btn-peach,
+    [data-copy="bare"] .hero-ctas .btn-peach { display: none; }
+    /* quiet drops the buttons entirely for a single underlined link */
+    [data-copy="quiet"] .hero-ctas .btn { min-height: 0; padding: 0; border: 0; background: none;
+                                          color: inherit; font-size: clamp(17px, 1.5vw, 20px);
+                                          text-decoration: underline; text-underline-offset: 6px;
+                                          text-decoration-thickness: 2px; }
+    [data-copy="quiet"] .hero-ctas .btn:hover { color: var(--cta); background: none; }
+    [data-copy="quiet"] .hero-ctas .btn-peach { display: none; }
+
     /* ===== a rotating occasion in the headline: ?rot=pill|roll|hand =====
        The word that changes is aria-hidden and a static "any occasion." carries
        the sentence for screen readers, so nothing is announced on a loop. The
@@ -753,6 +771,9 @@
     const bits = q.get('bits') || 'none';
     const hero = q.get('hero') || 'static';
     const ww = q.get('ww') || 'fly';
+    const copy = q.get('copy');
+    if (['lean', 'quiet', 'bare'].includes(copy)) document.documentElement.dataset.copy = copy;
+
     // ?rot= turns the headline's last word into a rotating occasion
     (function () {
       const mode = q.get('rot');
