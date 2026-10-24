@@ -14,12 +14,22 @@
        tear-open pouch from "Tear it open" as the living half of its two-panel hero.
        Hand-lettering is kept as a system (stickers, strip, table, stars), the way the pouch does it. */
     :root {
-      --ink: var(--baking-sheet);
-      --paper: #fffdf5;
-      --rule: #e9e4d2;
-      --muted: #6b625c;
+      /* Colour is expressed as ROLES, so a theme is a swap of these and nothing
+         structural moves. ?theme=<name> overrides them; see the list in the script. */
+      --ink: #484341;          /* body text and linework      */
+      --paper: #fffdf5;        /* the page itself             */
+      --rule: #e9e4d2;         /* hairlines                   */
+      --muted: #6b625c;        /* secondary text              */
+      --accent: #f6c787;       /* buttons, stickers, the slider */
+      --accent-soft: #f9dfe4;  /* the quieter accent          */
+      --surface: #fdfbe0;      /* cards and the steps band    */
+      --hero-a: #f6c787;       /* hero, left                  */
+      --hero-b: #ebf7f9;       /* hero, right                 */
+      --band-1: #ebf7f9;       /* announce, blue panel, news  */
+      --band-2: #f9dfe4;       /* pink panel, the "us" column */
+      --band-3: #c7e9c7;       /* the comparison band         */
       --hand: 'Patrick Hand SC', 'Figtree', sans-serif;
-      --t: 0;              /* tear progress 0 → 1 */
+      --t: 0;              /* reveal progress 0 → 1 */
       --w: 1240px;
     }
     body { background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.55; }
@@ -27,16 +37,16 @@
     h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
     p { margin: 0; }
     :focus-visible { outline: 3px solid var(--chocolate); outline-offset: 3px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--ink); color: var(--butter); font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid var(--ink); cursor: pointer; font-family: inherit; }
-    .btn:hover { background: var(--butter); color: var(--ink); }
-    .btn-peach { background: var(--wonder-woman); color: var(--ink); border-color: var(--wonder-woman); }
-    .btn-peach:hover { background: var(--ink); color: var(--butter); border-color: var(--ink); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--ink); color: var(--surface); font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid var(--ink); cursor: pointer; font-family: inherit; }
+    .btn:hover { background: var(--surface); color: var(--ink); }
+    .btn-peach { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+    .btn-peach:hover { background: var(--ink); color: var(--surface); border-color: var(--ink); }
     .link { font-weight: 700; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
     .link:hover { text-decoration: underline; }
-    .sticker { font-family: var(--hand); font-size: 20px; line-height: 1; padding: 10px 14px; background: var(--wonder-woman); border-radius: 999px; display: inline-block; transform: rotate(-6deg); }
-    .hero-open .sticker { background: var(--party-pink); }
+    .sticker { font-family: var(--hand); font-size: 20px; line-height: 1; padding: 10px 14px; background: var(--accent); border-radius: 999px; display: inline-block; transform: rotate(-6deg); }
+    .hero-open .sticker { background: var(--accent-soft); }
 
-    .announce { background: var(--splash-blue); text-align: center; padding: 9px 16px; font-size: 14px; font-weight: 600; }
+    .announce { background: var(--band-1); text-align: center; padding: 9px 16px; font-size: 14px; font-weight: 600; }
     .nav { background: var(--paper); border-bottom: 1px solid var(--rule); }
     .nav .wrap { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 20px; padding: 16px 0; }
     .nav-links { display: flex; gap: 26px; font-weight: 600; font-size: 15px; }
@@ -58,7 +68,7 @@
 
     /* ===== HERO: the bakery two-panel, but the left half is alive ===== */
     .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: min(84vh, 760px); }
-    .hero-open { position: relative; background: var(--wonder-woman); overflow: hidden; display: grid; align-content: center; justify-items: center; gap: 10px; padding: clamp(24px, 3vw, 44px); }
+    .hero-open { position: relative; background: var(--hero-a); overflow: hidden; display: grid; align-content: center; justify-items: center; gap: 10px; padding: clamp(24px, 3vw, 44px); }
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
 
     .pouch-area { position: relative; width: 100%; height: clamp(230px, 27vw, 310px); display: grid; place-items: center; }
@@ -100,12 +110,12 @@
     .tear-range:active { cursor: grabbing; }
     .tear-range::-webkit-slider-runnable-track { height: 42px; background: repeating-linear-gradient(90deg, rgba(72,67,65,.42) 0 10px, transparent 10px 20px) center / 100% 3px no-repeat; }
     .tear-range::-moz-range-track { height: 42px; background: repeating-linear-gradient(90deg, rgba(72,67,65,.42) 0 10px, transparent 10px 20px) center / 100% 3px no-repeat; }
-    .tear-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 66px; height: 42px; border: 2px solid var(--ink); border-radius: 999px; background: var(--wonder-woman); cursor: grab; }
-    .tear-range::-moz-range-thumb { width: 66px; height: 42px; border: 2px solid var(--ink); border-radius: 999px; background: var(--wonder-woman); }
+    .tear-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 66px; height: 42px; border: 2px solid var(--ink); border-radius: 999px; background: var(--accent); cursor: grab; }
+    .tear-range::-moz-range-thumb { width: 66px; height: 42px; border: 2px solid var(--ink); border-radius: 999px; background: var(--accent); }
     .pull-hint { font-size: 13.5px; color: var(--muted); }
     .pull-hint button { background: none; border: 0; color: var(--ink); font: inherit; text-decoration: underline; cursor: pointer; padding: 0; }
 
-    .hero-copy { background: var(--splash-blue); display: grid; align-content: center; gap: 20px; padding: clamp(32px, 6vw, 80px); justify-items: start; }
+    .hero-copy { background: var(--hero-b); display: grid; align-content: center; gap: 20px; padding: clamp(32px, 6vw, 80px); justify-items: start; }
     .hero-copy h1 { font-size: clamp(38px, 5.2vw, 72px); max-width: 11ch; text-wrap: balance; }
     .hero-copy p.sub { max-width: 40ch; font-size: clamp(16px, 1.3vw, 19px); }
     .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -125,7 +135,7 @@
     .favs-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 22px; }
     .favs h2 { font-size: 28px; }
     .kit { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(22px, 4vw, 56px); align-items: center;
-           background: var(--butter); border-radius: 28px; padding: clamp(18px, 2.4vw, 28px); text-decoration: none; color: inherit; }
+           background: var(--surface); border-radius: 28px; padding: clamp(18px, 2.4vw, 28px); text-decoration: none; color: inherit; }
     .kit img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px; }
     .kit-copy { display: grid; gap: 12px; justify-items: start; padding-right: clamp(0px, 2vw, 28px); }
     .kit-copy h3 { font-size: clamp(28px, 3.4vw, 44px); }
@@ -134,14 +144,14 @@
     .kit-facts li { font-family: var(--hand); font-size: 19px; background: var(--paper); border-radius: 999px; padding: 5px 15px; }
     @media (max-width: 820px) { .kit { grid-template-columns: 1fr; } }
     .fav-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .fav { text-decoration: none; color: inherit; background: var(--butter); border-radius: 20px; padding: 14px 14px 18px; display: grid; gap: 10px; position: relative; }
+    .fav { text-decoration: none; color: inherit; background: var(--surface); border-radius: 20px; padding: 14px 14px 18px; display: grid; gap: 10px; position: relative; }
     .fav img { aspect-ratio: 1; object-fit: cover; border-radius: 12px; width: 100%; }
     .fav .ph { aspect-ratio: 1; border-radius: 12px; display: grid; place-items: center; background: var(--paper); }
     .fav .ph .ill { height: 58%; color: var(--ink); opacity: .35; }
     .fav h3 { font-size: 19px; }
     .fav p { font-size: 14px; color: var(--muted); }
     .fav .sticker { position: absolute; top: 4px; left: 4px; font-size: 16px; padding: 7px 10px; }
-    .fav.blue { background: var(--splash-blue); }
+    .fav.blue { background: var(--band-1); }
     @media (max-width: 860px) { .fav-grid { grid-template-columns: repeat(2, 1fr); } }
 
     /* cutout headline */
@@ -153,8 +163,8 @@
     /* story panels */
     .panels { display: grid; gap: 18px; padding: 0 0 clamp(40px, 6vw, 80px); }
     .panel { border-radius: 28px; padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
-    .panel.blue { background: var(--splash-blue); }
-    .panel.pink { background: var(--party-pink); }
+    .panel.blue { background: var(--band-1); }
+    .panel.pink { background: var(--band-2); }
     .panel.pink .panel-img { order: 2; }
     .panel-img img { border-radius: 16px; aspect-ratio: 4 / 3; object-fit: cover; width: 100%; transform: rotate(2deg); box-shadow: 0 22px 50px rgba(72,67,65,.16); }
     .panel.pink .panel-img img { transform: rotate(-2.5deg); aspect-ratio: 3 / 4; }
@@ -165,7 +175,7 @@
     @media (max-width: 860px) { .panel { grid-template-columns: 1fr; } .panel.pink .panel-img { order: 0; } }
 
     /* the five steps, as the pouch lists them */
-    .steps { background: var(--butter); padding: clamp(44px, 6.5vw, 92px) 0; }
+    .steps { background: var(--surface); padding: clamp(44px, 6.5vw, 92px) 0; }
     .steps h2 { text-align: center; font-size: clamp(30px, 4.4vw, 54px); margin-bottom: 8px; }
     .steps > .wrap > p { text-align: center; max-width: 46ch; margin: 0 auto clamp(28px, 4vw, 44px); color: var(--muted); }
     .step-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
@@ -178,7 +188,7 @@
     @media (max-width: 520px) { .step-grid { grid-template-columns: 1fr; } }
 
     /* compare */
-    .compare { background: var(--mint); padding: clamp(48px, 7vw, 100px) 0; }
+    .compare { background: var(--band-3); padding: clamp(48px, 7vw, 100px) 0; }
     .compare h2 { text-align: center; font-size: clamp(30px, 4.5vw, 56px); margin-bottom: 30px; }
     .table-wrap { overflow-x: auto; background: var(--paper); border-radius: 20px; padding: 8px; }
     table { width: 100%; border-collapse: collapse; min-width: 620px; font-size: 15px; }
@@ -186,10 +196,10 @@
     th { border-top: 0; font-weight: 700; }
     td:first-child, th:first-child { text-align: left; font-weight: 600; }
     th.us { font-family: var(--hand); font-size: 24px; font-weight: 400; }
-    .us { background: var(--party-pink); }
+    .us { background: var(--band-2); }
     tr:first-child .us { border-radius: 14px 14px 0 0; }
     .yes, .no { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font-weight: 700; }
-    .yes { background: var(--ink); color: var(--butter); }
+    .yes { background: var(--ink); color: var(--surface); }
     .no { border: 1.5px solid var(--ink); }
 
     /* big quote */
@@ -211,16 +221,16 @@
     @media (max-width: 760px) { .reviews .wrap { grid-template-columns: 1fr; } }
 
     /* newsletter */
-    .news { background: var(--splash-blue); padding: clamp(48px, 7vw, 90px) 0; }
+    .news { background: var(--band-1); padding: clamp(48px, 7vw, 90px) 0; }
     .news .wrap { display: grid; gap: 18px; justify-items: center; text-align: center; }
     .news h2 { font-size: clamp(30px, 4.5vw, 56px); max-width: 18ch; }
     .news form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 560px; }
     .news input { flex: 1 1 240px; min-height: 48px; padding: 0 18px; border: 2px solid var(--ink); background: var(--paper); font: inherit; border-radius: 999px; }
     .news [data-status] { font-family: var(--hand); font-size: 21px; min-height: 1.4em; }
 
-    .foot { background: var(--ink); color: var(--butter); padding: 56px 0 24px; }
+    .foot { background: var(--ink); color: var(--surface); padding: 56px 0 24px; }
     .foot .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; }
-    .foot .logo { height: 44px; color: var(--butter); margin-bottom: 14px; }
+    .foot .logo { height: 44px; color: var(--surface); margin-bottom: 14px; }
     .foot p { max-width: 32ch; }
     .foot nav { display: grid; gap: 8px; text-align: right; }
     .foot nav a { text-decoration: none; }
@@ -440,6 +450,129 @@
     justopen.addEventListener('click', openIt);
 
     if (reduce.matches) { range.value = 100; set(100); } else { set(0); }
+  })();
+  </script>
+  <script>
+  // ?theme=<name> repaints the whole page by swapping the role tokens.
+  // Structure, type and spacing are untouched; only colour moves.
+  window.SPLASH_THEMES = {
+  "brand": {
+    "label": "Brand",
+    "note": "The guide's palette as published \u2014 peach, pink, mint, Splash Blue.",
+    "v": {
+      "ink": "#484341",
+      "paper": "#fffdf5",
+      "rule": "#e9e4d2",
+      "muted": "#6b625c",
+      "accent": "#f6c787",
+      "accent-soft": "#f9dfe4",
+      "surface": "#fdfbe0",
+      "hero-a": "#f6c787",
+      "hero-b": "#ebf7f9",
+      "band-1": "#ebf7f9",
+      "band-2": "#f9dfe4",
+      "band-3": "#c7e9c7"
+    }
+  },
+  "linen": {
+    "label": "Linen",
+    "note": "Warm neutrals throughout, peach kept as the only saturated colour.",
+    "v": {
+      "ink": "#3f3a36",
+      "paper": "#fcf9f3",
+      "rule": "#e8e1d5",
+      "muted": "#786f67",
+      "accent": "#eeb679",
+      "accent-soft": "#efe7da",
+      "surface": "#f8f3ea",
+      "hero-a": "#f2ece1",
+      "hero-b": "#e8e2d6",
+      "band-1": "#efe9de",
+      "band-2": "#f4ede1",
+      "band-3": "#e6ded0"
+    }
+  },
+  "kraft": {
+    "label": "Kraft",
+    "note": "Built from the pouch stock and the parchment in the kit. Warmest option.",
+    "v": {
+      "ink": "#3b3028",
+      "paper": "#fdf9f1",
+      "rule": "#e6dac6",
+      "muted": "#7c6f60",
+      "accent": "#dfa263",
+      "accent-soft": "#eee1cd",
+      "surface": "#f7efe1",
+      "hero-a": "#ece0cb",
+      "hero-b": "#e0d2b9",
+      "band-1": "#f0e6d5",
+      "band-2": "#e7dac2",
+      "band-3": "#dccfb6"
+    }
+  },
+  "stone": {
+    "label": "Stone",
+    "note": "Cool-leaning greys. The most neutral, least 'food' of the set.",
+    "v": {
+      "ink": "#35322f",
+      "paper": "#faf9f7",
+      "rule": "#e4e1dd",
+      "muted": "#74706c",
+      "accent": "#e0a765",
+      "accent-soft": "#ebe8e3",
+      "surface": "#f5f3f0",
+      "hero-a": "#eceae5",
+      "hero-b": "#e2dfda",
+      "band-1": "#edebe7",
+      "band-2": "#e8e5e0",
+      "band-3": "#ddd9d4"
+    }
+  },
+  "sage": {
+    "label": "Sage",
+    "note": "Mint pulled right down into a soft green, with Splash Blue beside it.",
+    "v": {
+      "ink": "#33403a",
+      "paper": "#fbfcfa",
+      "rule": "#dde6e0",
+      "muted": "#6c7a73",
+      "accent": "#e9b67d",
+      "accent-soft": "#e6efe8",
+      "surface": "#f4f8f4",
+      "hero-a": "#e4ede6",
+      "hero-b": "#edf4f6",
+      "band-1": "#eaf2f4",
+      "band-2": "#e4ede6",
+      "band-3": "#d6e6da"
+    }
+  },
+  "harbour": {
+    "label": "Harbour",
+    "note": "Cool grounds against a warm sand, so the split stays obvious.",
+    "v": {
+      "ink": "#3a3f45",
+      "paper": "#fcfbf8",
+      "rule": "#e2e5e8",
+      "muted": "#6e757c",
+      "accent": "#efb877",
+      "accent-soft": "#e8eff3",
+      "surface": "#f7f4ed",
+      "hero-a": "#e8eef2",
+      "hero-b": "#f4eee2",
+      "band-1": "#eaf1f5",
+      "band-2": "#f2ebdd",
+      "band-3": "#dfe8ed"
+    }
+  }
+};
+  (function () {
+    const name = new URLSearchParams(location.search).get('theme');
+    const t = name && window.SPLASH_THEMES[name.toLowerCase()];
+    if (!t) return;
+    for (const [role, hex] of Object.entries(t.v)) {
+      document.documentElement.style.setProperty('--' + role, hex);
+    }
+    document.documentElement.dataset.theme = name.toLowerCase();
   })();
   </script>
   <script src="switch.js" defer></script>
