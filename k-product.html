@@ -166,7 +166,7 @@
     .kit-facts li { font-family: var(--hand); font-size: 19px; background: var(--paper); border-radius: 999px; padding: 5px 15px; }
 
     /* buy form */
-    .buy { display: grid; gap: 14px; width: 100%; max-width: 420px; margin-top: 4px; }
+    .buy { display: grid; gap: 14px; width: 100%; max-width: 420px; }
     .packs { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
     .packs legend { font-size: 13px; font-weight: 700; color: var(--muted); padding: 0 0 8px; }
     .packs label { display: block; cursor: pointer; }
@@ -231,7 +231,15 @@
     .thumbs button.on { border-color: var(--cta); }
     .thumbs button:focus-visible { outline: 3px solid var(--chocolate); outline-offset: 2px; }
 
-    .buybox { display: grid; gap: 16px; justify-items: start; }
+    /* grouped deliberately: the title block reads as one unit, the buy form is an
+       action and sits apart, and the two bordered blocks below are separate again. */
+    .buybox { display: grid; gap: 0; justify-items: start; }
+    .buybox h1 { margin-bottom: 10px; }
+    .buybox .lede { margin-bottom: 20px; }
+    .buybox .price { margin-bottom: 14px; }
+    .buybox .kit-facts { margin-bottom: 30px; }
+    .buybox .included { margin-top: 30px; }
+    .buybox .spec { margin-top: 24px; }
     .buybox h1 { font-size: clamp(34px, 4.6vw, 54px); }
     .buybox .lede { max-width: 46ch; }
     .buybox .price { font-size: 26px; font-weight: 700; }
