@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Splash mockup: Our people</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..800&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Our people — the wall for tagged photos. Every tile here is either a Splash
+       photograph or an empty slot: no invented customers, no invented handles, no
+       made-up quotes. The empty slots are drawn as empty on purpose so nobody
+       mistakes the mockup for real posts. */
+    :root {
+      --ink: #484341; --paper: #fbfcfa; --rule: #dde6e0; --muted: #68625b;
+      --accent: #e9b67d; --accent-soft: #e6efe8; --surface: #f4f8f4;
+      --hero-a: #e4ede6; --hero-b: #edf4f6;
+      --band-1: #eaf2f4; --band-2: #e4ede6; --band-3: #d6e6da;
+      --cta: #484341; --cta-ink: #f4f8f4;
+      --hand: 'Patrick Hand SC', 'Figtree', sans-serif;
+      --w: 1240px;
+      --sec: clamp(40px, 5.6vw, 78px);
+    }
+    body { background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.55; }
+    .wrap { width: min(var(--w), 100% - 40px); margin-inline: auto; }
+    h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+    p { margin: 0; }
+    [hidden] { display: none !important; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--cta); color: var(--cta-ink); font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid var(--cta); cursor: pointer; font-family: inherit; }
+    .btn:hover { background: var(--surface); color: var(--cta); }
+    .sticker { font-family: var(--hand); font-size: 20px; line-height: 1; padding: 10px 14px; background: var(--accent); border-radius: 999px; display: inline-block; transform: rotate(-6deg); }
+
+    .nav { background: var(--paper); border-bottom: 1px solid var(--rule); }
+    .nav .wrap { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 20px; padding: 16px 0; }
+    .nav-links { display: flex; gap: 26px; font-weight: 600; font-size: 15px; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover, .nav-links a[aria-current] { text-decoration: underline; text-underline-offset: 5px; }
+    .nav .brand { justify-self: center; display: block; line-height: 0; min-width: max-content; overflow: visible; }
+    .nav .brand img { height: 86px; width: auto; max-width: none; display: block; flex: none; transform: translateX(2.5%); }
+    .nav-right { display: flex; gap: 8px; justify-self: end; }
+    .icon-btn { width: 42px; height: 42px; display: inline-grid; place-items: center; color: inherit; text-decoration: none; background: none; border: 0; padding: 0; cursor: pointer; }
+    .icon-btn svg { width: 42px; height: 42px; display: block; }
+    .icon-btn:hover { color: var(--cta); }
+    @media (max-width: 760px) {
+      .nav .wrap { grid-template-columns: 1fr auto;
+                   grid-template-areas: "brand brand" "links icons"; row-gap: 8px; }
+      .nav .brand { grid-area: brand; justify-self: center; }
+      .nav .brand img { height: clamp(54px, 15vw, 76px); }
+      .nav-right { grid-area: icons; }
+      .nav-links { grid-area: links; display: flex; justify-content: flex-start; gap: 20px;
+                   align-items: center; }
+    }
+
+    .people-head { background: var(--hero-b); padding: var(--sec) 0; }
+    .people-head .wrap { display: grid; gap: 0; justify-items: center; text-align: center; }
+    .people-head h1 { font-size: clamp(44px, 7vw, 96px); }
+    .people-head .lede { color: var(--muted); max-width: 46ch; margin-top: 16px; }
+
+    /* a wall rather than a grid: columns let the tiles keep their own proportions,
+       which is how tagged photographs actually arrive */
+    .wall { padding: var(--sec) 0; }
+    .wall-cols { columns: 4 240px; column-gap: clamp(12px, 1.6vw, 20px); }
+    .tile { break-inside: avoid; margin-bottom: clamp(12px, 1.6vw, 20px); border-radius: 18px;
+            overflow: hidden; background: var(--surface); }
+    .tile img { width: 100%; height: auto; display: block; }
+    .tile figcaption { font-family: var(--hand); font-size: 18px; padding: 10px 14px 12px; }
+    /* an empty slot, drawn as empty. Nothing here pretends to be a real post. */
+    .slot { break-inside: avoid; margin-bottom: clamp(12px, 1.6vw, 20px); border-radius: 18px;
+            border: 2px dashed var(--rule); display: grid; place-items: center; text-align: center;
+            padding: 26px 18px; color: var(--muted); }
+    .slot .ill { height: 54px; color: var(--ink); opacity: .3; margin-bottom: 12px; }
+    .slot b { display: block; font-family: var(--hand); font-weight: 400; font-size: 19px; color: var(--ink); }
+    .slot span { font-size: 13.5px; }
+    .slot.tall { padding-block: 64px; }
+
+    .invite { background: var(--accent); padding: var(--sec) 0; }
+    .invite .wrap { display: grid; justify-items: center; }
+    .invite-card { background: var(--paper); border: 2px solid var(--ink); border-radius: 30px;
+                   padding: clamp(28px, 4vw, 52px) clamp(22px, 4vw, 56px);
+                   width: min(820px, 100%); display: grid; gap: 0; justify-items: center;
+                   text-align: center; position: relative; transform: rotate(-.7deg);
+                   box-shadow: 10px 12px 0 rgba(72,67,65,.14); }
+    .invite-card .sticker { position: absolute; top: -18px; left: clamp(18px, 5vw, 54px);
+                            border: 2px solid var(--ink); transform: rotate(-7deg); }
+    .invite h2 { font-size: clamp(28px, 4.1vw, 50px); max-width: 18ch; text-wrap: balance; }
+    .invite p { color: var(--muted); max-width: 44ch; margin-top: 14px; }
+    .invite .btn { margin-top: 26px; }
+    .invite .fine { font-family: var(--hand); font-size: 19px; margin-top: 16px; }
+    @media (max-width: 560px) { .invite-card { transform: none; box-shadow: 6px 7px 0 rgba(72,67,65,.14); } }
+    @media (prefers-reduced-motion: reduce) { .invite-card { transform: none; } }
+
+    .foot { background: var(--ink); color: var(--surface); padding: 56px 0 24px; }
+    .foot .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; }
+    .foot-logo { height: 48px; width: auto; max-width: none; display: block; margin-bottom: 14px; }
+    .foot p { max-width: 32ch; }
+    .foot nav { display: grid; gap: 8px; text-align: right; }
+    .foot nav a { text-decoration: none; }
+    .foot small { display: block; margin-top: 36px; padding-top: 16px; border-top: 1px solid rgba(253,251,224,.25); font-size: 13px; }
+    @media (max-width: 600px) { .foot .wrap { grid-template-columns: 1fr; } .foot nav { text-align: left; } }
+  </style>
+</head>
+<body data-option="k">
+
+  <header class="nav">
+    <div class="wrap">
+      <nav class="nav-links" aria-label="Main">
+        <a href="k-shop.html">Shop</a><a href="k-story.html">Our story</a><a href="k-people.html" aria-current="page">Our people</a>
+      </nav>
+      <a href="k.html" class="brand"><img src="assets/shoot/logo-full-textured.png" alt="Splash, gourmet baking kits" width="2905" height="1232"></a>
+      <div class="nav-right">
+        <a class="icon-btn" href="#" aria-label="Account"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M40 21c0 10.5-8.5 19-19 19S2 31.5 2 21 10.5 2 21 2s19 8.5 19 19Z"/><path d="M21 13c2.2 0 3.7 1.5 3.7 3.7S23.2 20.5 21 20.5s-3.7-1.6-3.7-3.8S18.8 13 21 13Z"/><path d="M14.1 29.7c.8-3.6 3.4-5.4 6.9-5.4s6.1 1.8 6.9 5.3"/></svg></a>
+        <a class="icon-btn" href="k-product.html" aria-label="Cart"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M40 21c0 10.5-8.5 19-19 19S2 31.5 2 21 10.5 2 21 2s19 8.5 19 19Z"/><path d="M14.4 17.1c4.4-.5 8.8-.5 13.2 0 .5 4.3.8 8.6.9 12.9-5 .5-10 .5-15 0 .2-4.3.5-8.6.9-12.9Z"/><path d="M17.9 18.2c-.2-2.6.8-4 3.1-4s3.3 1.4 3.1 4"/></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="people-head">
+      <div class="wrap">
+        <h1>Our people</h1>
+        <p class="lede">Everyone who has had their hands in the bowl. Tag us and you land on the wall.</p>
+      </div>
+    </section>
+
+    <section class="wall">
+      <div class="wrap">
+        <div class="wall-cols">
+
+          <figure class="tile">
+            <img src="assets/shoot/SPLASH8586.jpg" alt="Michele placing dough onto a lined tray" width="1667" height="2500">
+            <figcaption>Michele, where it started</figcaption>
+          </figure>
+
+          <div class="slot">
+            <span class="ill ill-gloves" aria-hidden="true"></span>
+            <b>Your kitchen here</b>
+            <span>Empty slot &mdash; tagged photos go in these</span>
+          </div>
+
+          <figure class="tile">
+            <img src="assets/shoot/SPLASH8820.jpg" alt="Water being poured into the dry mix" width="2500" height="1667">
+            <figcaption>One scoop, that&rsquo;s it</figcaption>
+          </figure>
+
+          <div class="slot tall">
+            <span class="ill ill-dry" aria-hidden="true"></span>
+            <b>Your kitchen here</b>
+            <span>Empty slot</span>
+          </div>
+
+          <figure class="tile">
+            <img src="assets/shoot/SPLASH9216.jpg" alt="Six baked Everything cookies cooling on a rack" width="2500" height="1667">
+            <figcaption>Six out of the oven</figcaption>
+          </figure>
+
+          <div class="slot">
+            <span class="ill ill-wet" aria-hidden="true"></span>
+            <b>Your kitchen here</b>
+            <span>Empty slot</span>
+          </div>
+
+          <figure class="tile">
+            <img src="assets/shoot/SPLASH8659.jpg" alt="Raw dough portioned on a tray" width="1667" height="2500">
+            <figcaption>Before the oven</figcaption>
+          </figure>
+
+          <div class="slot tall">
+            <span class="ill ill-parchment" aria-hidden="true"></span>
+            <b>Your kitchen here</b>
+            <span>Empty slot</span>
+          </div>
+
+          <figure class="tile">
+            <img src="assets/shoot/SPLASH8902.jpg" alt="Close up of a finished Everything cookie" width="2500" height="1667">
+            <figcaption>The Everything, close up</figcaption>
+          </figure>
+
+          <div class="slot">
+            <span class="ill ill-scoop" aria-hidden="true"></span>
+            <b>Your kitchen here</b>
+            <span>Empty slot</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="invite">
+      <div class="wrap">
+        <div class="invite-card">
+          <span class="sticker">Send yours</span>
+          <h2>We would rather show you than us.</h2>
+          <p>Tag Splash in whatever comes out of your oven and we will put it on this wall.</p>
+          <a class="btn" href="k-product.html">Get the kit <span aria-hidden="true">&rarr;</span></a>
+          <p class="fine">Mockup &mdash; the wall above is Splash&rsquo;s own photography and empty slots, not real posts.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div>
+        <img class="foot-logo" src="assets/shoot/logo-full-white.png" alt="Splash" width="1540" height="531">
+        <p>Gourmet baking kits, pre-measured in Chicago and baked in your kitchen.</p>
+      </div>
+      <nav aria-label="Footer"><a href="#">FAQ</a><a href="#">Journal</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">hello@splashbaking.com</a></nav>
+    </div>
+    <div class="wrap"><small>&copy; 2026 Splash &middot; Chicago, IL &middot; Patent pending &middot; Contains wheat, milk, egg, soy and almond</small></div>
+  </footer>
+
+  <script src="switch.js"></script>
+  <script>
+  (function () {
+    const name = new URLSearchParams(location.search).get('theme');
+    if (!name) return;
+    fetch('k.html').then(r => r.text()).then(html => {
+      const open = html.indexOf('{', html.indexOf('window.SPLASH_THEMES ='));
+      let depth = 0, end = open;
+      for (let i = open; i < html.length; i++) {
+        if (html[i] === '{') depth++;
+        else if (html[i] === '}' && !--depth) { end = i + 1; break; }
+      }
+      const t = JSON.parse(html.slice(open, end))[name.toLowerCase()];
+      if (!t) return;
+      for (const [role, hex] of Object.entries(t.v)) {
+        document.documentElement.style.setProperty('--' + role, hex);
+      }
+      document.documentElement.dataset.theme = name.toLowerCase();
+      if (t.dark) document.documentElement.dataset.mode = 'dark';
+    });
+  })();
+  </script>
+</body>
+</html>
