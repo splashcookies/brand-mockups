@@ -42,6 +42,11 @@
       --pouch: #f8cc98;
       --pouch-ink: #484341;
       --pouch-chip: #fffaf2;
+      /* Mom's panel is the one moment on the page about a person rather than a
+         product, so it gets the page's only dark ground and its own ink, for the
+         same reason the pouch card does: it should read the same on every theme. */
+      --mom: #3f3a38;
+      --mom-ink: #f9f5ec;
       --w: 1240px;
     }
     body { background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.55; }
@@ -423,11 +428,12 @@
     .panels { display: grid; gap: 30px; padding: var(--sec) 0; }
     .panel { border-radius: 28px; padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
     .panel.blue { background: var(--band-1); }
-    .panel.pink { background: var(--band-2); }
+    .panel.pink { background: var(--mom); color: var(--mom-ink); }
     .panel.pink .panel-img { order: 2; }
     .panel-img img { border-radius: 16px; aspect-ratio: 4 / 3; object-fit: cover; width: 100%; transform: rotate(2deg); box-shadow: 0 22px 50px rgba(72,67,65,.16); }
     /* the vertical frame in full — this panel is taller than its siblings by design */
-    .panel.pink .panel-img img { transform: rotate(-2.5deg); aspect-ratio: 3 / 4; }
+    .panel.pink .panel-img img { transform: rotate(-2.5deg); aspect-ratio: 3 / 4;
+                                 box-shadow: 0 22px 50px rgba(0,0,0,.38); }
     /* a single uniform gap gave the heading, body, note and link identical
        spacing, so nothing read as belonging to anything. The note is a kicker
        on the paragraph and hugs it; the link is a separate action and sits apart. */
