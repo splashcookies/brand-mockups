@@ -82,12 +82,16 @@
        mark this wide they cannot share a row, so the header becomes two: mark and
        icons above, links centred beneath. The mark shrinks to fit a 320px screen. */
     @media (max-width: 760px) {
+      /* The mark gets a row to itself so it can sit on the page's centre line. It
+         cannot share one with the icons and still be centred — at 320px the two
+         overlap — so the icons drop down beside the links. */
       .nav .wrap { grid-template-columns: 1fr auto;
-                   grid-template-areas: "brand icons" "links links"; row-gap: 10px; }
-      .nav .brand { grid-area: brand; justify-self: start; }
+                   grid-template-areas: "brand brand" "links icons"; row-gap: 8px; }
+      .nav .brand { grid-area: brand; justify-self: center; }
       .nav .brand img { height: clamp(54px, 15vw, 76px); }
       .nav-right { grid-area: icons; }
-      .nav-links { grid-area: links; display: flex; justify-content: center; gap: 24px; }
+      .nav-links { grid-area: links; display: flex; justify-content: center; gap: 24px;
+                   align-items: center; }
     }
     @media (max-width: 560px) { .nav .brand img { height: 54px; } }
 
@@ -130,19 +134,12 @@
 
     .bit .ill { width: 100%; height: 100%; color: var(--ink); }
     /* No standalone scoop asset exists — it is only drawn inside the back-of-pouch
-       artwork — so it was cut out of that file into assets/scoop.jpg. The original
-       print file is untouched on disk; the filter lifts the pouch's peach ground to
-       white so the drawing sits on the card like the others. */
+       artwork — so it was traced out of that file into a mask, assets/ill-scoop.png.
+       It used to be a photo crop faked transparent with mix-blend-mode: multiply,
+       which iOS paints as an opaque white box. A mask has no backdrop to blend
+       with and takes its colour from currentColor like the other four. */
     .bit-scoop { display: grid; place-items: center; }
-    .scoop-art {
-      width: 80%; aspect-ratio: 439 / 460;
-      background-image: url(assets/scoop.jpg);
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-      filter: grayscale(1) brightness(1.28) contrast(1.75);
-      mix-blend-mode: multiply;
-    }
+    .bit .ill-scoop { width: 86%; height: auto; }
     .pull { display: grid; justify-items: center; gap: 8px; width: 100%; margin-top: clamp(10px, 1.6vw, 22px); position: relative; z-index: 6; }
     .pull-label { font-family: var(--hand); font-size: 21px; }
     .tear-range { -webkit-appearance: none; appearance: none; width: min(320px, 84%); height: 42px; background: transparent; cursor: grab; margin: 0; }
@@ -273,11 +270,7 @@
     .included .ill { width: 34px; height: 34px; justify-self: center; color: var(--ink); }
     /* A tighter window than the ring's: the cup only, no hand-lettering, since the row
        already names it. Wide, because the drawn cup is wider than it is tall. */
-    /* a 15KB crop of the print file, not a window onto all 4.7MB of it */
-    .included .scoop-mini { width: 38px; aspect-ratio: 420 / 290; justify-self: center;
-                            background-image: url(assets/scoop-cup.jpg); background-repeat: no-repeat;
-                            background-size: contain; background-position: center;
-                            filter: grayscale(1) brightness(1.3) contrast(1.8); mix-blend-mode: multiply; }
+    .included .ill-scoop { width: 33px; height: 34px; justify-self: center; }
     .included .need { font-family: var(--hand); font-size: 21px; margin-top: 14px; }
 
     .spec { width: 100%; border-top: 1px solid var(--rule); padding-top: 14px; }
@@ -457,7 +450,7 @@
           <ul>
             <li><span class="ill ill-dry" aria-hidden="true"></span>Dry ingredients, weighed</li>
             <li><span class="ill ill-wet" aria-hidden="true"></span>Wet ingredients, avocado oil</li>
-            <li><span class="scoop-mini" aria-hidden="true"></span>Water scoop, pre-sized</li>
+            <li><span class="ill ill-scoop" aria-hidden="true"></span>Water scoop, pre-sized</li>
             <li><span class="ill ill-parchment" aria-hidden="true"></span>Parchment, cut to your tray</li>
             <li><span class="ill ill-gloves" aria-hidden="true"></span>Mixing gloves</li>
           </ul>

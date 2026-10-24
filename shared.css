@@ -37,6 +37,9 @@ a { color: inherit; }
 .ill-gloves { --m: url(assets/ill-gloves.png); aspect-ratio: 568 / 690; }
 .ill-parchment { --m: url(assets/ill-parchment.png); aspect-ratio: 580 / 579; }
 .ill-wet { --m: url(assets/ill-wet.png); aspect-ratio: 483 / 698; }
+/* traced out of the back-of-pouch artwork, which is the only place the scoop is
+   drawn, so it recolours and stays transparent like the other four */
+.ill-scoop { --m: url(assets/ill-scoop.png); aspect-ratio: 496 / 520; }
 
 /* option switcher (review chrome, not part of the design) */
 .switcher { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; background: #1f1c1a; color: #fdfbe0; font-family: var(--sans); border-top: 1px solid #4a4440; }

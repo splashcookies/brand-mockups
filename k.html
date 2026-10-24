@@ -85,12 +85,16 @@
        mark this wide they cannot share a row, so the header becomes two: mark and
        icons above, links centred beneath. The mark shrinks to fit a 320px screen. */
     @media (max-width: 760px) {
+      /* The mark gets a row to itself so it can sit on the page's centre line. It
+         cannot share one with the icons and still be centred — at 320px the two
+         overlap — so the icons drop down beside the links. */
       .nav .wrap { grid-template-columns: 1fr auto;
-                   grid-template-areas: "brand icons" "links links"; row-gap: 10px; }
-      .nav .brand { grid-area: brand; justify-self: start; }
+                   grid-template-areas: "brand brand" "links icons"; row-gap: 8px; }
+      .nav .brand { grid-area: brand; justify-self: center; }
       .nav .brand img { height: clamp(54px, 15vw, 76px); }
       .nav-right { grid-area: icons; }
-      .nav-links { grid-area: links; display: flex; justify-content: center; gap: 24px; }
+      .nav-links { grid-area: links; display: flex; justify-content: center; gap: 24px;
+                   align-items: center; }
     }
     @media (max-width: 560px) { .nav .brand img { height: 54px; } }
 
@@ -161,19 +165,12 @@
        matches the window's own aspect so the drawing is not stretched, and the filter
        lifts the pouch's peach ground to white so it sits on the card like the others. */
     .bit-scoop { display: grid; place-items: center; }
-    /* Cut from the back-of-pouch print file rather than windowed out of it: the
-       browser was fetching 4.7MB to paint a thumbnail, which is why the scoop
-       arrived visibly after the four masks. assets/scoop.jpg is 25KB and the
-       original is untouched on disk. */
-    .scoop-art {
-      width: 80%; aspect-ratio: 439 / 460;
-      background-image: url(assets/scoop.jpg);
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-      filter: grayscale(1) brightness(1.28) contrast(1.75);
-      mix-blend-mode: multiply;
-    }
+    /* The scoop is a mask like the other four now. It used to be a crop of the
+       pouch photo made to look transparent with mix-blend-mode: multiply, which
+       iOS paints as an opaque white box. A real alpha mask has no backdrop to
+       blend with, takes its colour from currentColor, and needs no dark-theme
+       special case. */
+    .bit .ill-scoop { width: 86%; height: auto; }
     /* Label beside the track on one line. The column is a fixed width wide enough for
        the longest label, not max-content: the label text changes while you drag, and a
        content-sized column would resize the track under the thumb mid-pull. */
@@ -218,6 +215,9 @@
          sides. Shrink the radius with the viewport and bring her width down to match. */
       .pouch-area { --ring: clamp(.5, calc((100vw - 120px) / 340px), 1); }
       .pouch { width: clamp(260px, 62vw, 640px); }
+      /* stacked, .copy-top and .hero-ctas sat flush against each other, so the
+         hand-lettered line ran straight into the buttons */
+      .hero-ctas { margin-top: clamp(22px, 5vw, 32px); }
       /* the stacked panel is shorter, so the solid foot has to start sooner */
       .hero-photo::after { background: linear-gradient(to bottom,
         color-mix(in srgb, var(--hero-a) 18%, transparent) 0%,
@@ -280,9 +280,6 @@
                  rotate(calc(var(--fr, 0) * 1deg));
       opacity: var(--fo, 0); will-change: transform, opacity; }
     [data-ww="fly"] .ww-fly img { width: 100%; height: auto; display: block; }
-    /* see the theme script: multiply onto a dark card renders black */
-    [data-mode="dark"] .scoop-art { mix-blend-mode: normal;
-      filter: grayscale(1) brightness(1.3) contrast(1.8) invert(1); }
     /* Two logo files exist, one dark-on-light and one light-on-dark, and a dark
        theme needs them the other way round in both places: the header goes dark,
        but the footer is painted in --ink and so becomes the light surface. */
@@ -427,16 +424,20 @@
        why the scoop floated high and had to be drawn oversize to compete. This
        one is cropped to the ink, so it can stand at the masks' own height and
        land on their line. */
-    .box-item .scoop-art { width: auto;
+    .box-item .ill-scoop { width: auto;
                            /* Measured: the pouch draws its caption at 31.6% of the
                               artwork's height, the masks at 20.8% of theirs. Matched
                               box heights therefore always draw the scoop's lettering
                               half again too big, so it is scaled by that ratio and
                               the hand reads the same size across all five. */
-                           height: calc(clamp(96px, 10.5vw, 150px) * .657);
-                           aspect-ratio: 439 / 460; }
+                           height: calc(clamp(96px, 10.5vw, 150px) * .657); }
     @media (max-width: 860px) { .box-grid { grid-template-columns: repeat(3, 1fr); row-gap: 32px; } }
-    @media (max-width: 460px) { .box-grid { grid-template-columns: repeat(2, 1fr); } }
+    /* five things across two columns leaves the last one stranded, so it takes
+       the full width and centres instead */
+    @media (max-width: 460px) {
+      .box-grid { grid-template-columns: repeat(2, 1fr); }
+      .box-item:last-child { grid-column: 1 / -1; }
+    }
 
     /* "Good for a Tuesday" — from Kitchen party. The pills cycle through the role
        tokens rather than fixed pastels, so they recolour with every theme. */
@@ -512,7 +513,7 @@
         <span class="bit" style="--dx:167;--dy:-54;--r:6"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
         <span class="bit" style="--dx:103;--dy:142;--r:-4"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
         <span class="bit bit-scoop" style="--dx:0;--dy:-176;--r:0">
-          <i class="scoop-art" role="img" aria-label="Water scoop"></i>
+          <span class="ill ill-scoop" role="img" aria-label="Water scoop"></span>
         </span>
         <div class="pouch">
           <img src="assets/shoot/everything-illustration.png" alt="The Everything cookie, carried in" width="4428" height="3539">
@@ -565,7 +566,7 @@
       <div class="box-grid">
         <div class="box-item"><span class="ill ill-dry" role="img" aria-label="Dry pouch, add-ins built in"></span></div>
         <div class="box-item"><span class="ill ill-wet" role="img" aria-label="Wet pouch, the avocado oil"></span></div>
-        <div class="box-item"><i class="scoop-art" role="img" aria-label="Water scoop, pre-sized"></i></div>
+        <div class="box-item"><span class="ill ill-scoop" role="img" aria-label="Water scoop, pre-sized"></span></div>
         <div class="box-item"><span class="ill ill-parchment" role="img" aria-label="Parchment, already cut"></span></div>
         <div class="box-item"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves, no mess"></span></div>
       </div>

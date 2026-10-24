@@ -46,12 +46,16 @@
        mark this wide they cannot share a row, so the header becomes two: mark and
        icons above, links centred beneath. The mark shrinks to fit a 320px screen. */
     @media (max-width: 760px) {
+      /* The mark gets a row to itself so it can sit on the page's centre line. It
+         cannot share one with the icons and still be centred — at 320px the two
+         overlap — so the icons drop down beside the links. */
       .nav .wrap { grid-template-columns: 1fr auto;
-                   grid-template-areas: "brand icons" "links links"; row-gap: 10px; }
-      .nav .brand { grid-area: brand; justify-self: start; }
+                   grid-template-areas: "brand brand" "links icons"; row-gap: 8px; }
+      .nav .brand { grid-area: brand; justify-self: center; }
       .nav .brand img { height: clamp(54px, 15vw, 76px); }
       .nav-right { grid-area: icons; }
-      .nav-links { grid-area: links; display: flex; justify-content: center; gap: 24px; }
+      .nav-links { grid-area: links; display: flex; justify-content: center; gap: 24px;
+                   align-items: center; }
     }
 
     /* the eyebrow is the one line on the real page that is set in caps, so it keeps
