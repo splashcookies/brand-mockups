@@ -64,6 +64,8 @@
     .nav .brand { justify-self: center; display: block; line-height: 0; min-width: max-content; overflow: visible; }
     /* shared.css applies `img { max-width: 100% }` to everything, which can clamp this
        box; object-fit:contain means the artwork then scales instead of being cut. */
+    /* artwork sits flush left in its canvas with 147px spare on the right, so nudge it to
+       optically centre the ink rather than the box */
     .nav .brand img { height: 86px; width: auto; max-width: none; display: block; flex: none;
                       transform: translateX(2.5%); }
     .nav-right { display: flex; gap: 8px; justify-self: end; }
@@ -247,7 +249,7 @@
 
     .foot { background: var(--ink); color: var(--surface); padding: 56px 0 24px; }
     .foot .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; }
-    .foot .logo { height: 44px; color: var(--surface); margin-bottom: 14px; }
+    .foot-logo { height: 48px; width: auto; max-width: none; display: block; margin-bottom: 14px; }
     .foot p { max-width: 32ch; }
     .foot nav { display: grid; gap: 8px; text-align: right; }
     .foot nav a { text-decoration: none; }
@@ -422,7 +424,7 @@
   <footer class="foot">
     <div class="wrap">
       <div>
-        <span class="logo logo-flat" role="img" aria-label="Splash"></span>
+        <img class="foot-logo" src="assets/shoot/logo-full-white.png" alt="Splash" width="1540" height="531">
         <p>Gourmet baking kits, pre-measured in Chicago and baked in your kitchen.</p>
       </div>
       <nav><a href="#">FAQ</a><a href="#">Journal</a><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">hello@splashbaking.com</a></nav>
