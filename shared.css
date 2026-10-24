@@ -85,10 +85,10 @@ a { color: inherit; }
 /* ===== the nav's expanding menu ===== */
 /* flex, not grid: as a grid the three rows stretched to fill the 44px button and
    spread the lines 14px apart whatever margin they were given */
-.menu-btn { width: 44px; height: 44px; display: flex; flex-direction: column;
+.menu-btn { width: 46px; height: 44px; display: flex; flex-direction: column;
             align-items: center; justify-content: center; gap: 3.5px;
             background: none; border: 0; padding: 0; cursor: pointer; color: inherit; }
-.menu-btn span { display: block; width: 24px; height: 1.6px; border-radius: 2px;
+.menu-btn span { display: block; width: 29px; height: 1.6px; border-radius: 2px;
                  background: currentColor; transition: transform .22s ease, opacity .18s ease; }
 
 /* the three lines become a cross while it is open */
