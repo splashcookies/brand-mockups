@@ -248,6 +248,20 @@
     .ww-band .note { font-family: var(--hand); font-size: 22px; margin-top: 18px; }
     @media (max-width: 760px) { .ww-band .wrap { grid-template-columns: 1fr; } }
 
+    /* ?ww=fly — she crosses the page as you scroll instead of sitting in a section
+       of her own. Fixed rather than absolute so she stays in view while she travels,
+       and inert so she never swallows a click on what is underneath. Placed after
+       the static rules on purpose: same specificity, so these win when both apply. */
+    .ww-fly { display: none; }
+    [data-ww="fly"] .ww-fly { display: block; position: fixed; left: 0; top: 0; z-index: 4;
+      pointer-events: none; width: clamp(200px, 24vw, 430px);
+      transform: translate3d(calc(var(--fx, -30) * 1vw), calc(var(--fy, 55) * 1vh), 0)
+                 rotate(calc(var(--fr, 0) * 1deg));
+      opacity: var(--fo, 0); will-change: transform, opacity; }
+    [data-ww="fly"] .ww-fly img { width: 100%; height: auto; display: block; }
+    [data-ww="fly"] .ww-band,
+    [data-ww="fly"] .pouch { display: none; }
+
     /* hand-lettered icon strip */
     .strip { background: var(--paper); border-bottom: 1px solid var(--rule); overflow: hidden; }
     .strip ul { list-style: none; margin: 0; padding: 12px 0; display: flex; gap: 56px; width: max-content; animation: slide 44s linear infinite; font-family: var(--hand); font-size: 22px; }
@@ -431,8 +445,8 @@
 
   <div class="strip" aria-hidden="true">
     <ul>
-      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured in Chicago</li><li><span class="ill ill-parchment"></span>Baked at yours</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-dry"></span>Patent pending</li>
-      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured in Chicago</li><li><span class="ill ill-parchment"></span>Baked at yours</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-dry"></span>Patent pending</li>
+      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured by us, baked by you</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-parchment"></span>Patent pending</li>
+      <li><span class="ill ill-wet"></span>Premium ingredients</li><li><span class="ill ill-dry"></span>Pre-measured by us, baked by you</li><li><span class="ill ill-water"></span>Just add water</li><li><span class="ill ill-gloves"></span>No mess</li><li><span class="ill ill-parchment"></span>Patent pending</li>
     </ul>
   </div>
 
@@ -452,6 +466,11 @@
       </a>
     </div>
   </section>
+
+  <!-- Only shown by ?ww=fly: she travels across the page as you scroll -->
+  <div class="ww-fly" aria-hidden="true">
+    <img src="assets/shoot/everything-illustration.png" alt="" width="4428" height="3539">
+  </div>
 
   <!-- Only shown by ?hero=static, where she has left the hero and needs a home -->
   <section class="ww-band" id="ww">
@@ -573,6 +592,41 @@
     const bits = q.get('bits'), hero = q.get('hero');
     if (hero === 'static') document.documentElement.dataset.hero = 'static';
     if (bits === 'none') document.documentElement.dataset.bits = 'none';
+    if (q.get('ww') === 'fly') {
+      document.documentElement.dataset.ww = 'fly';
+      // this script sits at the foot of the body, so .ww-fly is already parsed —
+      // no need to wait for DOMContentLoaded, which may already have gone by
+      (function () {
+        const el = document.querySelector('.ww-fly');
+        if (!el) return;
+        // She enters top left, dives through the middle of the page and climbs away
+        // to the upper right. The sine bows the path into that swoop; the cosine
+        // tips her nose down on the way in and up on the way out, so the tilt always
+        // matches the direction of travel.
+        function place(p) {
+          // no fade-in: she is already there, top left, when the page opens
+          const fade = Math.min(Math.max((.99 - p) / .06, 0), 1);
+          el.style.setProperty('--fx', (-1 + p * 132).toFixed(2));
+          el.style.setProperty('--fy', (12 + Math.sin(p * Math.PI) * 46).toFixed(2));
+          el.style.setProperty('--fr', (Math.cos(p * Math.PI) * 16).toFixed(2));
+          el.style.setProperty('--fo', fade.toFixed(3));
+        }
+        function progress() {
+          const h = document.documentElement.scrollHeight - innerHeight;
+          return h > 0 ? Math.min(1, Math.max(0, scrollY / h)) : 0;
+        }
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { place(.5); return; }
+        let queued = false;
+        const onScroll = () => {
+          if (queued) return;
+          queued = true;
+          requestAnimationFrame(() => { queued = false; place(progress()); });
+        };
+        addEventListener('scroll', onScroll, { passive: true });
+        addEventListener('resize', onScroll);
+        place(progress());
+      })();
+    }
     if (bits === 'row') {
       document.documentElement.dataset.bits = 'row';
       // even spacing along the line, in DOM order: dry, wet, parchment, gloves, scoop
