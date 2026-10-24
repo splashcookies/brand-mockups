@@ -75,17 +75,26 @@
     .hero-open { position: relative; background: var(--hero-a); overflow: hidden; display: grid; align-content: center; justify-items: center; gap: 10px; padding: clamp(24px, 3vw, 44px); }
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
 
-    .pouch-area { position: relative; width: 100%; height: clamp(230px, 27vw, 310px); display: grid; place-items: center; }
+    .pouch-area { position: relative; width: 100%; height: clamp(340px, 36vw, 432px); display: grid; place-items: center; }
     /* decoration only — without this the cards and the illustration can sit over the
        slider and swallow the drag. */
     .pouch, .bit { pointer-events: none; }
-    .pouch { position: relative; width: clamp(310px, 42vw, 520px); z-index: 3; }
+    /* she carries the closed state and hands off to the kit as it opens */
+    .pouch { position: relative; width: clamp(310px, 42vw, 520px); z-index: 3;
+             opacity: calc(1 - var(--t) * 1.15); }
+    /* the payoff, revealed in the middle of the ring */
+    .core { position: absolute; left: 50%; top: 50%; margin: 0; z-index: 2;
+            width: clamp(128px, 16vw, 196px); aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+            transform: translate(-50%, -50%) scale(calc(.72 + .28 * var(--t)));
+            opacity: clamp(0, calc(var(--t) * 1.6 - .45), 1);
+            box-shadow: 0 14px 30px rgba(72,67,65,.18); }
+    .core img { width: 100%; height: 100%; object-fit: cover; }
     .pouch img { width: 100%; height: auto; display: block; }
 
     .bit {
       position: absolute; left: 50%; top: 42%; z-index: 2;
       display: grid; place-items: center; text-align: center;
-      width: clamp(84px, 9.4vw, 118px); aspect-ratio: 1; padding: 9px;
+      width: clamp(76px, 8.2vw, 102px); aspect-ratio: 1; padding: 8px;
       font-family: var(--hand); font-size: clamp(15px, 1.5vw, 19px); line-height: 1.1; color: var(--ink);
       background: var(--paper); border-radius: 18px; box-shadow: 0 8px 18px rgba(72,67,65,.14);
       transform:
@@ -111,7 +120,7 @@
       filter: grayscale(1) brightness(1.28) contrast(1.75);
       mix-blend-mode: multiply;
     }
-    .pull { display: grid; justify-items: center; gap: 8px; width: 100%; }
+    .pull { display: grid; justify-items: center; gap: 8px; width: 100%; margin-top: clamp(10px, 1.6vw, 22px); position: relative; z-index: 6; }
     .pull-label { font-family: var(--hand); font-size: 21px; }
     .tear-range { -webkit-appearance: none; appearance: none; width: min(320px, 84%); height: 42px; background: transparent; cursor: grab; margin: 0; }
     .tear-range:active { cursor: grabbing; }
@@ -265,13 +274,16 @@
       <span class="sticker">Opens soon</span>
       <div class="pouch-area">
         <!-- what's included, drawn the way the back of the pouch draws it -->
-        <span class="bit" style="--dx:-186;--dy:-116;--r:-7"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
-        <span class="bit" style="--dx:-150;--dy:146;--r:-5"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
-        <span class="bit" style="--dx:186;--dy:-116;--r:7"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
-        <span class="bit" style="--dx:150;--dy:146;--r:5"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
-        <span class="bit bit-scoop" style="--dx:0;--dy:-152;--r:-3">
+        <span class="bit" style="--dx:-145;--dy:-47;--r:-6"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
+        <span class="bit" style="--dx:-89;--dy:123;--r:4"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
+        <span class="bit" style="--dx:145;--dy:-47;--r:6"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
+        <span class="bit" style="--dx:89;--dy:123;--r:-4"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
+        <span class="bit bit-scoop" style="--dx:0;--dy:-152;--r:0">
           <i class="scoop-art" role="img" aria-label="Water scoop"></i>
         </span>
+        <figure class="core">
+          <img src="assets/shoot/SPLASH9216.jpg" alt="Six baked Everything cookies cooling on a rack" width="2500" height="1667">
+        </figure>
         <div class="pouch">
           <img src="assets/shoot/everything-illustration.png" alt="The Everything cookie, carried in" width="4428" height="3539">
         </div>
@@ -565,12 +577,12 @@
   },
   "harbour": {
     "label": "Harbour",
-    "note": "Cool grounds against a warm sand, so the split stays obvious.",
+    "note": "Cool grounds against a warm sand, so the two-panel split stays obvious.",
     "v": {
-      "ink": "#3a3f45",
+      "ink": "#484341",
       "paper": "#fcfbf8",
       "rule": "#e2e5e8",
-      "muted": "#6e757c",
+      "muted": "#6e6760",
       "accent": "#efb877",
       "accent-soft": "#e8eff3",
       "surface": "#f7f4ed",
@@ -579,7 +591,7 @@
       "band-1": "#eaf1f5",
       "band-2": "#f2ebdd",
       "band-3": "#dfe8ed",
-      "cta": "#3a3f45",
+      "cta": "#484341",
       "cta-ink": "#f7f4ed"
     }
   },
@@ -601,6 +613,126 @@
       "band-3": "#e8ddbf",
       "cta": "#6f2233",
       "cta-ink": "#fbf6e9"
+    }
+  },
+  "clay": {
+    "label": "Clay",
+    "note": "Warm terracotta neutrals. Sage's sibling on the warm side.",
+    "v": {
+      "ink": "#484341",
+      "paper": "#fdfaf7",
+      "rule": "#e9ded5",
+      "muted": "#6e6760",
+      "accent": "#d99a6c",
+      "accent-soft": "#f3e6de",
+      "surface": "#f8f1ec",
+      "hero-a": "#f0e2da",
+      "hero-b": "#f6efe9",
+      "band-1": "#f5ece5",
+      "band-2": "#efe0d8",
+      "band-3": "#e8d8ce",
+      "cta": "#484341",
+      "cta-ink": "#f8f1ec"
+    }
+  },
+  "seafoam": {
+    "label": "Seafoam",
+    "note": "Cooler and paler than Sage, with the green pulled toward blue.",
+    "v": {
+      "ink": "#484341",
+      "paper": "#fafcfc",
+      "rule": "#dceae9",
+      "muted": "#6e6760",
+      "accent": "#7fc0b8",
+      "accent-soft": "#e6f3f1",
+      "surface": "#f2f8f8",
+      "hero-a": "#e3f0ef",
+      "hero-b": "#eef5f6",
+      "band-1": "#ebf4f5",
+      "band-2": "#e3f0ef",
+      "band-3": "#d7eae9",
+      "cta": "#484341",
+      "cta-ink": "#f2f8f8"
+    }
+  },
+  "wheat": {
+    "label": "Wheat",
+    "note": "Pale gold grounds. Closest of the set to the pouch without being peach.",
+    "v": {
+      "ink": "#484341",
+      "paper": "#fdfbf4",
+      "rule": "#e8ddc4",
+      "muted": "#6e6760",
+      "accent": "#d9ab57",
+      "accent-soft": "#f2e8d3",
+      "surface": "#f8f3e4",
+      "hero-a": "#efe6cd",
+      "hero-b": "#f7f1e2",
+      "band-1": "#f5eeda",
+      "band-2": "#eee4ca",
+      "band-3": "#e6d9b9",
+      "cta": "#484341",
+      "cta-ink": "#f8f3e4"
+    }
+  },
+  "fog": {
+    "label": "Fog",
+    "note": "Cool blue-grey. The quietest option \u2014 nothing competes with the photography.",
+    "v": {
+      "ink": "#484341",
+      "paper": "#fbfbfc",
+      "rule": "#dfe5ea",
+      "muted": "#6e6760",
+      "accent": "#8fa8bd",
+      "accent-soft": "#e9eef3",
+      "surface": "#f3f5f7",
+      "hero-a": "#e5eaef",
+      "hero-b": "#eff2f5",
+      "band-1": "#ecf0f3",
+      "band-2": "#e5eaef",
+      "band-3": "#d9e1e8",
+      "cta": "#484341",
+      "cta-ink": "#f3f5f7"
+    }
+  },
+  "rosewater": {
+    "label": "Rosewater",
+    "note": "Party Pink taken right down to a dusty neutral.",
+    "v": {
+      "ink": "#484341",
+      "paper": "#fdfafa",
+      "rule": "#ead9d8",
+      "muted": "#6e6760",
+      "accent": "#d79a95",
+      "accent-soft": "#f4e8e7",
+      "surface": "#f8f1f1",
+      "hero-a": "#f0e2e2",
+      "hero-b": "#f7efee",
+      "band-1": "#f5eceb",
+      "band-2": "#f0e2e2",
+      "band-3": "#e7d4d4",
+      "cta": "#484341",
+      "cta-ink": "#f8f1f1"
+    }
+  },
+  "olive": {
+    "label": "Olive",
+    "note": "Deeper and warmer than Sage, closer to the brand's mint with age on it.",
+    "v": {
+      "ink": "#484341",
+      "paper": "#fbfbf6",
+      "rule": "#e2e4d2",
+      "muted": "#6e6760",
+      "accent": "#bfa65a",
+      "accent-soft": "#eceedd",
+      "surface": "#f4f5ea",
+      "hero-a": "#e5e8d4",
+      "hero-b": "#f0f2e5",
+      "band-1": "#edefe1",
+      "band-2": "#e5e8d4",
+      "band-3": "#d8dcc2",
+      "cta": "#484341",
+      "cta-ink": "#f4f5ea"
     }
   }
 };
