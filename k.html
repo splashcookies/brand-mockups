@@ -367,7 +367,28 @@
            /* its own ink, not the theme's: the card is packaging-orange on every theme,
               so inheriting a dark theme's light text would leave it unreadable */
            color: var(--pouch-ink); }
+    .kit { position: relative; overflow: hidden; }
+    /* she flies across the empty top of the card. Decorative, so no alt text and
+       no pointer events — the card is one big link and she must not swallow it. */
+    .kit img.kit-ww { position: absolute; top: clamp(-24px, -1.5vw, -8px); right: clamp(-12px, -0.9vw, -4px);
+                      width: clamp(118px, 16vw, 218px); height: auto; aspect-ratio: auto;
+                      object-fit: contain; border-radius: 0; pointer-events: none;
+                      transform: rotate(-7deg); }
+    /* she is decoration in the card's empty corner, so she must never land on the
+       copy; below this the card is too short to hold both */
+    @media (max-width: 820px) { .kit img.kit-ww { display: none; } }
     .kit img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px; }
+
+    /* the splash sits beside the headline, tucked under its last line */
+    .copy-top { position: relative; }
+    /* the headline fills its column, so the mark lives in the panel's right
+       padding, level with the first line — beside "baking" rather than on it */
+    .splash-mark { position: absolute; color: var(--accent); pointer-events: none;
+                   width: clamp(46px, 5vw, 76px); height: auto; aspect-ratio: 511 / 714;
+                   right: clamp(-66px, -4.6vw, -22px); top: clamp(-16px, -1vw, -4px);
+                   transform: rotate(10deg); }
+    @media (max-width: 900px) { .splash-mark { right: -8px; top: -34px;
+                                               width: clamp(40px, 11vw, 58px); } }
     /* same rhythm as .panel-copy, so "Shop the kit" sits exactly where
        "See the steps" does rather than on a different uniform gap */
     .kit-copy { display: grid; gap: 0; justify-items: start; padding-right: clamp(0px, 2vw, 28px); }
@@ -595,6 +616,7 @@
     <div class="hero-copy">
       <div class="copy-top">
         <h1>Gourmet baking made easy.</h1>
+        <span class="ill ill-water splash-mark" aria-hidden="true"></span>
         <p class="sub">We source premium ingredients and measure each of them for you. You add one scoop of water, and six gourmet cookies come out of your oven.</p>
         <p class="hero-facts">10 minutes hands-on &middot; No extra grocery runs</p>
       </div>
@@ -613,6 +635,7 @@
         <a class="link" href="k-shop.html">Shop all <span aria-hidden="true">&rarr;</span></a>
       </div>
       <a class="kit" href="k-product.html">
+        <img class="kit-ww" src="assets/shoot/everything-illustration.png" alt="" width="4428" height="3539">
         <img src="assets/shoot/SPLASH8913.jpg" alt="A finished Everything cookie" width="2500" height="1667">
         <div class="kit-copy">
           <h3>The Everything</h3>
