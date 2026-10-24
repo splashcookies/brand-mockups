@@ -72,7 +72,8 @@
     .nav-right { display: flex; gap: 8px; justify-self: end; }
     .icon-btn { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-grid; place-items: center; color: inherit; }
     .icon-btn svg { width: 18px; height: 18px; }
-    @media (max-width: 760px) { .nav .wrap { grid-template-columns: auto 1fr; } .nav-links { display: none; } .nav .logo { justify-self: start; } }
+    @media (max-width: 760px) { .nav .wrap { grid-template-columns: auto 1fr; } .nav-links { display: none; } .nav .brand { justify-self: start; } }
+    @media (max-width: 560px) { .nav .brand img { height: 54px; } }
 
     /* ===== HERO: the bakery two-panel, but the left half is alive ===== */
     .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: min(84vh, 760px); }
@@ -397,9 +398,9 @@
           <form class="buy" id="buy">
             <fieldset class="packs">
               <legend>How many kits?</legend>
-              <label><input type="radio" name="pack" value="1" checked><span><b>1 kit</b><i>$26</i></span></label>
-              <label><input type="radio" name="pack" value="2"><span><b>2 kits</b><i>$49 &middot; save $3</i></span></label>
-              <label><input type="radio" name="pack" value="3"><span><b>3 kits</b><i>$69 &middot; save $9</i></span></label>
+              <label><input type="radio" name="pack" value="1" checked><span><b>1 kit</b><i>$22</i></span></label>
+              <label><input type="radio" name="pack" value="2"><span><b>2 kits</b><i>$44</i></span></label>
+              <label><input type="radio" name="pack" value="3"><span><b>3 kits</b><i>$66 &middot; free shipping</i></span></label>
             </fieldset>
 
             <label class="gift">
@@ -411,8 +412,8 @@
               <input id="gift-note" name="gift_note" type="text" maxlength="120" placeholder="Add a note &mdash; we&rsquo;ll write it on the card">
             </label>
 
-            <button class="btn add" type="submit">Add to cart &middot; <span id="buy-price">$26</span></button>
-            <p class="fineprint">Free shipping over $50. Ships from Chicago. <b>Mockup &mdash; prices are placeholders and nothing can be charged.</b></p>
+            <button class="btn add" type="submit">Add to cart &middot; <span id="buy-price">$22</span></button>
+            <p class="fineprint">$22 a kit. Free shipping on three kits or more. Ships from Chicago. <b>Mockup &mdash; nothing can be charged here.</b></p>
           </form>
         </div>
       </div>
@@ -886,9 +887,10 @@
   // this page, then a hand-off to hosted Stripe Checkout, so no card details are
   // ever collected here. Prices are placeholders.
   (function () {
-    const PRICES = { 1: 26, 2: 49, 3: 69 };     // placeholder, per pack size
-    const FREE_SHIP_OVER = 50;
+    const PER_KIT = 22;
+    const FREE_SHIP_KITS = 3;          // free shipping at three kits or more
     const SHIP = 6;
+    const PRICES = { 1: PER_KIT, 2: PER_KIT * 2, 3: PER_KIT * 3 };
     const money = n => '$' + n.toFixed(n % 1 ? 2 : 0);
 
     const form = document.getElementById('buy');
@@ -946,14 +948,15 @@
         </li>`).join('');
 
       const sub = subtotal();
-      const ship = sub === 0 ? 0 : (sub >= FREE_SHIP_OVER ? 0 : SHIP);
+      const ship = n === 0 ? 0 : (n >= FREE_SHIP_KITS ? 0 : SHIP);
       emptyEl.hidden = lines.length > 0;
       footEl.hidden = lines.length === 0;
       document.getElementById('cart-subtotal').textContent = money(sub);
       document.getElementById('cart-shipping').textContent = sub === 0 ? '\u2014' : (ship ? money(ship) : 'Free');
       document.getElementById('cart-total').textContent = money(sub + ship);
+      const short = FREE_SHIP_KITS - n;
       document.getElementById('cart-shipnote').textContent =
-        sub && sub < FREE_SHIP_OVER ? money(FREE_SHIP_OVER - sub) + ' more for free shipping.' : '';
+        n && short > 0 ? short + (short === 1 ? ' more kit' : ' more kits') + ' for free shipping.' : '';
     }
 
     itemsEl.addEventListener('click', e => {
