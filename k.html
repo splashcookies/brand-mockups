@@ -34,6 +34,7 @@
     .link { font-weight: 700; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
     .link:hover { text-decoration: underline; }
     .sticker { font-family: var(--hand); font-size: 20px; line-height: 1; padding: 10px 14px; background: var(--wonder-woman); border-radius: 999px; display: inline-block; transform: rotate(-6deg); }
+    .hero-open .sticker { background: var(--party-pink); }
 
     .announce { background: var(--splash-blue); text-align: center; padding: 9px 16px; font-size: 14px; font-weight: 600; }
     .nav { background: var(--paper); border-bottom: 1px solid var(--rule); }
@@ -57,11 +58,11 @@
 
     /* ===== HERO: the bakery two-panel, but the left half is alive ===== */
     .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: min(84vh, 760px); }
-    .hero-open { position: relative; background: var(--party-pink); overflow: hidden; display: grid; align-content: center; justify-items: center; gap: 10px; padding: clamp(24px, 3vw, 44px); }
+    .hero-open { position: relative; background: var(--wonder-woman); overflow: hidden; display: grid; align-content: center; justify-items: center; gap: 10px; padding: clamp(24px, 3vw, 44px); }
     .hero-open .sticker { position: absolute; top: 26px; left: 26px; font-size: 23px; z-index: 5; }
 
     .pouch-area { position: relative; width: 100%; height: clamp(230px, 27vw, 310px); display: grid; place-items: center; }
-    .pouch { position: relative; width: clamp(300px, 40vw, 480px); z-index: 3; }
+    .pouch { position: relative; width: clamp(255px, 33vw, 400px); z-index: 3; }
     .pouch img { width: 100%; height: auto; display: block; }
 
     .bit {
@@ -79,10 +80,20 @@
     }
 
     .bit .ill { width: 100%; height: 100%; color: var(--ink); }
-    /* no standalone scoop asset exists, so it is drawn to match the other components */
-    .bit-scoop { display: grid; grid-template-rows: 1fr auto; gap: 2px; place-items: center; color: var(--ink); }
-    .bit-scoop svg { width: 78%; height: auto; }
-    .bit-scoop em { font-family: var(--hand); font-style: normal; font-size: clamp(13px, 1.3vw, 16px); line-height: 1; }
+    /* No standalone scoop asset exists — it is only drawn inside the back-of-pouch
+       artwork — so this is a window onto that file. Nothing is edited on disk: the box
+       matches the window's own aspect so the drawing is not stretched, and the filter
+       lifts the pouch's peach ground to white so it sits on the card like the others. */
+    .bit-scoop { display: grid; place-items: center; }
+    .scoop-art {
+      width: 88%; aspect-ratio: 871 / 1147;
+      background-image: url(assets/shoot/pouch-back.jpg);
+      background-repeat: no-repeat;
+      background-size: 980.4% 1162.8%;
+      background-position: 24.28% 29.1%;
+      filter: grayscale(1) brightness(1.28) contrast(1.75);
+      mix-blend-mode: multiply;
+    }
     .pull { display: grid; justify-items: center; gap: 8px; width: 100%; }
     .pull-label { font-family: var(--hand); font-size: 21px; }
     .tear-range { -webkit-appearance: none; appearance: none; width: min(320px, 84%); height: 42px; background: transparent; cursor: grab; margin: 0; }
@@ -237,19 +248,12 @@
       <span class="sticker">Opens soon</span>
       <div class="pouch-area">
         <!-- what's included, drawn the way the back of the pouch draws it -->
-        <span class="bit" style="--dx:-176;--dy:-70;--r:-9"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
-        <span class="bit" style="--dx:-150;--dy:92;--r:7"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
-        <span class="bit" style="--dx:178;--dy:-74;--r:10"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
-        <span class="bit" style="--dx:152;--dy:94;--r:-8"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
-        <span class="bit bit-scoop" style="--dx:0;--dy:-150;--r:-4">
-          <svg viewBox="0 0 120 108" fill="none" stroke="currentColor" stroke-width="2.6"
-               stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Water scoop">
-            <ellipse cx="48" cy="40" rx="25" ry="8.5"/>
-            <path d="M23 40c0 19 8 29 25 29s25-10 25-29"/>
-            <ellipse cx="48" cy="40" rx="16" ry="5"/>
-            <path d="M73 42l22-6c6-1.6 8 4.4 3 7l-20 8"/>
-          </svg>
-          <em>water scoop</em>
+        <span class="bit" style="--dx:-192;--dy:-98;--r:-7"><span class="ill ill-dry" role="img" aria-label="Dry ingredients pouch"></span></span>
+        <span class="bit" style="--dx:-152;--dy:122;--r:-5"><span class="ill ill-wet" role="img" aria-label="Wet ingredients pouch"></span></span>
+        <span class="bit" style="--dx:192;--dy:-98;--r:7"><span class="ill ill-parchment" role="img" aria-label="Parchment paper"></span></span>
+        <span class="bit" style="--dx:152;--dy:122;--r:5"><span class="ill ill-gloves" role="img" aria-label="Mixing gloves"></span></span>
+        <span class="bit bit-scoop" style="--dx:0;--dy:-134;--r:-3">
+          <i class="scoop-art" role="img" aria-label="Water scoop"></i>
         </span>
         <div class="pouch">
           <img src="assets/shoot/everything-illustration.png" alt="The Everything cookie, carried in" width="4428" height="3539">
